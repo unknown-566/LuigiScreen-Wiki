@@ -10,6 +10,11 @@
 - Added a trademark policy for unofficial modified builds
 - Added a Java 21 GitHub Actions verification build
 - Clarified the Paper/Bukkit plugin classification across public metadata
+- Hardened URL masking across status output, connection logs and error messages
+- Centralized screen geometry, map-limit and adaptive-FPS policy
+- Added tests for all screen directions, FPS limits and configuration validation
+- Verified that no-viewer pause exits the receive loop and closes the FFmpeg grabber
+- Added connecting and offline screen states during RTMP outages
 
 ## 1.1.0-alpha.6
 

@@ -12,7 +12,9 @@ LuigiScreen `1.1.0-alpha.7` is an alpha build.
 - Automatic reconnect and viewer pause
 - Czech and English messages
 - Debug boss bar and sidebar
-- Automated unit tests for text formatting, language files, MediaMTX generation and URL masking
+- 26 automated tests covering URL and error masking, screen corners, size and
+  map limits, configuration clamping, adaptive FPS, MediaMTX generation,
+  localization and debug formatting
 - Public Free source at https://github.com/unknown-566/LuigiScreen
 - AGPL-3.0-only project license
 - Third-party notices and license texts

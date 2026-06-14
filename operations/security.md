@@ -31,7 +31,8 @@ The generated MediaMTX users are restricted:
 
 ## URL masking
 
-LuigiScreen masks passwords, tokens and path-based stream keys in its own status and logs.
+LuigiScreen masks passwords, tokens and path-based stream keys in its status,
+connection logs and error messages.
 
 Other software, crash reports or hosting panels can still print complete connection strings. Inspect logs before sharing them.
 
