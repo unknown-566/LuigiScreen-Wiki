@@ -5,6 +5,10 @@
 - Added bundled Linux x86_64 JavaCPP and FFmpeg native libraries
 - Retained Windows x86_64 support
 - Fixed `UnsatisfiedLinkError: no jniavutil` on Linux amd64 hosts such as Minekeep
+- Published the LuigiScreen Free source code
+- Added the AGPL-3.0-only license and third-party notices
+- Added a trademark policy for unofficial modified builds
+- Added a Java 21 GitHub Actions verification build
 
 ## 1.1.0-alpha.6
 

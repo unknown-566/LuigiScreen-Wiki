@@ -13,6 +13,11 @@ LuigiScreen `1.1.0-alpha.7` is an alpha build.
 - Czech and English messages
 - Debug boss bar and sidebar
 - Automated unit tests for text formatting, language files, MediaMTX generation and URL masking
+- Public Free source at https://github.com/unknown-566/LuigiScreen
+- AGPL-3.0-only project license
+- Third-party notices and license texts
+- Trademark policy for unofficial modified builds
+- GitHub Actions verification on Java 21
 
 ## Before a stable public release
 
@@ -22,9 +27,6 @@ The project should still complete:
 - Long-duration Linux and Windows stream tests
 - Clean shutdown tests during network failure
 - Upload-size testing on common hosting panels
-- A clearly declared project license
-- Third-party license notices for bundled libraries
-- Public source and reproducible release instructions
 - A privacy review of generated support logs
 - More automated lifecycle and integration tests
 

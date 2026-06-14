@@ -38,6 +38,7 @@
 * [Common Errors](troubleshooting/common-errors.md)
 * [Diagnostic Checklist](troubleshooting/log-checklist.md)
 * [Supported Platforms](reference/platforms.md)
+* [License and Editions](reference/licensing.md)
 * [Release Status](reference/release-status.md)
 * [Changelog](reference/changelog.md)
 

@@ -21,6 +21,12 @@ Required plugin:
 
 - MapEngine `1.8.12`
 
+Project links:
+
+- [Free source code](https://github.com/unknown-566/LuigiScreen)
+- [Issue tracker](https://github.com/unknown-566/LuigiScreen/issues)
+- [License and editions](reference/licensing.md)
+
 ## Start here
 
 If everything runs on one computer, follow the [Quick start](getting-started/quick-start.md).
@@ -40,6 +46,7 @@ If you prefer Czech, use the [Český rychlý start](czech/quick-start.md).
 - Localized Czech and English messages
 - Performance boss bar and 15-line debug sidebar
 - Masked RTMP credentials in status output and logs
+- Public AGPL-3.0-only Free source code
 
 ## Important limitation
 
