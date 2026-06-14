@@ -1,0 +1,44 @@
+# Release Status
+
+LuigiScreen `1.1.0-alpha.7` is an alpha build.
+
+## Ready for testing
+
+- Paper 1.21.11 integration
+- MapEngine 1.8.12 rendering
+- Windows x86_64 native FFmpeg
+- Linux x86_64 native FFmpeg
+- Same-PC and remote MediaMTX profiles
+- Automatic reconnect and viewer pause
+- Czech and English messages
+- Debug boss bar and sidebar
+- Automated unit tests for text formatting, language files, MediaMTX generation and URL masking
+
+## Before a stable public release
+
+The project should still complete:
+
+- Broader testing on public Paper servers
+- Long-duration Linux and Windows stream tests
+- Clean shutdown tests during network failure
+- Upload-size testing on common hosting panels
+- A clearly declared project license
+- Third-party license notices for bundled libraries
+- Public source and reproducible release instructions
+- A privacy review of generated support logs
+- More automated lifecycle and integration tests
+
+## Known alpha limitations
+
+- One configured screen per server
+- One RTMP stream
+- No audio playback in Minecraft
+- No ARM or macOS native libraries
+- No Folia support
+- No built-in MediaMTX process manager
+- No built-in OBS replacement
+- Debug native-memory values are estimates, not complete measurements
+
+## Reporting a problem
+
+Use the [Diagnostic checklist](../troubleshooting/log-checklist.md) and remove credentials before posting logs.
