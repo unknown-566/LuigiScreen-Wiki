@@ -78,7 +78,7 @@ Build a flat vertical wall at least 7 blocks wide and 4 blocks high.
 Look at the upper-left block of the wall from the front and run:
 
 ```text
-/screen create 7 4
+/screen create main 7 4
 ```
 
 LuigiScreen creates the MapEngine display and connects to the RTMP stream.
@@ -88,7 +88,7 @@ LuigiScreen creates the MapEngine display and connects to the RTMP stream.
 Run:
 
 ```text
-/screen status
+/screen status main
 ```
 
 For live statistics:

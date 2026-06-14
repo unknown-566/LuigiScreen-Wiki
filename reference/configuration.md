@@ -8,7 +8,7 @@ plugins/LuigiScreen/config.yml
 
 Run `/screen reload` after editing it.
 
-## Complete default configuration
+## Default and generated sections
 
 ```yaml
 language: cs
@@ -27,11 +27,8 @@ screen:
   max-width: 10
   max-height: 6
   max-total-maps: 60
-  configured: false
-  world: ""
-  corner-a: ""
-  corner-b: ""
-  facing: "NORTH"
+
+screens: {}
 
 performance:
   adaptive-fps: true
@@ -49,117 +46,81 @@ debug:
   page-duration-seconds: 2
 ```
 
-## Language
+The old `screen.configured`, `world`, `corner-a`, `corner-b` and `facing`
+fields may remain after upgrading. Alpha.8 migrates one valid legacy screen to
+`screens.main` once and then uses the new section.
 
-### `language`
+## Per-screen entries
 
-Selected message file code.
-
-```yaml
-language: en
-```
-
-Loads `messages_en.yml`.
-
-## Stream
-
-### `stream.url`
-
-RTMP reader URL used by LuigiScreen.
-
-Prefer `/screen mediamtx <situation>` instead of writing credentials manually.
-
-### `stream.fps`
-
-Requested render FPS, clamped internally between `0.1` and `20`.
-
-### `stream.reconnect-delay-seconds`
-
-Initial reconnect delay after stream failure.
-
-### `stream.reconnect-max-delay-seconds`
-
-Maximum exponential reconnect delay.
-
-## Screen
-
-### `screen.auto-start`
-
-Starts the decoder automatically when a saved display loads.
-
-### `screen.viewer-distance`
-
-Maximum player distance from the display center for receiving map updates.
-
-### `screen.glowing-frames`
-
-Controls MapEngine glowing display frames.
-
-### `screen.dithering`
-
-Enables Floyd-Steinberg color conversion. It can improve gradients but costs additional CPU.
-
-### `screen.max-width`
-
-Maximum allowed map width. Hard-clamped to `50`.
-
-### `screen.max-height`
-
-Maximum allowed map height. Hard-clamped to `50`.
-
-### `screen.max-total-maps`
-
-Maximum width multiplied by height. Hard-clamped to `2500`.
-
-The default `60` is much safer than the hard maximum.
-
-### Saved screen fields
-
-These fields are managed automatically:
+Commands create entries like:
 
 ```yaml
-configured: false
-world: ""
-corner-a: ""
-corner-b: ""
-facing: "NORTH"
+screens:
+  main:
+    url: "rtmp://127.0.0.1:55556/screen"
+    fps: 8.0
+    distance: 64.0
+    world: world
+    location: "120,80,-45"
+    width: 7
+    height: 4
+    facing: NORTH
+    enabled: true
 ```
 
-Do not edit them unless repairing a known configuration problem.
+Every screen has its own:
+
+- `url`
+- `fps`
+- `distance`
+- `world`
+- `location`
+- `width`
+- `height`
+- `enabled`
+
+`facing` is also stored because MapEngine needs the wall direction.
+
+### Source sharing
+
+Screens whose trimmed `url` values are identical share one FFmpeg decoder.
+They still render independently and may use different FPS, distance, world,
+location, width, height and enabled values.
+
+Changing a clone's URL with `/screen set <name> url <url>` moves it to another
+source group. The old decoder remains alive while another enabled screen still
+uses it.
+
+## Global defaults
+
+`stream.url`, `stream.fps`, `screen.viewer-distance` and
+`screen.auto-start` are defaults for newly created screens and legacy
+migration. Existing screens retain their own saved values.
+
+Reconnect delays remain global because they control every shared source
+worker.
+
+## Safety limits
+
+`screen.max-width`, `screen.max-height` and `screen.max-total-maps` are checked
+for every individual screen.
+
+The hard limits are 50x50 and 2500 maps, but the defaults of 10x6 and 60 maps
+are much safer. Multiple screens add rendering and packet cost even when they
+share decoding.
 
 ## Performance
 
-### `performance.adaptive-fps`
+Adaptive FPS is calculated independently for each screen. A shared decoder
+reads at the highest effective FPS requested by its enabled screens. Slower
+screens keep only the newest pending shared frame, preventing latency buildup.
 
-Reduces effective FPS when the screen would exceed the update budget.
+When `pause-rendering-without-viewers` is enabled, a shared decoder disconnects
+only when none of its enabled screens has a nearby viewer.
 
-### `performance.max-map-updates-per-second`
+## Logging and debug
 
-Approximate budget used by adaptive FPS.
-
-Effective FPS is limited by:
-
-```text
-max-map-updates-per-second / total maps
-```
-
-### `performance.minimum-fps`
-
-Lowest FPS adaptive mode can select.
-
-### `performance.pause-rendering-without-viewers`
-
-Disconnects the RTMP decoder when nobody is near the screen.
-
-### `performance.delta-updates-max-maps`
-
-Screens at or below this map count may keep an additional previous-frame buffer for delta updates.
-
-## Logging
-
-### `logging.ffmpeg-level`
-
-Allowed values:
+Allowed FFmpeg levels:
 
 ```text
 quiet
@@ -169,18 +130,5 @@ info
 debug
 ```
 
-JavaCV's FFmpeg log level is process-wide and can affect another plugin using the same native FFmpeg process.
-
-## Debug
-
-### `debug.bossbar-update-ticks`
-
-Boss bar and sidebar refresh interval. The minimum is five ticks.
-
-### `debug.sidebar-enabled`
-
-Controls whether `/screen debug` also installs a personal sidebar.
-
-### `debug.page-duration-seconds`
-
-Number of seconds each boss bar statistics page remains visible.
+FFmpeg logging is process-wide. Debug buffer values are estimates and do not
+include all native FFmpeg or MapEngine allocations.

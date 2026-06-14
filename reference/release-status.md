@@ -1,6 +1,6 @@
 # Release Status
 
-LuigiScreen `1.1.0-alpha.7` is an alpha build.
+LuigiScreen `1.1.0-alpha.8` is an alpha build.
 
 ## Ready for testing
 
@@ -12,9 +12,11 @@ LuigiScreen `1.1.0-alpha.7` is an alpha build.
 - Automatic reconnect and viewer pause
 - Czech and English messages
 - Debug boss bar and sidebar
-- 26 automated tests covering URL and error masking, screen corners, size and
+- Multiple named screens and URL-based shared decoders
+- Independent per-screen source, FPS, distance, location, dimensions and enabled state
+- 33 automated tests covering URL and error masking, screen corners, size and
   map limits, configuration clamping, adaptive FPS, MediaMTX generation,
-  localization and debug formatting
+  localization, debug formatting, source grouping and shared-frame lifetime
 - Public Free source at https://github.com/unknown-566/LuigiScreen
 - AGPL-3.0-only project license
 - Third-party notices and license texts
@@ -34,14 +36,13 @@ The project should still complete:
 
 ## Known alpha limitations
 
-- One configured screen per server
-- One RTMP stream
 - No audio playback in Minecraft
 - No ARM or macOS native libraries
 - No Folia support
 - No built-in MediaMTX process manager
 - No built-in OBS replacement
 - Debug native-memory values are estimates, not complete measurements
+- MapEngine rendering and packets still scale with every screen, even when decoding is shared
 
 ## Reporting a problem
 

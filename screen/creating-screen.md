@@ -1,54 +1,35 @@
 # Creating a Screen
 
-## Build the wall
+Build a flat vertical wall facing north, south, east or west. Stand in front
+of it and look at the upper-left block.
 
-Use a flat vertical wall. LuigiScreen supports walls facing north, south, east or west.
-
-The default screen size is:
+Create a named 7x4 screen:
 
 ```text
-7 maps wide x 4 maps high
+/screen create main 7 4
 ```
 
-Each map represents `128x128` pixels, so a 7x4 screen outputs:
+Each map is 128x128 pixels, so 7x4 produces an 896x512 output.
+
+## Names and sizes
 
 ```text
-896x512 pixels
-```
-
-## Select the correct corner
-
-Stand in front of the wall and look directly at its **upper-left block**.
-
-Run:
-
-```text
-/screen create 7 4
-```
-
-The command ray-traces up to 10 blocks. It fails if:
-
-- No block is targeted
-- The targeted face is the floor or ceiling
-- The requested size exceeds configured limits
-- The previous decoder is still shutting down
-
-## Custom sizes
-
-Syntax:
-
-```text
-/screen create <width> <height>
+/screen create <name> [width] [height]
 ```
 
 Examples:
 
 ```text
-/screen create 5 3
-/screen create 10 6
+/screen create lobby 5 3
+/screen create cinema 10 6
 ```
 
-Default safety limits:
+Names accept lowercase letters, numbers, `_` and `-`. The command converts
+uppercase input to lowercase.
+
+For compatibility, `/screen create 7 4` creates `main`.
+
+Default per-screen safety limits:
 
 ```yaml
 screen:
@@ -57,22 +38,16 @@ screen:
   max-total-maps: 60
 ```
 
-Both dimension limits and the total map limit must pass.
+## More than one screen
 
-## Recreating a screen
+Creating a new named screen no longer removes the previous one. Use
+`/screen list` to inspect the registry and `/screen remove <name>` to remove a
+specific display.
 
-Creating a new screen removes the old display only after the previous RTMP decoder stops safely.
+Use [Multiple Screens and Clones](multiple-screens.md) when several displays
+should show the same video.
 
-## Removing a screen
+## Orientation
 
-Run:
-
-```text
-/screen remove
-```
-
-This removes the display and clears its saved location.
-
-## Orientation issues
-
-If the screen extends in the wrong direction, stand on the opposite side of the wall and select the upper-left block from that side.
+If a screen extends in the wrong direction, remove it, stand on the opposite
+side of the wall and select the upper-left block from that side.

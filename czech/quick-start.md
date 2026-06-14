@@ -8,7 +8,7 @@ Tento návod počítá s tím, že Paper server, MediaMTX a OBS běží na stejn
 Paper 1.21.11
 Java 21
 MapEngine 1.8.12
-LuigiScreen 1.1.0-alpha.7 nebo novější
+LuigiScreen 1.1.0-alpha.8 nebo novější
 ```
 
 Podporovaný systém:
@@ -83,13 +83,13 @@ Postav rovnou svislou stěnu širokou 7 bloků a vysokou 4 bloky.
 Dívej se na její levý horní blok a spusť:
 
 ```text
-/screen create 7 4
+/screen create main 7 4
 ```
 
 ## 5. Kontrola
 
 ```text
-/screen status
+/screen status main
 /screen debug
 ```
 

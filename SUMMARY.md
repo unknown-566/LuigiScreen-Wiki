@@ -11,6 +11,7 @@
 
 * [How It Works](concepts/how-it-works.md)
 * [Creating a Screen](screen/creating-screen.md)
+* [Multiple Screens and Clones](screen/multiple-screens.md)
 * [Choose a Network Setup](streaming/overview.md)
 * [OBS Studio](streaming/obs.md)
 * [MediaMTX](streaming/mediamtx.md)

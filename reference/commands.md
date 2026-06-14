@@ -1,82 +1,107 @@
 # Commands
 
-All commands use:
+All commands use `/screen`. The full command name is `/luigiscreen`.
+
+## Create and clone
+
+### `/screen create <name> [width] [height]`
+
+Creates a named display on the targeted vertical wall. Look at the upper-left
+block from the front.
 
 ```text
-/screen
+/screen create main 7 4
+/screen create lobby 5 3
 ```
 
-The full command name is `/luigiscreen`.
+Names may contain lowercase letters, numbers, `_` and `-`, up to 32
+characters. Names are normalized to lowercase.
 
-## `/screen create [width] [height]`
+The legacy syntax `/screen create 7 4` still creates a screen named `main`.
 
-Creates a map display on the targeted vertical wall.
+### `/screen clone <source> <new-name>`
 
-Defaults:
+Creates another screen at the wall you are looking at. The clone copies the
+source screen's URL, FPS, distance, dimensions and enabled state.
 
 ```text
-width: 7
-height: 4
+/screen clone main lobby
 ```
 
-The command must be used by a player looking at the upper-left wall block.
+While both screens have the same URL, LuigiScreen uses one FFmpeg decoder and
+fans the latest frame out to both renderers.
 
-## `/screen start`
+## Inspect
 
-Starts the RTMP decoder for the existing screen.
+### `/screen list`
 
-It does not start MediaMTX or OBS.
+Lists every screen, its size, world, FPS, distance, enabled state and masked
+URL.
 
-## `/screen stop`
+### `/screen status`
 
-Requests a safe decoder shutdown and shows the configured stopped frame.
+Shows the total number of screens, enabled screens, unique shared sources and
+maps.
 
-Native FFmpeg shutdown can take several seconds.
+### `/screen status <name>`
 
-## `/screen remove`
+Shows detailed state for one screen, including its shared-source count,
+effective FPS, viewers, frame counters and masked URL.
 
-Stops the decoder, destroys the MapEngine display and clears the saved screen location.
+## Control
 
-If the decoder cannot stop safely, the display remains intact.
+### `/screen start <name|all>`
 
-## `/screen status`
+Enables one screen or all screens. A shared decoder starts only once even when
+several enabled screens use its URL.
 
-Shows:
+### `/screen stop <name|all>`
 
-- Screen dimensions
-- Stream state
-- Stream error
-- Effective FPS
-- Nearby viewers
-- Received and rendered frame counts
-- Render error
-- World and facing
-- Masked stream URL
+Disables one screen or all screens without deleting their saved definitions.
+The decoder stops when its last enabled screen is disabled.
 
-## `/screen reload`
+### `/screen remove <name>`
 
-Reloads:
+Destroys one MapEngine display and removes its saved definition. Other clones
+and shared decoders remain active.
 
-- `config.yml`
-- Selected language file
-- Screen definition
-- Renderer
-- RTMP connection
-- Debug update schedule
+### `/screen set <name> <property> <value>`
+
+Editable properties:
+
+```text
+url
+fps
+distance
+enabled
+```
+
+Examples:
+
+```text
+/screen set lobby fps 4
+/screen set lobby distance 32
+/screen set lobby enabled false
+/screen set lobby url rtmp://127.0.0.1:55556/second
+```
+
+FPS accepts `0.1` to `20`. Distance accepts `8` to `1024` blocks.
+
+## Administration
+
+### `/screen reload`
+
+Safely stops every decoder, reloads `config.yml` and localization, recreates
+all screens and restarts enabled shared sources.
 
 Use a full server restart after replacing the plugin JAR or native libraries.
 
-## `/screen debug`
+### `/screen debug`
 
 Toggles the personal debug boss bar and, by default, the 15-line sidebar.
+Multi-screen debug includes total screens, enabled screens and shared sources.
 
-Only players can use this command.
-
-## `/screen mediamtx`
-
-Shows the available setup situations.
-
-## `/screen mediamtx <situation>`
+### `/screen mediamtx <situation>`
 
 Valid situations:
 
@@ -88,4 +113,5 @@ vpn
 hosting
 ```
 
-The wizard times out after two minutes. Type `cancel` as the requested chat answer to stop it.
+The wizard updates the global default URL and screens still using the previous
+default URL. Custom per-screen URLs are preserved.

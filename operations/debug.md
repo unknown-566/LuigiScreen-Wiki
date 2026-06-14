@@ -13,7 +13,7 @@ Run it again to disable debugging.
 The boss bar cycles through:
 
 1. Stream state, source resolution and last-frame age
-2. Screen maps, output resolution, viewers and FPS
+2. Total/enabled screens, shared sources, primary screen maps, viewers and FPS
 3. Received, rendered and replaced frames
 4. Last and average render time
 5. JVM, non-heap and system memory
@@ -28,7 +28,8 @@ The 15-line sidebar shows the most important values simultaneously:
 
 - Stream state
 - Source resolution
-- Screen size
+- Total screens, enabled screens and shared source count
+- Primary screen size
 - Output resolution
 - Viewer count
 - Input and output FPS

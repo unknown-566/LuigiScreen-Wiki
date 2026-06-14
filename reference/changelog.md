@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.1.0-alpha.8
+
+- Added multiple named screens
+- Added `/screen create <name> [width] [height]`
+- Kept `/screen create 7 4` as legacy shorthand for `main`
+- Added `/screen clone <source> <new-name>`
+- Added `/screen list`, named status and targeted start, stop and remove commands
+- Added `/screen set <name> <url|fps|distance|enabled> <value>`
+- Added independent URL, FPS, distance, world, location, width, height and enabled state per screen
+- Added automatic source grouping by RTMP URL
+- Added one shared FFmpeg decoder for every unique URL
+- Added reference-counted shared frames so clones do not duplicate decoded images
+- Added independent render pacing and latest-frame queues per screen
+- Added automatic migration of the old single-screen config to `screens.main`
+- Expanded debug output with total, enabled and shared-source counts
+- Added tests for screen definitions, source grouping, migration geometry and shared-frame lifetime
+
 ## 1.1.0-alpha.7
 
 - Added bundled Linux x86_64 JavaCPP and FFmpeg native libraries
