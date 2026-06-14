@@ -18,7 +18,7 @@
 | Windows ARM64 | FFmpeg ARM natives are not bundled |
 | macOS | macOS natives are not bundled or tested |
 | Folia | Threading model is not supported |
-| Spigot/Bukkit | Plugin targets Paper APIs |
+| Spigot/CraftBukkit server | Unsupported; the Paper/Bukkit plugin targets Paper APIs |
 | Minecraft versions other than 1.21.11 | API and MapEngine compatibility are unverified |
 
 ## Hosting compatibility

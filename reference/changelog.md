@@ -9,6 +9,7 @@
 - Added the AGPL-3.0-only license and third-party notices
 - Added a trademark policy for unofficial modified builds
 - Added a Java 21 GitHub Actions verification build
+- Clarified the Paper/Bukkit plugin classification across public metadata
 
 ## 1.1.0-alpha.6
 

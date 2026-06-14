@@ -12,7 +12,9 @@ Check every requirement before installing LuigiScreen.
 | CPU architecture | x86_64 / amd64 |
 | Operating system | Windows or Linux |
 
-Spigot, Bukkit, Folia, macOS, ARM64 and older Minecraft versions are not currently supported.
+LuigiScreen is distributed as a Paper/Bukkit plugin, but its current build
+targets Paper APIs. Plain Spigot and CraftBukkit servers, Folia, macOS, ARM64
+and older Minecraft versions are not currently supported.
 
 ## Required plugin
 

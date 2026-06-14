@@ -1,6 +1,6 @@
 # LuigiScreen
 
-LuigiScreen is a Paper plugin that displays a live RTMP video stream on a wall of Minecraft maps.
+LuigiScreen is a server-side Paper/Bukkit plugin that displays a live RTMP video stream on a wall of Minecraft maps.
 
 It connects **OBS Studio** to **MediaMTX**, decodes the stream with FFmpeg, and renders the latest video frame through **MapEngine**.
 
@@ -20,6 +20,9 @@ Supported server platforms:
 Required plugin:
 
 - MapEngine `1.8.12`
+
+LuigiScreen belongs to the Bukkit plugin ecosystem but currently targets
+Paper APIs. Install it on Paper, not on a plain Spigot or CraftBukkit server.
 
 Project links:
 
