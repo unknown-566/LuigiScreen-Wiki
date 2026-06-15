@@ -8,7 +8,7 @@ Tento návod počítá s tím, že Paper server, MediaMTX a OBS běží na stejn
 Paper 1.21.11
 Java 21
 MapEngine 1.8.12
-LuigiScreen 1.1.0-alpha.10 nebo novější
+LuigiScreen 1.1.0-alpha.11 nebo novější
 ```
 
 Podporovaný systém:

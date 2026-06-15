@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0-alpha.11
+
+- Fixed `/screen reload` removing MapEngine displays
+- Reload now preserves a screen when its world, location, dimensions and facing are unchanged
+- URL, FPS, distance, enabled state, permission and rendering settings update in place
+- Removed screens are still destroyed and geometrically changed screens are recreated
+- MediaMTX source changes now use the same non-destructive reconciliation
+- Added regression tests for reload geometry decisions
+
 ## 1.1.0-alpha.10
 
 - Changed the offline, connecting, waiting and stopped screen title to `LuigiScreen`
