@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.1.0-alpha.12
+
+- Added typed media sources: RTMP, MJPEG, local video, local image, URL image and GIF
+- Added `/screen source <name> <type> <value>` with tab completion
+- Added `/screen source <name>` and `/screen source <name> types`
+- Added `plugins/LuigiScreen/media/` for safe relative local paths
+- Added looping playback for local videos and GIFs
+- Added retry behavior for RTMP, MJPEG and temporarily unavailable URL images
+- Added source sharing by normalized type and value
+- Kept `/screen set <name> url ...` and old `url:` config entries as RTMP compatibility paths
+- Added automatic migration to per-screen `source.type` and `source.value`
+- Added `luigiscreen.source`
+- Added source HTTP timeout, image download limit and absolute-path protection
+- Expanded the automated suite to 44 tests
+
 ## 1.1.0-alpha.11
 
 - Fixed `/screen reload` removing MapEngine displays

@@ -22,21 +22,22 @@ The legacy syntax `/screen create 7 4` still creates a screen named `main`.
 ### `/screen clone <source> <new-name>`
 
 Creates another screen at the wall you are looking at. The clone copies the
-source screen's URL, FPS, distance, dimensions and enabled state.
+source screen's typed media source, FPS, distance, dimensions and enabled
+state.
 
 ```text
 /screen clone main lobby
 ```
 
-While both screens have the same URL, LuigiScreen uses one FFmpeg decoder and
-fans the latest frame out to both renderers.
+While both screens have the same source type and value, LuigiScreen uses one
+loader and fans the latest frame out to both renderers.
 
 ## Inspect
 
 ### `/screen list`
 
-Lists every screen, its size, world, FPS, distance, enabled state and masked
-URL.
+Lists every screen, its size, world, FPS, distance, enabled state, source type
+and masked source value.
 
 ### `/screen status`
 
@@ -46,35 +47,67 @@ maps.
 ### `/screen status <name>`
 
 Shows detailed state for one screen, including its shared-source count,
-effective FPS, viewers, frame counters and masked URL.
+effective FPS, viewers, frame counters, source type and masked value.
 
 ## Control
 
 ### `/screen start <name|all>`
 
-Enables one screen or all screens. A shared decoder starts only once even when
-several enabled screens use its URL.
+Enables one screen or all screens. A shared loader starts only once even when
+several enabled screens use the same typed source.
 
 ### `/screen stop <name|all>`
 
 Disables one screen or all screens without deleting their saved definitions.
-The decoder stops when its last enabled screen is disabled.
+The loader stops when its last enabled screen is disabled.
 
 ### `/screen remove <name>`
 
 Destroys one MapEngine display and removes its saved definition. Other clones
-and shared decoders remain active.
+and shared loaders remain active.
+
+## Media source
+
+### `/screen source <name>`
+
+Shows the selected source type and its safe display value.
+
+### `/screen source <name> types`
+
+Lists:
+
+```text
+rtmp, mjpeg, video, image, url-image, gif
+```
+
+### `/screen source <name> <type> <value>`
+
+Switches the source without recreating the screen:
+
+```text
+/screen source main rtmp rtmp://127.0.0.1:55556/screen
+/screen source camera mjpeg http://camera.local/video
+/screen source cinema video intro.mp4
+/screen source poster image poster.png
+/screen source news url-image https://example.com/current.png
+/screen source animation gif welcome.gif
+```
+
+Relative local paths use `plugins/LuigiScreen/media/`. See
+[Media sources](../screen/sources.md).
+
+## Screen settings
 
 ### `/screen set <name> <property> <value>`
 
 Editable properties:
 
 ```text
-url
 fps
 distance
 enabled
 permission
+url
 ```
 
 Examples:
@@ -89,15 +122,16 @@ Examples:
 
 FPS accepts `0.1` to `20`. Distance accepts `8` to `1024` blocks.
 `permission true` requires `luigiscreen.see.<name>` to view the screen.
+`url` is a legacy compatibility shortcut that always selects an RTMP source.
 
 ## Administration
 
 ### `/screen reload`
 
-Safely stops every decoder, reloads `config.yml` and localization, preserves
-all existing MapEngine displays and restarts enabled shared sources.
+Safely stops every source worker, reloads `config.yml` and localization,
+preserves all existing MapEngine displays and restarts enabled shared sources.
 
-URL, FPS, distance, enabled state and visibility permission are updated
+Source, FPS, distance, enabled state and visibility permission are updated
 without removing the display. A screen missing from config is restored.
 Use `/screen remove <name>` when you actually want to delete it.
 
@@ -123,5 +157,5 @@ vpn
 hosting
 ```
 
-The wizard updates the global default URL and screens still using the previous
-default URL. Custom per-screen URLs are preserved.
+The wizard updates the global default to an RTMP source and updates screens
+still using the previous default. Custom per-screen sources are preserved.

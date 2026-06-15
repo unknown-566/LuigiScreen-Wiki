@@ -26,7 +26,9 @@ Place the LuigiScreen JAR in:
 plugins/
 ```
 
-Keep only one LuigiScreen JAR. For example, remove `LuigiScreen-1.1.0-alpha.10.jar` before adding `LuigiScreen-1.1.0-alpha.11.jar`.
+Keep only one LuigiScreen JAR. For example, remove
+`LuigiScreen-1.1.0-alpha.11.jar` before adding
+`LuigiScreen-1.1.0-alpha.12.jar`.
 
 ## 4. Start the server
 
@@ -36,6 +38,7 @@ The first start creates:
 plugins/LuigiScreen/config.yml
 plugins/LuigiScreen/messages_cs.yml
 plugins/LuigiScreen/messages_en.yml
+plugins/LuigiScreen/media/
 ```
 
 ## 5. Verify startup
@@ -44,7 +47,7 @@ The console should show both plugins enabled without an exception:
 
 ```text
 Enabling MapEngine v1.8.12
-Enabling LuigiScreen v1.1.0-alpha.11
+Enabling LuigiScreen v1.1.0-alpha.12
 ```
 
 Run:
@@ -55,9 +58,10 @@ Run:
 
 MapEngine and LuigiScreen should both appear enabled.
 
-## 6. Choose your network situation
+## 6. Choose a source
 
-Continue with [Choose a network setup](../streaming/overview.md).
+Continue with [Media sources](../screen/sources.md). Only RTMP sources need a
+[network setup](../streaming/overview.md).
 
 ## Updating
 

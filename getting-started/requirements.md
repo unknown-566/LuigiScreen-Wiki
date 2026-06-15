@@ -22,12 +22,15 @@ Install MapEngine `1.8.12` before starting the server.
 
 LuigiScreen declares MapEngine as a required dependency. If MapEngine is missing or incompatible, Paper will not enable LuigiScreen correctly.
 
-## Streaming software
+## Optional RTMP software
 
-You need:
+You only need these applications when using an RTMP source:
 
 - [MediaMTX](https://mediamtx.org/) as the media server
 - [OBS Studio](https://obsproject.com/) or another RTMP publisher
+
+Local videos, images and GIFs do not require OBS or MediaMTX. MJPEG only
+requires a reachable MJPEG endpoint.
 
 MediaMTX can run:
 
@@ -37,7 +40,7 @@ MediaMTX can run:
 - Across a VPN such as Tailscale or ZeroTier
 - On an external VPS
 
-## Network requirements
+## RTMP network requirements
 
 The default LuigiScreen MediaMTX port is TCP `55556`.
 

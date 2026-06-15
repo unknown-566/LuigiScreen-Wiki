@@ -1,6 +1,8 @@
-# Quick Start
+# RTMP Quick Start
 
-This guide assumes Paper, OBS and MediaMTX all run on the same computer.
+This guide assumes Paper, OBS and MediaMTX all run on the same computer. For
+local files or images, use the shorter [Media sources](../screen/sources.md)
+guide instead.
 
 ## 1. Generate the MediaMTX setup
 
@@ -82,6 +84,13 @@ Look at the upper-left block of the wall from the front and run:
 ```
 
 LuigiScreen creates the MapEngine display and connects to the RTMP stream.
+
+The MediaMTX wizard sets the default RTMP source. You can also set it
+explicitly:
+
+```text
+/screen source main rtmp rtmp://127.0.0.1:55556/screen
+```
 
 ## 6. Check the status
 

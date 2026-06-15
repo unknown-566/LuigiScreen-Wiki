@@ -14,10 +14,22 @@ Run `/screen reload` after editing it.
 language: cs
 
 stream:
+  # Legacy RTMP default and reconnect settings.
   url: "rtmp://127.0.0.1:55556/screen"
   fps: 8
   reconnect-delay-seconds: 3
   reconnect-max-delay-seconds: 30
+
+source:
+  type: rtmp
+  value: "rtmp://127.0.0.1:55556/screen"
+
+sources:
+  media-directory: media
+  allow-absolute-paths: false
+  http-timeout-seconds: 10
+  max-image-bytes: 16777216
+  max-image-pixels: 16777216
 
 screen:
   auto-start: true
@@ -57,7 +69,9 @@ Commands create entries like:
 ```yaml
 screens:
   main:
-    url: "rtmp://127.0.0.1:55556/screen"
+    source:
+      type: video
+      value: intro.mp4
     fps: 8.0
     distance: 64.0
     world: world
@@ -71,7 +85,8 @@ screens:
 
 Every screen has its own:
 
-- `url`
+- `source.type`
+- `source.value`
 - `fps`
 - `distance`
 - `world`
@@ -89,22 +104,48 @@ Every screen has its own:
 
 ### Source sharing
 
-Screens whose trimmed `url` values are identical share one FFmpeg decoder.
-They still render independently and may use different FPS, distance, world,
-location, width, height and enabled values.
+Screens whose normalized `source.type` and `source.value` are identical share
+one loader. They still render independently and may use different FPS,
+distance, world, location, width, height and enabled values.
 
-Changing a clone's URL with `/screen set <name> url <url>` moves it to another
-source group. The old decoder remains alive while another enabled screen still
-uses it.
+Changing a clone with `/screen source <name> <type> <value>` moves it to
+another source group. The old loader remains alive while another enabled
+screen still uses it.
+
+Old `url:` entries are automatically migrated to:
+
+```yaml
+source:
+  type: rtmp
+  value: "the old URL"
+```
 
 ## Global defaults
 
-`stream.url`, `stream.fps`, `screen.viewer-distance` and
+`source.type`, `source.value`, `stream.fps`, `screen.viewer-distance` and
 `screen.auto-start` are defaults for newly created screens and legacy
 migration. Existing screens retain their own saved values.
 
-Reconnect delays remain global because they control every shared source
-worker.
+`stream.url` remains as a legacy RTMP value used by the MediaMTX wizard.
+Reconnect delays remain global because they control shared remote source
+workers.
+
+## Media source settings
+
+`sources.media-directory` selects the folder under
+`plugins/LuigiScreen/` used for relative local paths.
+
+`sources.allow-absolute-paths` is false by default so commands cannot select
+arbitrary files elsewhere on the server.
+
+`sources.http-timeout-seconds` applies to URL images.
+
+`sources.max-image-bytes` limits the downloaded size of one URL image.
+
+`sources.max-image-pixels` limits the decoded dimensions of local and remote
+images to protect memory from highly compressed oversized files.
+
+See [Media sources](../screen/sources.md) for every type and example.
 
 ## Safety limits
 
@@ -117,12 +158,14 @@ share decoding.
 
 ## Performance
 
-Adaptive FPS is calculated independently for each screen. A shared decoder
-reads at the highest effective FPS requested by its enabled screens. Slower
-screens keep only the newest pending shared frame, preventing latency buildup.
+Adaptive FPS is calculated independently for each screen. A shared video
+source reads at the highest effective FPS requested by its enabled screens.
+Slower screens keep only the newest pending shared frame, preventing latency
+buildup.
 
-When `pause-rendering-without-viewers` is enabled, a shared decoder disconnects
-only when none of its enabled screens has a nearby viewer.
+When `pause-rendering-without-viewers` is enabled, an FFmpeg source disconnects
+only when none of its enabled screens has a nearby viewer. Static images keep
+their already loaded frame without continuous decoding.
 
 ## Logging and debug
 

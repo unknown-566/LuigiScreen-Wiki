@@ -45,7 +45,8 @@ Creating a new named screen no longer removes the previous one. Use
 specific display.
 
 Use [Multiple Screens and Clones](multiple-screens.md) when several displays
-should show the same video.
+should show the same source. Select or change media with
+[Media Sources](sources.md).
 
 ## Orientation
 

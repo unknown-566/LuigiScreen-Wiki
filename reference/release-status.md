@@ -1,6 +1,6 @@
 # Release Status
 
-LuigiScreen `1.1.0-alpha.11` is an alpha build.
+LuigiScreen `1.1.0-alpha.12` is an alpha build.
 
 ## Ready for testing
 
@@ -8,18 +8,21 @@ LuigiScreen `1.1.0-alpha.11` is an alpha build.
 - MapEngine 1.8.12 rendering
 - Windows x86_64 native FFmpeg
 - Linux x86_64 native FFmpeg
-- Same-PC and remote MediaMTX profiles
+- RTMP and MJPEG live sources
+- Looping local videos and GIFs
+- Local and URL images
+- Same-PC and remote MediaMTX profiles for RTMP
 - Automatic reconnect and viewer pause
 - Czech and English messages
 - Debug boss bar and sidebar
-- Multiple named screens and URL-based shared decoders
+- Multiple named screens and typed shared media loaders
 - Independent per-screen source, FPS, distance, location, dimensions and enabled state
 - Granular management permissions and optional protected screens
 - Fully non-destructive screen reloads
-- 40 automated tests covering URL and error masking, screen corners, size and
+- 44 automated tests covering URL and error masking, screen corners, size and
   map limits, configuration clamping, adaptive FPS, MediaMTX generation,
   localization, debug formatting, source grouping, shared-frame lifetime,
-  permissions and reload geometry
+  permissions, reload geometry and typed source validation
 - Public Free source at https://github.com/unknown-566/LuigiScreen
 - AGPL-3.0-only project license
 - Third-party notices and license texts
@@ -44,6 +47,7 @@ The project should still complete:
 - No Folia support
 - No built-in MediaMTX process manager
 - No built-in OBS replacement
+- URL images are loaded once after success rather than continuously polled
 - Debug native-memory values are estimates, not complete measurements
 - MapEngine rendering and packets still scale with every screen, even when decoding is shared
 
