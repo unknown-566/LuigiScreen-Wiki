@@ -26,7 +26,7 @@ Place the LuigiScreen JAR in:
 plugins/
 ```
 
-Keep only one LuigiScreen JAR. For example, remove `LuigiScreen-1.1.0-alpha.8.jar` before adding `LuigiScreen-1.1.0-alpha.9.jar`.
+Keep only one LuigiScreen JAR. For example, remove `LuigiScreen-1.1.0-alpha.9.jar` before adding `LuigiScreen-1.1.0-alpha.10.jar`.
 
 ## 4. Start the server
 
@@ -44,7 +44,7 @@ The console should show both plugins enabled without an exception:
 
 ```text
 Enabling MapEngine v1.8.12
-Enabling LuigiScreen v1.1.0-alpha.9
+Enabling LuigiScreen v1.1.0-alpha.10
 ```
 
 Run:

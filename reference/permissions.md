@@ -1,6 +1,6 @@
 # Permissions
 
-LuigiScreen alpha.9 uses granular permissions.
+LuigiScreen uses granular permissions.
 
 ## Administrator permission
 

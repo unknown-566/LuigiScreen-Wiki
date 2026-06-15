@@ -8,7 +8,7 @@ It connects **OBS Studio** to **MediaMTX**, decodes the stream with FFmpeg, and 
 
 ## Current release
 
-Documentation version: `1.1.0-alpha.9`
+Documentation version: `1.1.0-alpha.10`
 
 Supported server platforms:
 

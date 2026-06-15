@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0-alpha.10
+
+- Changed the offline, connecting, waiting and stopped screen title to `LuigiScreen`
+- Added the customizable `screen.offline-title` localization key
+- Kept the new title compatible with existing language files through the bundled fallback
+
 ## 1.1.0-alpha.9
 
 - Added a separate permission for every `/screen` subcommand
