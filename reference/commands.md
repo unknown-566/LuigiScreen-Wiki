@@ -95,11 +95,14 @@ FPS accepts `0.1` to `20`. Distance accepts `8` to `1024` blocks.
 ### `/screen reload`
 
 Safely stops every decoder, reloads `config.yml` and localization, preserves
-unchanged MapEngine displays and restarts enabled shared sources.
+all existing MapEngine displays and restarts enabled shared sources.
 
-A display is recreated only when its world, location, width, height or facing
-changed. URL, FPS, distance, enabled state and visibility permission are
-updated without removing the display.
+URL, FPS, distance, enabled state and visibility permission are updated
+without removing the display. A screen missing from config is restored.
+Use `/screen remove <name>` when you actually want to delete it.
+
+World, location, width, height and facing cannot be changed safely during
+reload. Remove and recreate that screen to apply geometry changes.
 
 Use a full server restart after replacing the plugin JAR or native libraries.
 

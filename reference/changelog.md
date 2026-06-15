@@ -3,11 +3,14 @@
 ## 1.1.0-alpha.11
 
 - Fixed `/screen reload` removing MapEngine displays
-- Reload now preserves a screen when its world, location, dimensions and facing are unchanged
+- Reload no longer destroys any existing MapEngine display
+- Screens removed from config are restored; `/screen remove` is required for deletion
+- Geometry edits are preserved safely until the screen is explicitly removed and recreated
 - URL, FPS, distance, enabled state, permission and rendering settings update in place
-- Removed screens are still destroyed and geometrically changed screens are recreated
 - MediaMTX source changes now use the same non-destructive reconciliation
-- Added regression tests for reload geometry decisions
+- Fixed viewer respawning when the glowing frame setting changes
+- Corrected the plugin author to `unknown_56`
+- Expanded the automated suite to 40 tests
 
 ## 1.1.0-alpha.10
 

@@ -4,6 +4,8 @@ LuigiScreen is a server-side Paper/Bukkit plugin that displays a live RTMP video
 
 It connects **OBS Studio** to **MediaMTX**, decodes the stream with FFmpeg, and renders the latest video frame through **MapEngine**.
 
+Author: **unknown_56**
+
 > LuigiScreen is currently an alpha project. Back up your server before upgrading and test new builds away from production.
 
 ## Current release
@@ -44,7 +46,7 @@ If you prefer Czech, use the [Český rychlý start](czech/quick-start.md).
 - One shared FFmpeg decoder for screens using the same RTMP URL
 - Independent URL, FPS, distance, world, location, width, height and enabled state per screen
 - Granular command permissions and optional per-screen visibility permissions
-- Non-destructive configuration reloads for unchanged screen geometry
+- Fully non-destructive configuration reloads; `/screen remove` is required to delete a screen
 - RTMP input from MediaMTX
 - Guided MediaMTX setup for five network situations
 - Automatic reconnect with exponential backoff

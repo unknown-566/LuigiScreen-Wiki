@@ -15,8 +15,8 @@ LuigiScreen `1.1.0-alpha.11` is an alpha build.
 - Multiple named screens and URL-based shared decoders
 - Independent per-screen source, FPS, distance, location, dimensions and enabled state
 - Granular management permissions and optional protected screens
-- Non-destructive reloads for screens with unchanged geometry
-- 39 automated tests covering URL and error masking, screen corners, size and
+- Fully non-destructive screen reloads
+- 40 automated tests covering URL and error masking, screen corners, size and
   map limits, configuration clamping, adaptive FPS, MediaMTX generation,
   localization, debug formatting, source grouping, shared-frame lifetime,
   permissions and reload geometry
