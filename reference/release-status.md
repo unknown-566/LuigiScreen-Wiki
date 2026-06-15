@@ -1,6 +1,6 @@
 # Release Status
 
-LuigiScreen `1.1.0-alpha.8` is an alpha build.
+LuigiScreen `1.1.0-alpha.9` is an alpha build.
 
 ## Ready for testing
 
@@ -14,9 +14,10 @@ LuigiScreen `1.1.0-alpha.8` is an alpha build.
 - Debug boss bar and sidebar
 - Multiple named screens and URL-based shared decoders
 - Independent per-screen source, FPS, distance, location, dimensions and enabled state
-- 33 automated tests covering URL and error masking, screen corners, size and
+- Granular management permissions and optional protected screens
+- 37 automated tests covering URL and error masking, screen corners, size and
   map limits, configuration clamping, adaptive FPS, MediaMTX generation,
-  localization, debug formatting, source grouping and shared-frame lifetime
+  localization, debug formatting, source grouping, shared-frame lifetime and permissions
 - Public Free source at https://github.com/unknown-566/LuigiScreen
 - AGPL-3.0-only project license
 - Third-party notices and license texts

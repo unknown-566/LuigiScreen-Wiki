@@ -66,6 +66,7 @@ screens:
     height: 4
     facing: NORTH
     enabled: true
+    permission-required: false
 ```
 
 Every screen has its own:
@@ -78,8 +79,13 @@ Every screen has its own:
 - `width`
 - `height`
 - `enabled`
+- `permission-required`
 
 `facing` is also stored because MapEngine needs the wall direction.
+
+`permission-required` defaults to false. If enabled, a player must have
+`luigiscreen.see.<screen-name>`, `luigiscreen.see.*` or
+`luigiscreen.admin` before the display is spawned for them.
 
 ### Source sharing
 

@@ -8,7 +8,7 @@ It connects **OBS Studio** to **MediaMTX**, decodes the stream with FFmpeg, and 
 
 ## Current release
 
-Documentation version: `1.1.0-alpha.8`
+Documentation version: `1.1.0-alpha.9`
 
 Supported server platforms:
 
@@ -43,6 +43,7 @@ If you prefer Czech, use the [Český rychlý start](czech/quick-start.md).
 - Multiple named map screens up to the safety limits in `config.yml`
 - One shared FFmpeg decoder for screens using the same RTMP URL
 - Independent URL, FPS, distance, world, location, width, height and enabled state per screen
+- Granular command permissions and optional per-screen visibility permissions
 - RTMP input from MediaMTX
 - Guided MediaMTX setup for five network situations
 - Automatic reconnect with exponential backoff

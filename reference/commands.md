@@ -74,6 +74,7 @@ url
 fps
 distance
 enabled
+permission
 ```
 
 Examples:
@@ -82,10 +83,12 @@ Examples:
 /screen set lobby fps 4
 /screen set lobby distance 32
 /screen set lobby enabled false
+/screen set lobby permission true
 /screen set lobby url rtmp://127.0.0.1:55556/second
 ```
 
 FPS accepts `0.1` to `20`. Distance accepts `8` to `1024` blocks.
+`permission true` requires `luigiscreen.see.<name>` to view the screen.
 
 ## Administration
 

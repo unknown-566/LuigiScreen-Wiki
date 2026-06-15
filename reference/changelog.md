@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.1.0-alpha.9
+
+- Added a separate permission for every `/screen` subcommand
+- Kept `luigiscreen.admin` as the operator-level parent permission
+- Added optional per-screen visibility protection
+- Added dynamic `luigiscreen.see.<screen-name>` permissions
+- Added the `luigiscreen.see.*` wildcard
+- Added `/screen set <name> permission <true|false>`
+- Added `permission-required: false` to per-screen configuration
+- Made newly created and migrated screens public by default
+- Made protected clones inherit their source screen's visibility setting
+- Added permission metadata and default-behavior tests
+
 ## 1.1.0-alpha.8
 
 - Added multiple named screens

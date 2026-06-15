@@ -1,38 +1,86 @@
 # Permissions
 
-LuigiScreen currently has one administration permission:
+LuigiScreen alpha.9 uses granular permissions.
+
+## Administrator permission
 
 ```text
 luigiscreen.admin
 ```
 
-Default:
+It is granted to operators by default and includes every command permission,
+`luigiscreen.see.*`, and access to every protected screen.
 
-```text
-op
+## Command permissions
+
+| Permission | Command |
+| --- | --- |
+| `luigiscreen.create` | `/screen create` |
+| `luigiscreen.clone` | `/screen clone` |
+| `luigiscreen.list` | `/screen list` |
+| `luigiscreen.start` | `/screen start` |
+| `luigiscreen.stop` | `/screen stop` |
+| `luigiscreen.remove` | `/screen remove` |
+| `luigiscreen.status` | `/screen status` |
+| `luigiscreen.set` | `/screen set` |
+| `luigiscreen.reload` | `/screen reload` |
+| `luigiscreen.debug` | `/screen debug` |
+| `luigiscreen.mediamtx` | `/screen mediamtx` |
+
+All individual permissions default to false. Operators receive them through
+`luigiscreen.admin`.
+
+## Screen visibility
+
+New screens are public by default:
+
+```yaml
+permission-required: false
 ```
 
-It grants access to all `/screen` commands, including:
-
-- Creating and removing screens
-- Starting and stopping streams
-- Viewing status
-- Reloading configuration
-- Debug statistics
-- Generating MediaMTX credentials and configuration
-
-## LuckPerms example
-
-Grant the permission:
+Protect a screen:
 
 ```text
-/lp user PLAYER permission set luigiscreen.admin true
+/screen set cinema permission true
 ```
 
-Remove it:
+Players now need:
 
 ```text
-/lp user PLAYER permission unset luigiscreen.admin
+luigiscreen.see.cinema
 ```
 
-Because the MediaMTX wizard generates private credentials, do not grant this permission to untrusted users.
+Wildcard access:
+
+```text
+luigiscreen.see.*
+```
+
+Players without access do not receive or see that MapEngine display. Permission
+changes are detected by the regular viewer refresh, so a restart is not
+required.
+
+## LuckPerms examples
+
+Allow a moderator to start, stop and inspect screens:
+
+```text
+/lp user PLAYER permission set luigiscreen.start true
+/lp user PLAYER permission set luigiscreen.stop true
+/lp user PLAYER permission set luigiscreen.status true
+```
+
+Allow a player to see only `cinema`:
+
+```text
+/lp user PLAYER permission set luigiscreen.see.cinema true
+```
+
+Allow a group to see every protected screen:
+
+```text
+/lp group vip permission set luigiscreen.see.* true
+```
+
+Do not grant `luigiscreen.mediamtx` to untrusted users because its wizard
+generates private credentials.
