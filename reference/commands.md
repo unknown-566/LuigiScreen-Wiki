@@ -96,6 +96,53 @@ Switches the source without recreating the screen:
 Relative local paths use `plugins/LuigiScreen/media/`. See
 [Media sources](../screen/sources.md).
 
+## Playlists and events
+
+### `/screen playlist list`
+
+Lists configured playlists from `config.yml`.
+
+### `/screen playlist set <screen> <playlist>`
+
+Assigns a configured playlist to a screen. The screen keeps its configured
+source as a fallback, but the active source can rotate at runtime.
+
+```text
+/screen playlist set main spawn_rotation
+```
+
+### `/screen playlist clear <screen>`
+
+Stops playlist control for the screen and returns it to its configured source.
+
+```text
+/screen playlist clear main
+```
+
+### `/screen event list`
+
+Lists configured manual events.
+
+### `/screen event play <screen> <event>`
+
+Temporarily interrupts the screen and plays the configured event sequence.
+When the event ends, the screen returns to its playlist or configured source.
+
+```text
+/screen event play main update_reveal
+```
+
+### `/screen event stop <screen>`
+
+Stops the active event on a screen and returns to normal playback.
+
+```text
+/screen event stop main
+```
+
+See [Playlists and Events](../screen/playlists-events.md) for configuration
+examples.
+
 ## Screen settings
 
 ### `/screen set <name> <property> <value>`

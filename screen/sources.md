@@ -30,6 +30,9 @@ List available types:
 | `url-image` | `http://` or `https://` URL | Remote image with retry after temporary failure |
 | `gif` | Local file path or HTTP(S) URL | Animated GIF loops automatically |
 
+Playlist and event configuration also supports `folder` and `text` items. They
+are not direct `/screen source` types. See [Playlists and Events](playlists-events.md).
+
 ## Local media folder
 
 Relative paths are resolved inside:

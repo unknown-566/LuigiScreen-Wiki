@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.1.0-alpha.13
+
+- Added per-screen playlists with weighted random item selection
+- Added `/screen playlist list`, `/screen playlist set <screen> <playlist>` and `/screen playlist clear <screen>`
+- Added manual event scenes with ordered sequences
+- Added `/screen event list`, `/screen event play <screen> <event>` and `/screen event stop <screen>`
+- Added random folder items for local videos, images and GIFs
+- Added duration and cooldown parsing with `ms`, `s`, `m` and `h` units
+- Added basic playback conditions: `min-online`, `min-viewers`, `viewer-permission` and `tps-above`
+- Kept configured screen sources as fallback sources while playlist/event runtime switches stay non-persistent
+- Added `luigiscreen.playlist` and `luigiscreen.event`
+- Expanded the automated suite to 46 tests
+
 ## 1.1.0-alpha.12
 
 - Added typed media sources: RTMP, MJPEG, local video, local image, URL image and GIF

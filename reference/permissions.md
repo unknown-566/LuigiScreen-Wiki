@@ -23,6 +23,8 @@ It is granted to operators by default and includes every command permission,
 | `luigiscreen.remove` | `/screen remove` |
 | `luigiscreen.status` | `/screen status` |
 | `luigiscreen.source` | `/screen source` |
+| `luigiscreen.playlist` | `/screen playlist` |
+| `luigiscreen.event` | `/screen event` |
 | `luigiscreen.set` | `/screen set` |
 | `luigiscreen.reload` | `/screen reload` |
 | `luigiscreen.debug` | `/screen debug` |

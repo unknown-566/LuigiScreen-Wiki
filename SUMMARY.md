@@ -12,6 +12,7 @@
 * [How It Works](concepts/how-it-works.md)
 * [Creating a Screen](screen/creating-screen.md)
 * [Media Sources](screen/sources.md)
+* [Playlists and Events](screen/playlists-events.md)
 * [Multiple Screens and Clones](screen/multiple-screens.md)
 * [Choose an RTMP Network Setup](streaming/overview.md)
 * [OBS Studio](streaming/obs.md)
