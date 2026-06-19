@@ -267,6 +267,15 @@ Folder items currently detect:
 
 If the folder is empty or contains unsupported files, that item is skipped.
 
+Folder contents are cached when LuigiScreen starts or `/screen reload` runs.
+After adding, removing or renaming files in that folder, run:
+
+```text
+/screen reload
+```
+
+This keeps disk scanning out of normal playlist playback.
+
 ## Conditions
 
 Conditions decide whether an item is allowed to play.

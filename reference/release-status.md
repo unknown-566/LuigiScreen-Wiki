@@ -1,6 +1,6 @@
 # Release Status
 
-LuigiScreen `1.1.0-alpha.13` is an alpha build.
+LuigiScreen `1.1.0-alpha.14` is an alpha build.
 
 ## Ready for testing
 
@@ -22,7 +22,10 @@ LuigiScreen `1.1.0-alpha.13` is an alpha build.
 - Independent per-screen source, FPS, distance, location, dimensions and enabled state
 - Granular management permissions and optional protected screens
 - Fully non-destructive screen reloads
-- 46 automated tests covering URL and error masking, screen corners, size and
+- Reusable MapEngine render and delta buffers
+- Shared player-position snapshots for viewer checks
+- Cached playlist folder contents
+- 48 automated tests covering URL and error masking, screen corners, size and
   map limits, configuration clamping, adaptive FPS, MediaMTX generation,
   localization, debug formatting, source grouping, shared-frame lifetime,
   permissions, reload geometry, typed source validation and playback timing
@@ -54,6 +57,7 @@ The project should still complete:
 - Automatic event triggers are not included yet; events are manual commands
 - Debug native-memory values are estimates, not complete measurements
 - MapEngine rendering and packets still scale with every screen, even when decoding is shared
+- Playlist folder changes require `/screen reload`
 
 ## Reporting a problem
 

@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.1.0-alpha.14
+
+- Reused MapEngine render surfaces instead of rebuilding raster objects for every frame
+- Reused delta buffers in place to reduce full-screen allocations and GC pressure
+- Captured player positions once per viewer refresh for all screens
+- Cached playlist folder contents during startup and `/screen reload`
+- Reduced static image worker wakeups
+- Cached worker settings before background decoding starts
+- Added `stream.io-timeout-seconds` and `performance.worker-stop-timeout-seconds`
+- Improved local video and GIF looping by seeking before reconnecting the decoder
+- Enforced `sources.max-image-bytes` for local images as well as URL images
+- Changed `/screen start all` and `/screen stop all` to save config once per batch
+- Fixed new and cloned screens not saving to disk immediately
+- Protected the shared render scheduler from a single screen failure
+- Removed unused duplicate metadata from the release JAR
+- Expanded the automated suite to 48 tests
+
 ## 1.1.0-alpha.13
 
 - Added per-screen playlists with weighted random item selection

@@ -56,6 +56,35 @@ LuigiScreen stores only one pending frame. Replaced-frame counts are normal when
 
 A growing delay is not expected. The plugin drops waiting frames instead.
 
+## What alpha.14 reuses
+
+LuigiScreen avoids rebuilding large helper objects for every frame:
+
+- Each screen keeps one reusable image view over its MapEngine pixel buffer.
+- A delta comparison buffer is allocated once and updated in place.
+- Player positions are captured once per viewer refresh and shared by all screens.
+- Screens using the same source still share one decoder or image loader.
+- Playlist folders are scanned during startup or `/screen reload`, not while an item is selected.
+
+This mainly reduces garbage collection pressure and main-thread disk work. It
+does not make map packets free: every visible screen must still convert and
+send its own map updates.
+
+## Safe decoder shutdown
+
+Keep the worker stop timeout above the remote I/O timeout:
+
+```yaml
+stream:
+  io-timeout-seconds: 5
+
+performance:
+  worker-stop-timeout-seconds: 8
+```
+
+This gives FFmpeg enough time to leave a blocked network read before reload or
+shutdown continues.
+
 ## Dithering
 
 Leave dithering disabled unless the visual improvement is worth extra conversion cost.

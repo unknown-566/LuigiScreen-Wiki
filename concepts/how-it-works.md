@@ -42,6 +42,11 @@ Each screen has its own one-frame queue and render pacing. If loading or
 decoding is faster than that screen's FPS, an older queued frame is replaced
 instead of building latency.
 
+The MapEngine render image wraps the screen's pixel array directly and is
+reused for later frames. Delta comparison storage is also reused. This avoids
+allocating a new raster, color model and full-size delta buffer for every
+rendered frame.
+
 ## MapEngine
 
 MapEngine creates the client-side map display and sends map updates to nearby
@@ -52,6 +57,11 @@ players.
 Media loading and decoding run on dedicated worker threads. Map frame
 preparation runs on a separate scheduled executor. Bukkit player and screen
 lifecycle operations are coordinated with the server thread.
+
+Worker settings are captured before their background thread starts, so the
+decoder does not read Bukkit configuration concurrently. One snapshot of
+online player positions is built on the server thread and shared by all screen
+viewer checks.
 
 ## Viewer pause
 

@@ -19,6 +19,7 @@ stream:
   fps: 8
   reconnect-delay-seconds: 3
   reconnect-max-delay-seconds: 30
+  io-timeout-seconds: 5
 
 source:
   type: rtmp
@@ -55,6 +56,7 @@ performance:
   minimum-fps: 0.2
   pause-rendering-without-viewers: true
   delta-updates-max-maps: 256
+  worker-stop-timeout-seconds: 8
 
 logging:
   ffmpeg-level: quiet
@@ -153,7 +155,7 @@ arbitrary files elsewhere on the server.
 
 `sources.http-timeout-seconds` applies to URL images.
 
-`sources.max-image-bytes` limits the downloaded size of one URL image.
+`sources.max-image-bytes` limits the encoded size of one local or URL image.
 
 `sources.max-image-pixels` limits the decoded dimensions of local and remote
 images to protect memory from highly compressed oversized files.
@@ -167,6 +169,10 @@ its own `duration`.
 
 `playback.tick-seconds` controls how often LuigiScreen checks whether a
 playlist or event should advance.
+
+Folder playlist entries are scanned and cached during startup and
+`/screen reload`. Run `/screen reload` after adding or removing files from a
+playlist folder.
 
 Named `playlists:` and `events:` are configured manually. See
 [Playlists and Events](../screen/playlists-events.md).
@@ -186,6 +192,11 @@ Adaptive FPS is calculated independently for each screen. A shared video
 source reads at the highest effective FPS requested by its enabled screens.
 Slower screens keep only the newest pending shared frame, preventing latency
 buildup.
+
+`stream.io-timeout-seconds` limits how long FFmpeg waits for remote network
+input. `performance.worker-stop-timeout-seconds` controls how long LuigiScreen
+waits for a decoder to close safely. Keep the worker stop timeout higher than
+the stream I/O timeout.
 
 When `pause-rendering-without-viewers` is enabled, an FFmpeg source disconnects
 only when none of its enabled screens has a nearby viewer. Static images keep
