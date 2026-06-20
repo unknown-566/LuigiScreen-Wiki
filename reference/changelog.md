@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.0-alpha.15
+
+- Added an asynchronous Modrinth update checker
+- Added console notifications for newer public versions
+- Added clickable player notifications with `luigiscreen.update`
+- Added semantic ordering for alpha, beta and release versions
+- Added configurable project slug/ID, interval, timeout and notification options
+- Added quiet handling for unpublished Modrinth projects and optional failure logging
+- Restarted the checker safely during `/screen reload`
+- Expanded the automated suite to 54 tests
+
 ## 1.1.0-alpha.14
 
 - Reused MapEngine render surfaces instead of rebuilding raster objects for every frame

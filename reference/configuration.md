@@ -13,6 +13,16 @@ Run `/screen reload` after editing it.
 ```yaml
 language: cs
 
+updates:
+  enabled: true
+  project: luigiscreen
+  modrinth-url: "https://modrinth.com/plugin/luigiscreen"
+  check-interval-hours: 6
+  timeout-seconds: 10
+  notify-console: true
+  notify-players: true
+  log-failures: false
+
 stream:
   # Legacy RTMP default and reconnect settings.
   url: "rtmp://127.0.0.1:55556/screen"
@@ -70,6 +80,26 @@ debug:
 The old `screen.configured`, `world`, `corner-a`, `corner-b` and `facing`
 fields may remain after upgrading. Alpha.8 migrates one valid legacy screen to
 `screens.main` once and then uses the new section.
+
+## Update checker
+
+The update checker requests the public version list from
+`api.modrinth.com` two seconds after startup and then once per
+`updates.check-interval-hours`. HTTP work runs outside the Minecraft server
+thread.
+
+`updates.project` accepts the Modrinth project slug or project ID.
+`updates.modrinth-url` is the HTTPS page opened when a player clicks the update
+message. It does not change the API host.
+
+`updates.notify-console` logs a new public version once.
+`updates.notify-players` notifies online players with `luigiscreen.update` once
+per detected version and also checks eligible players when they join.
+
+Set `updates.enabled: false` to disable all requests. Network failures are
+quiet by default. Set `updates.log-failures: true` while diagnosing outbound
+HTTPS problems. A `404` is always ignored because unpublished Modrinth
+projects are not visible through the public API.
 
 ## Per-screen entries
 

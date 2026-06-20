@@ -30,7 +30,14 @@ It is granted to operators by default and includes every command permission,
 | `luigiscreen.debug` | `/screen debug` |
 | `luigiscreen.mediamtx` | `/screen mediamtx` |
 
-All individual permissions default to false. Operators receive them through
+Update notifications use a separate permission:
+
+| Permission | Purpose |
+| --- | --- |
+| `luigiscreen.update` | Receive a clickable message when a newer public Modrinth version exists |
+
+All individual command permissions default to false. `luigiscreen.update`
+defaults to operators. Operators also receive everything through
 `luigiscreen.admin`.
 
 ## Screen visibility

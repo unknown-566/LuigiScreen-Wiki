@@ -1,6 +1,6 @@
 # Release Status
 
-LuigiScreen `1.1.0-alpha.14` is an alpha build.
+LuigiScreen `1.1.0-alpha.15` is an alpha build.
 
 ## Ready for testing
 
@@ -25,10 +25,12 @@ LuigiScreen `1.1.0-alpha.14` is an alpha build.
 - Reusable MapEngine render and delta buffers
 - Shared player-position snapshots for viewer checks
 - Cached playlist folder contents
-- 48 automated tests covering URL and error masking, screen corners, size and
+- Asynchronous Modrinth update notifications
+- 54 automated tests covering URL and error masking, screen corners, size and
   map limits, configuration clamping, adaptive FPS, MediaMTX generation,
   localization, debug formatting, source grouping, shared-frame lifetime,
-  permissions, reload geometry, typed source validation and playback timing
+  permissions, reload geometry, typed source validation, playback timing and
+  semantic Modrinth version selection
 - Public Free source at https://github.com/unknown-566/LuigiScreen
 - AGPL-3.0-only project license
 - Third-party notices and license texts
@@ -58,6 +60,7 @@ The project should still complete:
 - Debug native-memory values are estimates, not complete measurements
 - MapEngine rendering and packets still scale with every screen, even when decoding is shared
 - Playlist folder changes require `/screen reload`
+- The updater remains quiet until the Modrinth project and a newer version are public
 
 ## Reporting a problem
 

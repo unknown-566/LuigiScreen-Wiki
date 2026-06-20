@@ -86,3 +86,13 @@ Instead of leaving a frozen video frame, LuigiScreen can show states such as:
 Every screen's source type, source value, FPS, distance, world, location,
 dimensions, facing and enabled state are stored under `screens` in
 `config.yml`. LuigiScreen recreates all valid screens after a normal restart.
+
+## Update checker
+
+The optional update checker asks the public Modrinth API for project versions
+asynchronously. It compares semantic alpha, beta and release version numbers.
+When a newer version exists, the console is logged once and players with
+`luigiscreen.update` receive one clickable message for that version.
+
+An unpublished project returns `404`; LuigiScreen treats that as no available
+public update and does not spam the console.

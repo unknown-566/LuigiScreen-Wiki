@@ -36,6 +36,25 @@ connection logs and error messages.
 
 Other software, crash reports or hosting panels can still print complete connection strings. Inspect logs before sharing them.
 
+## Modrinth update requests
+
+When enabled, LuigiScreen makes an outbound HTTPS GET request only to:
+
+```text
+https://api.modrinth.com/v2/project/<project>/version
+```
+
+The request contains the configured public project slug or ID and a LuigiScreen
+user-agent. It does not send player names, server addresses, stream URLs,
+credentials or screen configuration.
+
+Disable it with:
+
+```yaml
+updates:
+  enabled: false
+```
+
 ## Internet exposure
 
 When exposing MediaMTX:
