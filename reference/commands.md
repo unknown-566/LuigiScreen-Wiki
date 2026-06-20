@@ -2,6 +2,16 @@
 
 All commands use `/screen`. The full command name is `/luigiscreen`.
 
+## Control Studio
+
+### `/screen menu`
+
+Opens the in-game Control Studio. `/screen studio` is an alias.
+
+The GUI includes screens, Media Library, playlists, event timelines, Live
+Control, groups, schedules, templates, diagnostics, history and emergency
+controls. See [Control Studio](../studio/control-studio.md).
+
 ## Create and clone
 
 ### `/screen create <name> [width] [height]`
@@ -142,6 +152,25 @@ Stops the active event on a screen and returns to normal playback.
 
 See [Playlists and Events](../screen/playlists-events.md) for configuration
 examples.
+
+## Audience voting
+
+### `/screen vote <screen> <option>`
+
+Casts or changes the player's vote in an active screen vote.
+
+### `/screen vote start <screen> [options...]`
+
+Starts a 60-second vote. If options are omitted, Control Studio uses up to
+three valid indexed media files.
+
+### `/screen vote status <screen>`
+
+Shows current totals.
+
+### `/screen vote end <screen>`
+
+Ends voting and queues the winner.
 
 ## Screen settings
 

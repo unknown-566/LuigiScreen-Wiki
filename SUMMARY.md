@@ -18,6 +18,15 @@
 * [OBS Studio](streaming/obs.md)
 * [MediaMTX](streaming/mediamtx.md)
 
+## Control Studio
+
+* [Control Studio Overview](studio/control-studio.md)
+* [Screens and Live Control](studio/screens-live-control.md)
+* [Media Library](studio/media-library.md)
+* [Playlist Studio and Conditions](studio/playlists-conditions.md)
+* [Events, Groups and Schedules](studio/events-automation.md)
+* [Drafts, History, Emergency and Roles](studio/safety-roles.md)
+
 ## Network Guides
 
 * [Same Computer](network/same-pc.md)

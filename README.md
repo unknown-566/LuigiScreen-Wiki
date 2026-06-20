@@ -12,7 +12,7 @@ Author: **unknown_56**
 
 ## Current release
 
-Documentation version: `1.1.0-alpha.12`
+Documentation version: `1.2.0-alpha.1`
 
 Supported server platforms:
 
@@ -36,6 +36,10 @@ Project links:
 
 ## Start here
 
+Server administrators should begin with the
+[Control Studio overview](studio/control-studio.md). Open it in-game with
+`/screen menu`.
+
 Start with [Media sources](screen/sources.md) to choose RTMP, MJPEG, a local
 video, a local or remote image, or a GIF.
 
@@ -47,6 +51,11 @@ If you prefer Czech, use the [Český rychlý start](czech/quick-start.md).
 
 ## What LuigiScreen provides
 
+- In-game Control Studio with role-based sections
+- Live Control, per-screen queues, groups, schedules and audience voting
+- Watched Media Library with validation and generated map thumbnails
+- Draft/Publish editing, config snapshots, audit history and undo
+- Playback explanations, eligibility diagnostics and usage statistics
 - Multiple named map screens up to the safety limits in `config.yml`
 - RTMP and MJPEG live streams
 - Looping local videos and GIFs

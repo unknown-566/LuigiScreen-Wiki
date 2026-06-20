@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.2.0-alpha.1
+
+- Added the in-game Control Studio with dashboard and role-based sections
+- Added screen Now Playing, playback reasoning, queue, location and health tools
+- Added Live Control with hold, skip, repeat, return, cueing and voting
+- Added a watched Media Library with validation and generated map thumbnails
+- Added playlist probability simulation and current eligibility diagnostics
+- Added item/category anti-repeat and `guaranteed-after`
+- Added expanded online, viewer, permission, TPS, world and weekday conditions
+- Added event priority and wait, manual, command, broadcast, sound, title,
+  group and branch steps
+- Added Screen Groups, recurring schedules, conflict detection and templates
+- Added per-admin Draft/Publish editing, config snapshots, audit history and undo
+- Added aggregate play, viewer-time, skip and failure statistics
+- Added Czech and English Control Studio localization
+- Added granular studio role permissions and `luigiscreen.vote`
+- Expanded the automated suite to 58 tests
+
 ## 1.1.0-alpha.16
 
 - Restored the Maven metadata required by JavaCPP to identify bundled FFmpeg

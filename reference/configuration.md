@@ -8,6 +8,15 @@ plugins/LuigiScreen/config.yml
 
 Run `/screen reload` after editing it.
 
+Control Studio also creates:
+
+```text
+plugins/LuigiScreen/studio.yml
+```
+
+It stores groups, schedules, favorites, statistics, voting settings, audit
+history and thumbnail map IDs. It reloads with `/screen reload`.
+
 ## Default and generated sections
 
 ```yaml
@@ -200,12 +209,59 @@ its own `duration`.
 `playback.tick-seconds` controls how often LuigiScreen checks whether a
 playlist or event should advance.
 
-Folder playlist entries are scanned and cached during startup and
-`/screen reload`. Run `/screen reload` after adding or removing files from a
-playlist folder.
+The Media Library watches local folders automatically. A debounced background
+scan updates files and cached playlist folders after create, modify and delete
+events. Use **Rescan Media** in Control Studio for filesystems that do not emit
+watch events.
 
 Named `playlists:` and `events:` are configured manually. See
 [Playlists and Events](../screen/playlists-events.md).
+
+Playlist anti-repeat settings:
+
+```yaml
+history-window: 3
+category-history-window: 1
+```
+
+Item settings include `enabled`, `weight`, `duration`, `cooldown`,
+`category` and `guaranteed-after`.
+
+Supported conditions are `min-online`, `max-online`, `min-viewers`,
+`max-viewers`, `viewer-permission`, `all-viewers-permission`,
+`tps-above`, `tps-below`, `world` and `days`.
+
+## Studio configuration
+
+Example generated `studio.yml`:
+
+```yaml
+history:
+  max-entries: 20
+media:
+  auto-watch: true
+voting:
+  permission: luigiscreen.vote
+  distance: 64
+groups:
+  global:
+    screens: [main]
+schedules:
+  friday_cinema:
+    enabled: true
+    days: [FRIDAY]
+    time: "20:00"
+    target: main
+    action: event
+    value: cinema_night
+    priority: 50
+    conflict: priority
+```
+
+`statistics`, `audit`, `favorites` and `thumbnail-map-ids` are managed
+by the plugin. Do not hand-edit those sections while the server is running.
+
+See [Events, Groups and Schedules](../studio/events-automation.md).
 
 ## Safety limits
 

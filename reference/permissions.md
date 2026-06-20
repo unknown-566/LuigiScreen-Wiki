@@ -29,6 +29,8 @@ It is granted to operators by default and includes every command permission,
 | `luigiscreen.reload` | `/screen reload` |
 | `luigiscreen.debug` | `/screen debug` |
 | `luigiscreen.mediamtx` | `/screen mediamtx` |
+| `luigiscreen.menu.dashboard` | `/screen menu` or `/screen studio` |
+| `luigiscreen.vote` | Cast a vote with `/screen vote` |
 
 Update notifications use a separate permission:
 
@@ -94,3 +96,26 @@ Allow a group to see every protected screen:
 
 Do not grant `luigiscreen.mediamtx` to untrusted users because its wizard
 generates private credentials.
+
+## Control Studio roles
+
+`luigiscreen.menu.*` grants every studio section.
+
+| Permission | Section/action |
+| --- | --- |
+| `luigiscreen.menu.dashboard` | Dashboard |
+| `luigiscreen.menu.screens` | Screen list, details and location |
+| `luigiscreen.menu.media` | Media Library |
+| `luigiscreen.menu.playlists` | Playlist inspection and drafts |
+| `luigiscreen.menu.events` | Event timeline inspection and drafts |
+| `luigiscreen.menu.live` | Live Control, queue, event start and vote management |
+| `luigiscreen.menu.groups` | Screen Groups |
+| `luigiscreen.menu.schedules` | Schedule Calendar |
+| `luigiscreen.menu.templates` | Template installation |
+| `luigiscreen.menu.diagnostics` | Diagnostics |
+| `luigiscreen.menu.history` | Audit and Undo |
+| `luigiscreen.menu.emergency` | Emergency confirmation |
+| `luigiscreen.menu.control` | Start/stop/hold/skip/repeat/visibility mutations |
+
+See [Drafts, History, Emergency and Roles](../studio/safety-roles.md) for
+recommended staff roles.

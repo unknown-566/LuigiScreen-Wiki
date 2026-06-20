@@ -1,5 +1,9 @@
 # Playlists and Events
 
+The in-game editor and runtime controls are documented in
+[Playlist Studio and Conditions](../studio/playlists-conditions.md) and
+[Events, Groups and Schedules](../studio/events-automation.md).
+
 LuigiScreen does not have to show only one source forever.
 
 With playlists, one screen can rotate between several sources:
@@ -267,14 +271,9 @@ Folder items currently detect:
 
 If the folder is empty or contains unsupported files, that item is skipped.
 
-Folder contents are cached when LuigiScreen starts or `/screen reload` runs.
-After adding, removing or renaming files in that folder, run:
-
-```text
-/screen reload
-```
-
-This keeps disk scanning out of normal playlist playback.
+Folder contents are cached outside normal playback. The Media Library watcher
+refreshes them after local file changes, so a normal add/remove/rename no
+longer requires `/screen reload`.
 
 ## Conditions
 
@@ -297,9 +296,15 @@ Meaning:
 | Condition | Meaning |
 | --- | --- |
 | `min-online` | At least this many players must be online |
+| `max-online` | At most this many players may be online |
 | `min-viewers` | At least this many players must currently see the screen |
+| `max-viewers` | At most this many players may currently see the screen |
 | `viewer-permission` | At least one current viewer must have this permission |
+| `all-viewers-permission` | Every current viewer must have this permission |
 | `tps-above` | Server TPS must be above this value |
+| `tps-below` | Server TPS must be below this value |
+| `world` | Screen must be in this world |
+| `days` | Current real weekday must be listed |
 
 If a condition fails, that item is ignored for this selection.
 
