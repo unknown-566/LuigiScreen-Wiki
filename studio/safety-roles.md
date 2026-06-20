@@ -5,6 +5,10 @@
 Playlist and event editor clicks do not immediately change live playback.
 They are kept per admin as an in-memory draft.
 
+The in-game interface keeps drafts per player. Web Studio keeps them per
+authenticated browser session. Both use the same validation, snapshot and
+safe reload path when publishing.
+
 **Publish Changes**:
 
 1. creates a complete `config.yml` snapshot
@@ -88,6 +92,15 @@ Individual sections:
 | `luigiscreen.menu.history` | audit and config undo |
 | `luigiscreen.menu.emergency` | confirm global emergency mode |
 | `luigiscreen.menu.control` | mutate basic screen/playback state |
+| `luigiscreen.menu.automations` | automation workspace in Web Studio |
+| `luigiscreen.menu.monitoring` | monitoring workspace in Web Studio |
+| `luigiscreen.menu.configuration` | structured configuration drafts and Publish |
+| `luigiscreen.menu.settings` | Web Studio settings and session information |
+
+Opening the browser interface additionally requires `luigiscreen.web`. The
+one-time link copies the issuing player's current capabilities into the new
+session. Permission changes therefore require a new Web Studio session before
+they take effect.
 
 `luigiscreen.admin` includes every section and action.
 
@@ -119,6 +132,7 @@ luigiscreen.menu.control
 luigiscreen.menu.dashboard
 luigiscreen.menu.screens
 luigiscreen.menu.diagnostics
+luigiscreen.menu.monitoring
 luigiscreen.status
 luigiscreen.debug
 ```
@@ -132,4 +146,3 @@ luigiscreen.menu.emergency
 
 Do not grant History/Undo, MediaMTX or Emergency permissions merely so someone
 can inspect screen status.
-

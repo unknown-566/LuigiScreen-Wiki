@@ -21,6 +21,7 @@
 ## Control Studio
 
 * [Control Studio Overview](studio/control-studio.md)
+* [Web Studio](studio/web-studio.md)
 * [Screens and Live Control](studio/screens-live-control.md)
 * [Media Library](studio/media-library.md)
 * [Playlist Studio and Conditions](studio/playlists-conditions.md)

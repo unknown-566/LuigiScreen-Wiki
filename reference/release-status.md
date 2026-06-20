@@ -1,6 +1,6 @@
 # Release Status
 
-LuigiScreen `1.2.0-alpha.1` is an alpha build.
+LuigiScreen `1.2.0-alpha.2` is an alpha build.
 
 ## Ready for testing
 
@@ -31,7 +31,11 @@ LuigiScreen `1.2.0-alpha.1` is an alpha build.
 - Queues, screen groups, schedules, templates and voting
 - Draft/Publish snapshots, audit history and undo
 - Advanced anti-repeat, condition diagnostics and event branching
-- 58 automated tests covering URL and error masking, screen corners, size and
+- Browser Web Studio with secure one-time login and session revocation
+- Preview/Program Live Studio with bounded live thumbnails
+- Structured per-session drafts with validation and external-change protection
+- Contextual `i` help for Web Studio controls and properties
+- 64 automated tests covering URL and error masking, screen corners, size and
   map limits, configuration clamping, adaptive FPS, MediaMTX generation,
   localization, debug formatting, source grouping, shared-frame lifetime,
   permissions, reload geometry, typed source validation, playback timing and
@@ -67,6 +71,10 @@ The project should still complete:
 - MapEngine rendering and packets still scale with every screen, even when decoding is shared
 - Video duration metadata is read by the playback worker rather than pre-probed for every library item
 - The updater remains quiet until the Modrinth project and a newer version are public
+- Web Studio does not provide HTTPS itself; remote access requires a secure
+  reverse proxy or VPN
+- Web Studio is a structured editor, not a remote unrestricted YAML or file
+  deletion interface
 
 ## Reporting a problem
 

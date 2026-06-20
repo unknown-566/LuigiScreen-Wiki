@@ -107,3 +107,27 @@ Watch:
 - Heap continuously approaching its maximum
 
 Reduce screen size or FPS before increasing server resources.
+
+## Web Studio cost
+
+Opening Web Studio does not create another decoder for each screen. Screens
+with the same normalized source continue to share one loader.
+
+The browser first receives a full state snapshot. The live connection then
+uses a compact SSE update containing changing server and screen fields. Media,
+playlist, event and audit collections are refreshed only when their revision
+changes.
+
+Preview images are captured only while at least one Web Studio event client is
+connected. They are downscaled and rate-limited by:
+
+```yaml
+web-studio:
+  live-update-millis: 1000
+  preview-refresh-millis: 1000
+  preview-max-width: 640
+```
+
+For a small host, try `2000`, `2000` and `480` respectively. This makes the
+panel less immediate but reduces image copying, JPEG encoding and browser
+traffic.

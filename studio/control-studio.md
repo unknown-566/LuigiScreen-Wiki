@@ -1,7 +1,12 @@
 # Control Studio
 
-Control Studio is the in-game administration interface added in
-`1.2.0-alpha.1`. Open it with:
+Control Studio is LuigiScreen's administration layer. It has two interfaces
+over the same playback engine:
+
+- the in-game inventory interface added in `1.2.0-alpha.1`
+- the browser-based [Web Studio](web-studio.md) added in `1.2.0-alpha.2`
+
+Open the in-game interface with:
 
 ```text
 /screen menu
@@ -12,6 +17,10 @@ Control Studio is the in-game administration interface added in
 The studio is not a second playback system. Every button controls the same
 screen registry, shared media loaders, playlists and events used by the
 `/screen` commands.
+
+Open Web Studio with `/screen web`. It adds a larger monitoring workspace,
+Preview/Program live control, structured drafts and contextual `i` help while
+preserving the same permissions and safety rules.
 
 ## Dashboard
 
@@ -86,3 +95,5 @@ The inventory editor covers common live operations and safe draft changes.
 Very large event graphs are still easier to review in `config.yml`; the GUI
 shows their timeline and can run them.
 
+Web Studio offers a wider structured editor, but it also deliberately avoids
+unrestricted remote YAML editing and remote media-file deletion.

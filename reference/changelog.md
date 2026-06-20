@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.2.0-alpha.2
+
+- Added the local browser-based LuigiScreen Web Studio
+- Added a professional dashboard, screen grid, media browser, playlist and
+  event editors, Live Studio, schedules, groups, monitoring and diagnostics
+- Added Preview/Program controls with bounded source thumbnails
+- Added contextual `i` help for settings, fields, metrics and table columns
+- Added one-time login links, HttpOnly sessions, CSRF checks, origin checks,
+  security headers and session revocation
+- Added `/screen web [open|status|revoke]` and `luigiscreen.web`
+- Added browser roles for automations, monitoring, configuration and settings
+- Added per-session drafts, typed validation, snapshots, safe Publish and
+  external-config-change protection
+- Added lightweight SSE updates and revision-based full-state refreshes
+- Added Web Studio JSON, security and bundled-resource tests
+- Expanded the automated suite to 64 tests
+
 ## 1.2.0-alpha.1
 
 - Added the in-game Control Studio with dashboard and role-based sections

@@ -107,3 +107,14 @@ For live statistics:
 ```
 
 If the screen remains offline, use [Common errors](../troubleshooting/common-errors.md).
+
+## 7. Optional: open Web Studio
+
+For a larger browser control room, run:
+
+```text
+/screen web
+```
+
+Open the one-time link on the server computer. See [Web Studio](../studio/web-studio.md)
+before configuring remote access.

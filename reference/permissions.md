@@ -30,6 +30,7 @@ It is granted to operators by default and includes every command permission,
 | `luigiscreen.debug` | `/screen debug` |
 | `luigiscreen.mediamtx` | `/screen mediamtx` |
 | `luigiscreen.menu.dashboard` | `/screen menu` or `/screen studio` |
+| `luigiscreen.web` | `/screen web` and Web Studio login links |
 | `luigiscreen.vote` | Cast a vote with `/screen vote` |
 
 Update notifications use a separate permission:
@@ -116,6 +117,15 @@ generates private credentials.
 | `luigiscreen.menu.history` | Audit and Undo |
 | `luigiscreen.menu.emergency` | Emergency confirmation |
 | `luigiscreen.menu.control` | Start/stop/hold/skip/repeat/visibility mutations |
+| `luigiscreen.menu.automations` | Web Studio automation workspace |
+| `luigiscreen.menu.monitoring` | Web Studio monitoring workspace |
+| `luigiscreen.menu.configuration` | Structured drafts and Publish in Web Studio |
+| `luigiscreen.menu.settings` | Web Studio settings and session workspace |
+
+`luigiscreen.web` only permits creating a browser session. Every API action
+still checks the section and command capabilities copied from the player when
+the one-time link was created. Create a new session after changing that
+player's permissions.
 
 See [Drafts, History, Emergency and Roles](../studio/safety-roles.md) for
 recommended staff roles.

@@ -84,6 +84,18 @@ debug:
   bossbar-update-ticks: 10
   sidebar-enabled: true
   page-duration-seconds: 2
+
+web-studio:
+  enabled: true
+  bind: "127.0.0.1"
+  port: 8765
+  public-url: ""
+  server-name: "LuigiScreen Server"
+  session-hours: 8
+  login-token-minutes: 5
+  live-update-millis: 1000
+  preview-refresh-millis: 1000
+  preview-max-width: 640
 ```
 
 The old `screen.configured`, `world`, `corner-a`, `corner-b` and `facing`
@@ -262,6 +274,27 @@ schedules:
 by the plugin. Do not hand-edit those sections while the server is running.
 
 See [Events, Groups and Schedules](../studio/events-automation.md).
+
+## Web Studio settings
+
+`web-studio.enabled` controls the embedded Java HTTP server. The default bind
+address, `127.0.0.1`, accepts connections only from the Minecraft server
+machine and is the recommended safe default.
+
+`public-url` is optional. Set it only when an HTTPS reverse proxy or VPN
+provides the address users should open. It does not create HTTPS or expose a
+port by itself.
+
+Login links expire after `login-token-minutes` and work once. Authenticated
+cookies expire after `session-hours`. `/screen web revoke` invalidates the
+issuing player's sessions and pending links immediately.
+
+`live-update-millis` controls lightweight server-sent state updates.
+`preview-refresh-millis` and `preview-max-width` limit browser preview work.
+Preview capture stops when no Web Studio event connection is open.
+
+See [Web Studio](../studio/web-studio.md) for setup, remote access and the
+complete security model.
 
 ## Safety limits
 

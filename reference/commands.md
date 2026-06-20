@@ -12,6 +12,18 @@ The GUI includes screens, Media Library, playlists, event timelines, Live
 Control, groups, schedules, templates, diagnostics, history and emergency
 controls. See [Control Studio](../studio/control-studio.md).
 
+### `/screen web [open|status|revoke]`
+
+`/screen web` and `/screen web open` create a short-lived, one-time login link
+for the browser-based Web Studio. The session receives only the issuing
+player's LuigiScreen permissions.
+
+`/screen web status` reports whether the embedded HTTP server is running.
+`/screen web revoke` immediately invalidates that player's browser sessions
+and pending login links without affecting other administrators.
+
+See [Web Studio](../studio/web-studio.md). Do not share a login link.
+
 ## Create and clone
 
 ### `/screen create <name> [width] [height]`

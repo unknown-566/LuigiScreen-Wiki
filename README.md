@@ -12,7 +12,7 @@ Author: **unknown_56**
 
 ## Current release
 
-Documentation version: `1.2.0-alpha.1`
+Documentation version: `1.2.0-alpha.2`
 
 Supported server platforms:
 
@@ -37,8 +37,9 @@ Project links:
 ## Start here
 
 Server administrators should begin with the
-[Control Studio overview](studio/control-studio.md). Open it in-game with
-`/screen menu`.
+[Control Studio overview](studio/control-studio.md). Open the in-game interface
+with `/screen menu`, or create a secure browser session with `/screen web` and
+follow the [Web Studio guide](studio/web-studio.md).
 
 Start with [Media sources](screen/sources.md) to choose RTMP, MJPEG, a local
 video, a local or remote image, or a GIF.
@@ -51,7 +52,9 @@ If you prefer Czech, use the [Český rychlý start](czech/quick-start.md).
 
 ## What LuigiScreen provides
 
-- In-game Control Studio with role-based sections
+- In-game Control Studio and local browser Web Studio with role-based sections
+- One-time Web Studio login links, secure sessions, CSRF protection and revocation
+- Browser Live Studio with Preview/Program control and bounded live thumbnails
 - Live Control, per-screen queues, groups, schedules and audience voting
 - Watched Media Library with validation and generated map thumbnails
 - Draft/Publish editing, config snapshots, audit history and undo
