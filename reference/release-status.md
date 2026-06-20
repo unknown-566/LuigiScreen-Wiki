@@ -1,6 +1,6 @@
 # Release Status
 
-LuigiScreen `1.1.0-alpha.15` is an alpha build.
+LuigiScreen `1.1.0-alpha.16` is an alpha build.
 
 ## Ready for testing
 

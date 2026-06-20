@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0-alpha.16
+
+- Restored the Maven metadata required by JavaCPP to identify bundled FFmpeg
+- Fixed `Version of org.bytedeco:ffmpeg could not be found` during startup
+- Prevented Paper's related `System.out/err.print` plugin nag warning
+- Kept unnecessary duplicate classifier metadata excluded
+- Added a GitHub Actions check for required FFmpeg and JavaCPP metadata
+- Verified the shaded JAR reports FFmpeg version `7.1.1-1.5.12`
+
 ## 1.1.0-alpha.15
 
 - Added an asynchronous Modrinth update checker

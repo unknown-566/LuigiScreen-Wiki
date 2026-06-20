@@ -1,5 +1,16 @@
 # Common Errors
 
+## Version of org.bytedeco:ffmpeg could not be found
+
+Affected build: `1.1.0-alpha.14` and `1.1.0-alpha.15`.
+
+This warning was caused by missing Maven metadata inside the shaded plugin JAR.
+JavaCPP printed the warning to `stderr`, which also caused Paper to display a
+`System.out/err.print` nag for LuigiScreen.
+
+Install `1.1.0-alpha.16` or newer. No MediaMTX, OBS or server configuration
+change is required.
+
 ## `no jniavutil in java.library.path`
 
 Example:
