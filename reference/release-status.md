@@ -1,6 +1,6 @@
 # Release Status
 
-LuigiScreen `1.2.0-alpha.2` is an alpha build.
+LuigiScreen `1.2.0-alpha.3` is an alpha build.
 
 ## Ready for testing
 
@@ -34,7 +34,7 @@ LuigiScreen `1.2.0-alpha.2` is an alpha build.
 - Browser Web Studio with secure one-time login and session revocation
 - Preview/Program Live Studio with bounded live thumbnails
 - Structured per-session drafts with validation and external-change protection
-- Contextual `i` help for Web Studio controls and properties
+- Contextual hover help and accessible descriptions without permanent info icons
 - 64 automated tests covering URL and error masking, screen corners, size and
   map limits, configuration clamping, adaptive FPS, MediaMTX generation,
   localization, debug formatting, source grouping, shared-frame lifetime,

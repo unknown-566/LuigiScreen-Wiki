@@ -19,8 +19,8 @@ screen registry, shared media loaders, playlists and events used by the
 `/screen` commands.
 
 Open Web Studio with `/screen web`. It adds a larger monitoring workspace,
-Preview/Program live control, structured drafts and contextual `i` help while
-preserving the same permissions and safety rules.
+Preview/Program live control, structured drafts and clean contextual hover
+help while preserving the same permissions and safety rules.
 
 ## Dashboard
 

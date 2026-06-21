@@ -48,9 +48,9 @@ The left sidebar separates work into five areas:
 The bottom status strip reports the current connection, draft and live state.
 Use `Ctrl+K` to open the command palette.
 
-Every setting, property, metric and table column has an **i** help marker.
-Hover it with a mouse or focus it with the keyboard to see what the value
-means, when it is used and any important trade-off.
+Settings, properties, metrics and table columns expose contextual help without
+permanent info icons. Hover the complete label or control to see what the value
+means and when it is used. Assistive technologies receive the same description.
 
 ## Live Studio
 

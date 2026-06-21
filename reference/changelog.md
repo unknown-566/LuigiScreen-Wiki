@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.2.0-alpha.3
+
+- Removed permanent `i` icons from Web Studio
+- Moved contextual help to complete label/control hover targets and accessible descriptions
+- Reworked the visual language into a cleaner broadcast workspace
+- Simplified sidebar navigation and removed boxed two-letter navigation marks
+- Improved spacing, hierarchy, panels, metrics, cards, tables and form controls
+- Hid the desktop inspector until an object is selected
+- Expanded the main workspace when the inspector is closed
+- Refined desktop, tablet and mobile responsive layouts
+- Added a regression test preventing visible info icons from returning
+
 ## 1.2.0-alpha.2
 
 - Added the local browser-based LuigiScreen Web Studio

@@ -12,7 +12,7 @@ Author: **unknown_56**
 
 ## Current release
 
-Documentation version: `1.2.0-alpha.2`
+Documentation version: `1.2.0-alpha.3`
 
 Supported server platforms:
 
