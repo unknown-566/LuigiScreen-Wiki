@@ -87,7 +87,7 @@ debug:
 
 web-studio:
   enabled: true
-  bind: "127.0.0.1"
+  bind: "0.0.0.0"
   port: 8765
   public-url: ""
   server-name: "LuigiScreen Server"
@@ -278,8 +278,11 @@ See [Events, Groups and Schedules](../studio/events-automation.md).
 ## Web Studio settings
 
 `web-studio.enabled` controls the embedded Java HTTP server. The default bind
-address, `127.0.0.1`, accepts connections only from the Minecraft server
-machine and is the recommended safe default.
+address, `0.0.0.0`, accepts same-network connections so `/screen web` works
+from another PC on the LAN.
+
+Older configs that still use `127.0.0.1` are upgraded to LAN mode
+automatically when an administrator runs `/screen web`.
 
 `public-url` is optional. Set it only when an HTTPS reverse proxy or VPN
 provides the address users should open. It does not create HTTPS or expose a

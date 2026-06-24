@@ -18,6 +18,9 @@ controls. See [Control Studio](../studio/control-studio.md).
 for the browser-based Web Studio. The session receives only the issuing
 player's LuigiScreen permissions.
 
+If Web Studio is still bound to localhost, this command switches it to LAN mode
+automatically and prints a LAN link plus a server-PC fallback link.
+
 `/screen web status` reports whether the embedded HTTP server is running.
 `/screen web revoke` immediately invalidates that player's browser sessions
 and pending login links without affecting other administrators.

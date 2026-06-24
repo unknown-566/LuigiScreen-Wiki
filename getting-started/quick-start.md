@@ -116,5 +116,5 @@ For a larger browser control room, run:
 /screen web
 ```
 
-Open the one-time link on the server computer. See [Web Studio](../studio/web-studio.md)
-before configuring remote access.
+Use the link labeled **LAN** from another PC on the same network, or the
+**Server PC** link on the server computer. See [Web Studio](../studio/web-studio.md).

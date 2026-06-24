@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0-alpha.4
+
+- Made Web Studio LAN-ready by default
+- Changed `/screen web` to automatically upgrade localhost-only Web Studio configs to LAN mode
+- Added LAN and server-PC login link generation with detected server network addresses
+- Added a firewall hint when a LAN link cannot be opened from another computer
+- Added Web Studio access status to the browser snapshot
+- Added a Start Here launchpad to the Web Studio dashboard
+- Added tests for Web Studio link generation and LAN-ready bundled resources
+
 ## 1.2.0-alpha.3
 
 - Removed permanent `i` icons from Web Studio

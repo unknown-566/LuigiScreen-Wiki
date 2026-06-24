@@ -79,13 +79,17 @@ Delete obsolete backups after confirming the new setup.
 
 ## Web Studio
 
-Web Studio listens on `127.0.0.1:8765` by default. This loopback-only default
-is intentional. Do not bind it directly to a public interface without a
-carefully configured firewall and HTTPS reverse proxy.
+Web Studio listens on TCP port `8765` and is LAN-ready by default. This makes
+same-network setup simple, but it is still an admin surface. Do not expose
+port `8765` directly to the public internet.
 
 Authentication uses a short-lived, one-time URL created by `/screen web`.
 After it is consumed, LuigiScreen stores an HttpOnly, SameSite session cookie.
 State-changing requests also require a matching CSRF token and origin.
+
+When `/screen web` runs on an older localhost-only config, LuigiScreen switches
+the web listener to LAN mode automatically and prints a LAN login link plus a
+server-PC fallback link.
 
 The session contains only the LuigiScreen capabilities of the player who
 created the link. It does not inherit later permission changes. Use:
@@ -97,10 +101,9 @@ created the link. It does not inherit later permission changes. Use:
 after staff changes, a leaked link or a shared-browser session. It revokes the
 issuing player's links and sessions, not other administrators.
 
-For remote access, keep the plugin bound to loopback and configure
-`web-studio.public-url` to the HTTPS address provided by your reverse proxy or
-authenticated VPN. `public-url` is presentation metadata, not a security
-layer.
+For remote access outside the LAN, use an authenticated VPN or an HTTPS reverse
+proxy. Configure `web-studio.public-url` to the address users should open.
+`public-url` is presentation metadata, not a security layer.
 
 Never share one-time login URLs, session cookies, browser storage or screenshots
 containing authenticated source URLs.
