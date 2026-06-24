@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0-alpha.5
+
+- Fixed Web Studio screen-detail tabs so Overview, Automation, Location, Performance and History actually switch content
+- Added direct playlist assignment from the screen Automation tab with **Assign and play**
+- Added playlist clearing from the same screen detail view
+- Added temporary event start/stop controls to the screen Automation tab
+- Improved the screen detail layout and tab styling
+- Added bundled web-resource regression checks for the new controls
+
 ## 1.2.0-alpha.4
 
 - Made Web Studio LAN-ready by default

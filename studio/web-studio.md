@@ -40,6 +40,39 @@ straight into raw metrics. It guides the setup in this order:
 The deeper metrics, alerts and diagnostics stay below the launchpad for admins
 who need them.
 
+## Make a playlist play
+
+The simplest normal workflow is:
+
+1. Open **Screens**.
+2. Select the screen card you want to control.
+3. Open the **Automation** tab.
+4. Choose a playlist under **Playlist playback**.
+5. Press **Assign and play**.
+
+This saves the playlist on that screen and starts its weighted rotation
+immediately. You do not need to edit `config.yml` for this common path.
+
+If the screen should stop using a playlist, press **Clear playlist**. That only
+removes the saved playlist assignment; it does not delete the playlist itself.
+
+Events are separate. Use **Event override** when you want a temporary scene,
+announcement or interruption. When the event ends, the screen returns to its
+playlist or direct source. **Return auto** cancels manual media and lets the
+saved playlist/source take over again.
+
+## Screen detail tabs
+
+Every screen detail page is split into focused tabs:
+
+| Tab | Use it for |
+| --- | --- |
+| Overview | current source, controller and placement summary |
+| Automation | playlist assignment and temporary event override |
+| Location | world, coordinates, facing and view permission |
+| Performance | target FPS, real FPS, frame drops and reconnects |
+| History | recent playback decisions for that screen |
+
 ## Useful commands
 
 ```text
