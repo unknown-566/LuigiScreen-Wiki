@@ -1,6 +1,38 @@
 # Playlist Studio and Conditions
 
-## Creating a playlist
+## Web Studio playlist builder
+
+For the browser workflow, open **Web Studio -> Playlist Editor**.
+
+The normal path is:
+
+1. Press **Create playlist**.
+2. Open the playlist card.
+3. Select a media source in **Add media**.
+4. Choose duration and weight.
+5. Press **Add item**.
+6. Pick a screen in **Play this playlist**.
+7. Press **Assign and play**.
+
+New browser-created playlists start empty. There is no fake starter item to
+delete. **Add item** writes the media item directly into the playlist and
+reloads playback definitions safely.
+
+Visible browser actions:
+
+| Action | What it does |
+| --- | --- |
+| **Add item** | Adds selected media with duration, weight and enabled state |
+| **Delete item** | Removes one playlist item |
+| **Duplicate** | Creates a copy of the playlist under a new ID |
+| **Delete playlist** | Removes the playlist and clears it from assigned screens |
+| **Assign and play** | Saves the playlist on the chosen screen and starts it |
+
+Advanced fields such as cooldown, conditions and enabled state are still edited
+through the inspector/draft system so risky changes can be reviewed before
+publishing.
+
+## In-game Control Studio playlist editor
 
 Open **Playlists** and click **Create Playlist**. The GUI closes and asks for
 one ID in chat:
@@ -11,8 +43,9 @@ cinema_night
 
 The response is private to the prompt. Type `cancel` to stop.
 
-A safe starter playlist is created with one text item. It can play immediately
-and can be replaced with real media later.
+A safe starter playlist is created for the in-game editor. It can be replaced
+with real media later. The browser Web Studio path above creates an empty
+playlist instead, because the browser has a direct **Add item** form.
 
 ## Inspect and assign
 
@@ -110,4 +143,3 @@ Eligibility can report:
 - eligible but not chosen by the latest weighted roll
 
 This is evaluated against the screen currently selected in Control Studio.
-

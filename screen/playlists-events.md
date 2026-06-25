@@ -92,6 +92,16 @@ Disable it:
 
 ## Step By Step Setup
 
+If you prefer the browser UI, open `/screen web` and use:
+
+```text
+Media Library -> Playlist Editor -> Add item -> Assign and play
+```
+
+The browser workflow creates empty playlists, adds media with visible duration
+and weight fields, and can delete, duplicate or assign playlists without
+editing YAML.
+
 ### 1. Create or choose a screen
 
 ```text

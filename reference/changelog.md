@@ -2,6 +2,14 @@
 
 ## 1.2.0-alpha.5
 
+- Reworked Web Studio playlist editing into a beginner-first builder
+- New browser-created playlists now start empty instead of adding a confusing `first` item
+- Added direct playlist item add/delete actions from Web Studio
+- Added visible playlist delete, duplicate and assign controls
+- Added Media Library **Add to playlist** buttons that use the selected target playlist
+- Added manual **Play now** controls in the screen Automation tab
+- Added playlist readiness, item count and assigned-screen count to Web Studio
+- Changed the default language to English with `language: en`
 - Fixed Web Studio screen-detail tabs so Overview, Automation, Location, Performance and History actually switch content
 - Added direct playlist assignment from the screen Automation tab with **Assign and play**
 - Added playlist clearing from the same screen detail view

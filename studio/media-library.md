@@ -56,7 +56,16 @@ This avoids allocating a map for every file during startup.
 
 ## Cueing
 
-First select a screen from the Screens page.
+In Web Studio, media cards have two visible production buttons:
+
+| Button | Result |
+| --- | --- |
+| **Add to playlist** | Adds the media to the playlist selected at the top of Media Library |
+| **Play now** | Temporarily plays the media on the selected live target |
+
+If no playlist exists yet, open **Playlist Editor** and create one first.
+
+For in-game Control Studio, first select a screen from the Screens page.
 
 | Click | Result |
 | --- | --- |
@@ -81,4 +90,3 @@ Safe deletion procedure:
 
 This conservative behavior prevents one accidental inventory click from
 deleting a server file.
-

@@ -40,14 +40,65 @@ straight into raw metrics. It guides the setup in this order:
 The deeper metrics, alerts and diagnostics stay below the launchpad for admins
 who need them.
 
-## Make a playlist play
+## Beginner workflow
 
-The simplest normal workflow is:
+For normal automatic playback, use this path:
+
+```text
+Media Library -> Playlist Editor -> Screen Automation
+```
+
+You do not need to edit YAML for this path.
+
+1. Put images, GIFs or videos into `plugins/LuigiScreen/media/`.
+2. Open **Media Library** and check that the files are marked ready.
+3. Open **Playlist Editor** and create a playlist.
+4. Add media items to that playlist.
+5. Choose a screen and press **Assign and play**.
+
+The default language is English. Set `language: cs` in `config.yml` if you want
+the Czech interface and messages.
+
+## Build a playlist
+
+Open **Playlist Editor** from the left sidebar.
+
+What changed in `1.2.0-alpha.5`:
+
+- new playlists start empty instead of creating a confusing `first` item
+- **Add item** writes the selected media directly into the playlist
+- duration and weight are visible while adding an item
+- **Delete item**, **Delete playlist** and **Duplicate** are visible buttons
+- playlist cards show item count, assigned screen count and readiness
+- advanced item settings still live in the inspector so the main builder stays
+  simple
+
+Fast build path:
+
+1. Press **Create playlist**.
+2. Open the playlist card.
+3. Select a media source in **Add media**.
+4. Keep `30s` duration and weight `1`, or change them.
+5. Press **Add item**.
+6. Repeat for more media.
+7. Pick a screen in **Play this playlist**.
+8. Press **Assign and play**.
+
+You can also open **Media Library**, choose the target playlist at the top, and
+press **Add to playlist** directly on a media card.
+
+Use **Duplicate** when you want to experiment without changing an existing
+playlist. Use **Delete playlist** only when you really want to remove it; any
+screen assigned to that playlist is cleared automatically.
+
+## Make a playlist play from a screen
+
+You can also start from the screen:
 
 1. Open **Screens**.
 2. Select the screen card you want to control.
 3. Open the **Automation** tab.
-4. Choose a playlist under **Playlist playback**.
+4. Choose a playlist under **1. Normal playback**.
 5. Press **Assign and play**.
 
 This saves the playlist on that screen and starts its weighted rotation
@@ -56,10 +107,12 @@ immediately. You do not need to edit `config.yml` for this common path.
 If the screen should stop using a playlist, press **Clear playlist**. That only
 removes the saved playlist assignment; it does not delete the playlist itself.
 
-Events are separate. Use **Event override** when you want a temporary scene,
+Events are separate. Use **2. Temporary event** when you want a temporary scene,
 announcement or interruption. When the event ends, the screen returns to its
-playlist or direct source. **Return auto** cancels manual media and lets the
-saved playlist/source take over again.
+playlist or direct source.
+
+Use **3. Manual source** for testing one media item immediately. **Return auto**
+cancels manual media and lets the saved playlist/source take over again.
 
 ## Screen detail tabs
 
