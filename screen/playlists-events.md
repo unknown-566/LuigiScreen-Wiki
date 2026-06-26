@@ -324,6 +324,16 @@ An event is a manual sequence.
 
 It is not random. It plays in order.
 
+In Web Studio, open **Events** and use the event builder:
+
+1. Create or open an event.
+2. Add steps from the Media Library or use text/countdown/wait steps.
+3. Pick a target screen.
+4. Press **Start event**.
+
+The builder saves added and deleted steps immediately. Advanced conditions and
+fine-tuning are available by clicking a step and using the inspector.
+
 Example:
 
 ```yaml

@@ -114,6 +114,37 @@ playlist or direct source.
 Use **3. Manual source** for testing one media item immediately. **Return auto**
 cancels manual media and lets the saved playlist/source take over again.
 
+## Build an event
+
+Open **Events** when you want a temporary override instead of a normal
+playlist. Good examples are restart warnings, update reveals, countdowns,
+server announcements or a short live stream takeover.
+
+What changed in `1.2.0-alpha.5`:
+
+- event cards now open a beginner-friendly timeline builder
+- **Add step** writes directly to the event instead of staging a draft
+- the builder supports media, text, countdown and wait/hold steps
+- each timeline step has a visible **Delete** button
+- event cards and detail pages have visible **Delete event** controls
+- **Duplicate** lets you experiment without changing the original event
+- **Start event** and **Stop event** live beside the target screen picker
+- empty events stay visible in the builder, but cannot be started until they
+  have at least one valid step
+
+Fast event path:
+
+1. Press **Create event**.
+2. Open the event card.
+3. Choose **Media from library**, **Text card**, **Countdown** or **Wait / hold**.
+4. Set a duration such as `10s`, `30s` or `2m`.
+5. Press **Add step**.
+6. Pick a target screen in **Run this event**.
+7. Press **Start event**.
+
+Use **Stop event** if you need to end the takeover early. The screen returns to
+its normal playlist or direct source.
+
 ## Screen detail tabs
 
 Every screen detail page is split into focused tabs:

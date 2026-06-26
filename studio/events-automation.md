@@ -1,26 +1,43 @@
 # Events, Groups and Schedules
 
-## Creating an event
+## Creating an event in Web Studio
 
-Open **Events**, click **Create Event**, and enter an ID in chat.
+Open **Events** in Web Studio.
 
-The starter timeline contains:
+Fast path:
 
-1. a five-second text announcement
-2. a manual operator wait
+1. Press **Create event**.
+2. Open the event card.
+3. Add steps on the right side of the builder.
+4. Pick a target screen under **Run this event**.
+5. Press **Start event**.
 
-Right-click an event in the event list to inspect its timeline. Left-click it
-to start it on the selected screen.
+An event is a temporary takeover. It interrupts the target screen, plays its
+timeline in order, and then returns the screen to its normal playlist or direct
+source.
 
-## Timeline editing
+## Event builder
 
-| Click | Action |
+The Web Studio event builder is intentionally direct:
+
+| Control | What it does |
 | --- | --- |
-| Right-click step | Stage enable/disable |
-| Shift-left step | Add five seconds to staged duration |
-| Publish Changes | Snapshot config and activate the draft |
-| Discard Draft | Drop uncommitted timeline changes |
-| Take Live | Start this event on the selected screen |
+| **Add step** | Immediately writes a new step into the event |
+| **Delete** on a step | Removes that step immediately |
+| **Duplicate** | Copies the whole event before experimenting |
+| **Delete event** | Removes the event from configuration |
+| **Start event** | Plays the event on the selected screen |
+| **Stop event** | Ends the active event on the selected screen |
+
+Adding a step does not use the global draft/publish flow. The builder saves the
+step immediately so new users do not have to understand YAML or staging before
+they can test an event.
+
+Advanced step fields such as conditions, duration tweaks and enable/disable
+are still available from the inspector. Click a step to inspect it.
+
+The default starter event still contains a short text announcement and an
+operator wait. Delete those steps if you want to start from a blank timeline.
 
 ## Event priority
 
@@ -183,4 +200,3 @@ One vote is stored per player. Changing a vote subtracts the previous choice.
 The voter needs `luigiscreen.vote`, must be in the screen world and must be
 within `voting.distance` from the screen. The winner is queued when voting
 ends.
-
