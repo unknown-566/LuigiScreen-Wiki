@@ -194,6 +194,8 @@ Studio refreshes can still update the rest of the page, but they should not
 reset the time, target, action or value you are editing. The dropdown fields
 use the bundled Choices.js picker, so long screen, group, event or playlist
 lists are searchable.
+When a picker is open, moving the mouse over choices pauses visual rerenders
+briefly so the dropdown does not disappear before you click an option.
 
 Rules created in Web Studio run every day by default. Edit `days` in
 `studio.yml` when a narrower recurring calendar is needed.

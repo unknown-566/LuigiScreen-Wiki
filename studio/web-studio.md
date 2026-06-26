@@ -162,6 +162,8 @@ What changed in `1.2.0-alpha.5`:
 - unsaved automation edits stay in the browser while live refreshes arrive
 - time editing is protected from live refreshes so the picker does not reset
 - select boxes use a bundled searchable picker instead of raw browser selects
+- open picker dropdowns hold rendering long enough to move through the choices
+- clicks inside picker dropdowns are treated as UI interaction, not card clicks
 - the old **Schedule** navigation entry opens the same automation builder
 
 Fast automation path:
