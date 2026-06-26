@@ -5,12 +5,14 @@
 - Reworked Web Studio playlist editing into a beginner-first builder
 - New browser-created playlists now start empty instead of adding a confusing `first` item
 - Added direct playlist item add/delete actions from Web Studio
+- Added direct playlist item editing for media, duration, weight and enabled state
 - Added visible playlist delete, duplicate and assign controls
 - Added Media Library **Add to playlist** buttons that use the selected target playlist
 - Added manual **Play now** controls in the screen Automation tab
 - Added playlist readiness, item count and assigned-screen count to Web Studio
 - Reworked Web Studio Events into a beginner-first event builder
 - Added direct event step add/delete actions from Web Studio
+- Added direct event step editing for type, value, text, duration and enabled state
 - Added visible event delete, duplicate, start and stop controls
 - Kept empty events visible in the builder while preventing empty events from starting
 - Reworked Web Studio Automations into a beginner-first rule builder

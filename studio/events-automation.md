@@ -23,6 +23,7 @@ The Web Studio event builder is intentionally direct:
 | Control | What it does |
 | --- | --- |
 | **Add step** | Immediately writes a new step into the event |
+| **Save step** | Updates the selected step type, media value, text, duration and enabled state |
 | **Delete** on a step | Removes that step immediately |
 | **Duplicate** | Copies the whole event before experimenting |
 | **Delete event** | Removes the event from configuration |
@@ -33,8 +34,13 @@ Adding a step does not use the global draft/publish flow. The builder saves the
 step immediately so new users do not have to understand YAML or staging before
 they can test an event.
 
-Advanced step fields such as conditions, duration tweaks and enable/disable
-are still available from the inspector. Click a step to inspect it.
+Click an existing step to open the inspector. The top **Edit step** block saves
+common changes directly: switch between media, text, countdown and wait/hold,
+change the selected media value, edit the text, change duration or enable and
+disable the step.
+
+Advanced step fields such as conditions are still available lower in the
+inspector through the Stage/Publish flow.
 
 The default starter event still contains a short text announcement and an
 operator wait. Delete those steps if you want to start from a blank timeline.

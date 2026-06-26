@@ -67,6 +67,8 @@ What changed in `1.2.0-alpha.5`:
 
 - new playlists start empty instead of creating a confusing `first` item
 - **Add item** writes the selected media directly into the playlist
+- clicking an existing item opens **Save item** controls for media, duration,
+  weight and enabled state
 - duration and weight are visible while adding an item
 - **Delete item**, **Delete playlist** and **Duplicate** are visible buttons
 - playlist cards show item count, assigned screen count and readiness
@@ -124,6 +126,8 @@ What changed in `1.2.0-alpha.5`:
 
 - event cards now open a beginner-friendly timeline builder
 - **Add step** writes directly to the event instead of staging a draft
+- clicking an existing step opens **Save step** controls for step type, value,
+  text, duration and enabled state
 - the builder supports media, text, countdown and wait/hold steps
 - each timeline step has a visible **Delete** button
 - event cards and detail pages have visible **Delete event** controls
