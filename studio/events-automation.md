@@ -189,6 +189,12 @@ Creating, saving, duplicating and deleting automations does not use the global
 draft/publish flow. It writes directly so new operators can test a rule without
 learning the raw config first.
 
+While a rule is open, unsaved changes are kept in a local browser draft. Live
+Studio refreshes can still update the rest of the page, but they should not
+reset the time, target, action or value you are editing. The dropdown fields
+use the bundled Choices.js picker, so long screen, group, event or playlist
+lists are searchable.
+
 Rules created in Web Studio run every day by default. Edit `days` in
 `studio.yml` when a narrower recurring calendar is needed.
 

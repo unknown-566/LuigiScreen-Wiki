@@ -17,6 +17,11 @@
 - Added readable **WHEN / IF / THEN** automation cards
 - Added direct automation save, run now, duplicate and delete actions from Web Studio
 - Added direct event, playlist, start, stop and return automation actions from the builder
+- Added local browser-side automation drafts so live refreshes no longer reset unsaved rule edits
+- Prevented the time picker from being interrupted by live Web Studio refreshes while editing
+- Replaced plain Web Studio select boxes with bundled searchable Choices.js picker controls
+- Bundled Choices.js locally so Web Studio does not need an external CDN
+- Routed the old Schedule page to the new Automation builder to avoid two competing editors
 - Changed the default language to English with `language: en`
 - Fixed Web Studio screen-detail tabs so Overview, Automation, Location, Performance and History actually switch content
 - Added direct playlist assignment from the screen Automation tab with **Assign and play**

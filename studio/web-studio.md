@@ -159,6 +159,10 @@ What changed in `1.2.0-alpha.5`:
 - **Run now** tests the automation immediately, ignoring the clock
 - **Duplicate** and **Delete rule** are visible in the same workspace
 - the same page can still create screen groups for multi-screen targets
+- unsaved automation edits stay in the browser while live refreshes arrive
+- time editing is protected from live refreshes so the picker does not reset
+- select boxes use a bundled searchable picker instead of raw browser selects
+- the old **Schedule** navigation entry opens the same automation builder
 
 Fast automation path:
 
