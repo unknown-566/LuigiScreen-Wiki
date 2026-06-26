@@ -145,6 +145,35 @@ Fast event path:
 Use **Stop event** if you need to end the takeover early. The screen returns to
 its normal playlist or direct source.
 
+## Build an automation
+
+Open **Automations** when you want LuigiScreen to run a playlist, event or
+screen action at a server time.
+
+What changed in `1.2.0-alpha.5`:
+
+- automations now use a rule builder instead of a plain schedule form
+- cards show the rule as **WHEN / IF / THEN**
+- **Open builder** exposes the editable time, target, action and value
+- **Save rule** writes the automation directly without YAML editing
+- **Run now** tests the automation immediately, ignoring the clock
+- **Duplicate** and **Delete rule** are visible in the same workspace
+- the same page can still create screen groups for multi-screen targets
+
+Fast automation path:
+
+1. Press **Create rule**.
+2. Open the automation card.
+3. Set **WHEN** to the server time.
+4. Choose a target screen or group.
+5. Choose **THEN** as `event`, `playlist`, `start`, `stop` or `return`.
+6. Pick the event or playlist value when needed.
+7. Press **Save rule**.
+
+Use **Run now** to test the rule safely before waiting for the scheduled time.
+If two rules target the same screen at the same time, the higher priority rule
+wins unless the conflict policy is set to `allow`.
+
 ## Screen detail tabs
 
 Every screen detail page is split into focused tabs:
@@ -177,7 +206,7 @@ The left sidebar separates work into these areas:
 | --- | --- |
 | Overview | start guide, dashboard and server health |
 | Build | screens, media, playlists and events |
-| Operate | Live Studio, groups, schedules and emergency control |
+| Operate | Live Studio, groups, automations and emergency control |
 | System | monitoring, diagnostics, configuration and settings |
 | Inspector | details and actions for the selected object |
 

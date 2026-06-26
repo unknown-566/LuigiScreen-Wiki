@@ -1,4 +1,4 @@
-# Events, Groups and Schedules
+# Events, Groups and Automations
 
 ## Creating an event in Web Studio
 
@@ -144,22 +144,53 @@ Group step example:
 Supported group actions are `start`, `stop`, `return`, `playlist` and
 `event`.
 
-## Schedule Calendar
+## Automation builder
 
-Click **Create Schedule** and answer on one line:
+Open **Automations** in Web Studio when you want LuigiScreen to do something
+at a server time without typing YAML.
+
+Fast path:
+
+1. Press **Create rule**.
+2. Open the new automation card.
+3. Set **WHEN** to the server time.
+4. Pick a target screen or screen group.
+5. Pick the **THEN** action.
+6. Press **Save rule**.
+
+An automation rule is intentionally written like a small sentence:
 
 ```text
-friday_cinema 20:00 cinema event cinema_night
+WHEN 20:00
+IF every configured day
+THEN event cinema_night on cinema
 ```
 
-Format:
+Supported actions:
 
-```text
-<id> <HH:mm> <screen_or_group> <event|playlist|start|stop|return> [value]
-```
+| Action | Value | Behavior |
+| --- | --- | --- |
+| `event` | event id | starts a temporary event takeover |
+| `playlist` | playlist id | assigns and starts a playlist |
+| `start` | none | starts the target screen |
+| `stop` | none | stops the target screen |
+| `return` | none | returns the target to normal automation |
 
-New schedules run every day. Edit their `days`, `priority` and `conflict`
-fields in `studio.yml` when a narrower recurring calendar is needed.
+The builder has direct controls:
+
+| Control | What it does |
+| --- | --- |
+| **Save rule** | Writes the selected time, target, action and conflict policy |
+| **Run now** | Executes the rule immediately, ignoring the clock |
+| **Duplicate** | Copies the rule before experimenting |
+| **Delete rule** | Removes the rule from configuration |
+
+Creating, saving, duplicating and deleting automations does not use the global
+draft/publish flow. It writes directly so new operators can test a rule without
+learning the raw config first.
+
+Rules created in Web Studio run every day by default. Edit `days` in
+`studio.yml` when a narrower recurring calendar is needed.
 
 ```yaml
 schedules:
@@ -174,8 +205,8 @@ schedules:
     conflict: priority
 ```
 
-Schedules sharing time, target and at least one day are marked as conflicts.
-At runtime the highest priority wins. A lower schedule is skipped unless its
+Automations sharing time, target and at least one day are marked as conflicts.
+At runtime the highest priority wins. A lower automation is skipped unless its
 `conflict` policy is `allow`.
 
 ## Audience voting

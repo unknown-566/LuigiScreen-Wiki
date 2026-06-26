@@ -13,6 +13,10 @@
 - Added direct event step add/delete actions from Web Studio
 - Added visible event delete, duplicate, start and stop controls
 - Kept empty events visible in the builder while preventing empty events from starting
+- Reworked Web Studio Automations into a beginner-first rule builder
+- Added readable **WHEN / IF / THEN** automation cards
+- Added direct automation save, run now, duplicate and delete actions from Web Studio
+- Added direct event, playlist, start, stop and return automation actions from the builder
 - Changed the default language to English with `language: en`
 - Fixed Web Studio screen-detail tabs so Overview, Automation, Location, Performance and History actually switch content
 - Added direct playlist assignment from the screen Automation tab with **Assign and play**
