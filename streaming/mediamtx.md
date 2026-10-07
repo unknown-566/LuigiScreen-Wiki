@@ -5,7 +5,7 @@ MediaMTX receives the video from OBS and provides it to LuigiScreen.
 ## Use the generated configuration
 
 Run the matching `/screen obs <situation>` command first (see
-[Choose an RTMP network setup](overview.md)).
+[Streaming from OBS](overview.md) and [Network setups](network.md)).
 
 Copy:
 

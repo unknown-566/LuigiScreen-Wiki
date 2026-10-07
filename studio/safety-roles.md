@@ -1,148 +1,88 @@
-# Drafts, History, Emergency and Roles
+# Safety and Roles
 
-## Draft mode
+## History and undo
 
-Playlist and event editor clicks do not immediately change live playback.
-They are kept per admin as an in-memory draft.
-
-The in-game interface keeps drafts per player. Web Studio keeps them per
-authenticated browser session. Both use the same validation, snapshot and
-safe reload path when publishing.
-
-**Publish Changes**:
-
-1. creates a complete `config.yml` snapshot
-2. applies all staged paths together
-3. saves `config.yml`
-4. reloads playback definitions
-5. records the actor and change count
-
-**Discard Draft** removes that admin's pending changes.
-
-Drafts are intentionally lost on server restart. A draft is unfinished work,
-not persistent configuration.
-
-## Snapshots and undo
-
-Snapshots are stored in:
+Before LuigiScreen writes a change to `config.yml` from a menu (publishing a
+draft, saving picture quality in Web Studio), it stores a full snapshot:
 
 ```text
 plugins/LuigiScreen/history/config-YYYYMMDD-HHMMSS-SSS.yml
 ```
 
-The number retained follows `history.max-entries` in `studio.yml`, default
-20.
+`history.max-entries` in `studio.yml` (default 20) limits how many are kept.
 
-Open **Change History** and click **Undo Last Publish** to copy the newest
-snapshot back to `config.yml` and run the normal safe reload.
+**Change History → Undo Last Publish** in the in-game Control Studio restores
+the newest snapshot and reloads safely. It restores the whole file, not one
+playlist. To roll back further, copy an older snapshot over `config.yml` and
+run `/screen reload`.
 
-Undo restores the whole configuration, not only one playlist. The used
-snapshot is removed after a successful restore.
+## Drafts (in-game editor)
 
-## Audit
+In the in-game playlist and event editor, clicks are staged as a private
+draft. **Publish Changes** snapshots the config, applies everything together
+and reloads; **Discard Draft** throws it away. Drafts are lost on restart.
 
-`studio.yml` keeps the latest changes with:
+Web Studio's playlist, event and automation builders save directly; there is
+no draft step.
 
-- timestamp
-- player name or `CONSOLE`
-- action
+## Audit log
 
-Examples include screen controls, queue edits, group actions, schedule runs,
-template installation, publishing, undo and emergency state.
+`studio.yml` keeps the latest changes with time, player (or `CONSOLE`) and
+action: screen controls, queue edits, group actions, automations, templates,
+publishing, undo and emergency. Web Studio shows them under
+**System → Recent changes**.
 
 ## Emergency mode
 
-Emergency requires a separate confirmation page.
+Turned on from Web Studio or the in-game menu, always with a confirmation.
 
-Enabling it:
+While on:
 
-- stops active events
-- pauses automation on every screen
-- detaches media sources
-- allows unused decoders to stop
-- shows a static `MAINTENANCE` frame
+- every screen shows a static `MAINTENANCE` frame
+- events stop and automation pauses; new events, queued media and runtime
+  source switches cannot take over the screen until it is off
+- unused decoders shut down
 
-Disabling it:
+Turning it off restores every screen's source and lets playlists pick again.
+The state survives restarts, so check your screens after an unexpected
+shutdown during emergency mode.
 
-- clears pause
-- restores every configured source
-- resets playback so playlists may select again
+## Roles
 
-Emergency state is persisted in `studio.yml`. Always verify screens after an
-unexpected server shutdown during emergency mode.
-
-## Role permissions
-
-`luigiscreen.menu.*` grants all Control Studio sections.
-
-Individual sections:
+`luigiscreen.menu.*` grants every menu section. Opening Web Studio
+additionally needs `luigiscreen.web`, and a browser session only gets the
+permissions the player had when the link was created.
 
 | Permission | Access |
 | --- | --- |
-| `luigiscreen.menu.dashboard` | open Control Studio |
-| `luigiscreen.menu.screens` | inspect screens and location |
-| `luigiscreen.menu.media` | inspect Media Library |
-| `luigiscreen.menu.playlists` | inspect and draft playlist changes |
-| `luigiscreen.menu.events` | inspect and draft event changes |
-| `luigiscreen.menu.live` | cue media, run events, queues and votes |
-| `luigiscreen.menu.groups` | inspect and control groups |
-| `luigiscreen.menu.schedules` | inspect and create schedules |
-| `luigiscreen.menu.templates` | install starter templates |
+| `luigiscreen.menu.dashboard` | open the in-game Control Studio |
+| `luigiscreen.menu.screens` | screens and location |
+| `luigiscreen.menu.media` | media library |
+| `luigiscreen.menu.playlists` | playlists |
+| `luigiscreen.menu.events` | events |
+| `luigiscreen.menu.live` | play media, run events, queues, votes |
+| `luigiscreen.menu.control` | turn on/off, pause, skip, repeat, visibility |
+| `luigiscreen.menu.groups` | screen groups |
+| `luigiscreen.menu.schedules` | schedules (in-game) |
+| `luigiscreen.menu.automations` | automations (Web Studio) |
+| `luigiscreen.menu.templates` | starter templates |
 | `luigiscreen.menu.diagnostics` | diagnostics and debug overlay |
-| `luigiscreen.menu.history` | audit and config undo |
-| `luigiscreen.menu.emergency` | confirm global emergency mode |
-| `luigiscreen.menu.control` | mutate basic screen/playback state |
-| `luigiscreen.menu.automations` | automation workspace in Web Studio |
-| `luigiscreen.menu.monitoring` | monitoring workspace in Web Studio |
-| `luigiscreen.menu.configuration` | structured configuration drafts and Publish |
-| `luigiscreen.menu.settings` | Web Studio settings and session information |
+| `luigiscreen.menu.monitoring` | monitoring in Web Studio |
+| `luigiscreen.menu.history` | audit and undo |
+| `luigiscreen.menu.emergency` | emergency mode |
+| `luigiscreen.menu.configuration` | picture quality and other config in Web Studio, yt-dlp install |
+| `luigiscreen.menu.settings` | Web Studio session settings |
 
-Opening the browser interface additionally requires `luigiscreen.web`. The
-one-time link copies the issuing player's current capabilities into the new
-session. Permission changes therefore require a new Web Studio session before
-they take effect.
+Example roles:
 
-`luigiscreen.admin` includes every section and action.
+| Role | Permissions |
+| --- | --- |
+| Content manager | `menu.dashboard`, `menu.media`, `menu.playlists`, `menu.templates` |
+| Event operator | `menu.dashboard`, `menu.screens`, `menu.events`, `menu.live`, `menu.groups`, `menu.control` |
+| Technician | `menu.dashboard`, `menu.screens`, `menu.diagnostics`, `menu.monitoring`, `luigiscreen.status`, `luigiscreen.debug` |
+| Emergency moderator | `menu.dashboard`, `menu.emergency` |
 
-Suggested roles:
+(All prefixed with `luigiscreen.`.) Do not hand out history, emergency or
+`luigiscreen.mediamtx` just so someone can look at screen status.
 
-### Content Manager
-
-```text
-luigiscreen.menu.dashboard
-luigiscreen.menu.media
-luigiscreen.menu.playlists
-luigiscreen.menu.templates
-```
-
-### Event Operator
-
-```text
-luigiscreen.menu.dashboard
-luigiscreen.menu.screens
-luigiscreen.menu.events
-luigiscreen.menu.live
-luigiscreen.menu.groups
-luigiscreen.menu.control
-```
-
-### Technician
-
-```text
-luigiscreen.menu.dashboard
-luigiscreen.menu.screens
-luigiscreen.menu.diagnostics
-luigiscreen.menu.monitoring
-luigiscreen.status
-luigiscreen.debug
-```
-
-### Emergency Moderator
-
-```text
-luigiscreen.menu.dashboard
-luigiscreen.menu.emergency
-```
-
-Do not grant History/Undo, MediaMTX or Emergency permissions merely so someone
-can inspect screen status.
+See [Permissions](../reference/permissions.md) for command permissions.

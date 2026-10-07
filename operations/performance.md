@@ -1,133 +1,69 @@
-# Performance
+# Performance and Debug
 
-Minecraft maps are expensive video pixels. A larger screen increases server CPU, bandwidth and client rendering work.
+Map screens are expensive pixels: every visible map costs bandwidth for every
+nearby player. Size and FPS matter far more than anything else.
 
-## Pixel and map cost
+## Screen cost
 
 | Screen | Maps | Pixels |
 | --- | ---: | ---: |
-| 5x3 | 15 | 640x384 |
-| 7x4 | 28 | 896x512 |
-| 10x6 | 60 | 1280x768 |
-| 20x10 | 200 | 2560x1280 |
-| 50x50 | 2500 | 6400x6400 |
+| 4×3 | 12 | 512×384 |
+| 7×4 | 28 | 896×512 |
+| 10×6 | 60 | 1280×768 |
 
-A 50x50 screen is technically within the hard code limit but is not a sensible public-server configuration.
+Starting point for a public server: 4×3 to 7×4 maps, 8–10 FPS, 64-block
+viewing distance.
 
-## Recommended starting point
+## What LuigiScreen already saves
 
-Use:
-
-```text
-7x4 maps
-8-10 FPS
-896x512 OBS output
-1200-2000 Kbps
-64-block viewer distance
-```
+- Only the changed rectangle of each map is sent, so static parts of a video cost nothing.
+- *Colour stability* (`screen.color-stability`, default 4) ignores tiny colour
+  changes, so video noise does not force updates. Raise it on noisy sources.
+- Screens with the same source share one decoder.
+- FFmpeg scales the video to the largest screen using it, not full resolution.
+- Decoding pauses when nobody is near (`performance.pause-rendering-without-viewers`).
+- A player whose connection is full skips frames instead of building lag.
 
 ## Adaptive FPS
 
-With the default budget:
-
-```yaml
-max-map-updates-per-second: 400
-```
-
-A 60-map screen is limited to approximately:
-
-```text
-400 / 60 = 6.67 FPS
-```
-
-## Viewer pause
-
-Keep this enabled:
-
-```yaml
-pause-rendering-without-viewers: true
-```
-
-It closes the FFmpeg reader while no players are near the screen, reducing idle CPU and network use.
-
-## Latest-frame behavior
-
-LuigiScreen stores only one pending frame. Replaced-frame counts are normal when the input arrives faster than map rendering.
-
-A growing delay is not expected. The plugin drops waiting frames instead.
-
-## What alpha.14 reuses
-
-LuigiScreen avoids rebuilding large helper objects for every frame:
-
-- Each screen keeps one reusable canvas and map-color buffer.
-- A delta comparison buffer is allocated once and updated in place.
-- Player positions are captured once per viewer refresh and shared by all screens.
-- Screens using the same source still share one decoder or image loader.
-- Playlist folders are scanned during startup or `/screen reload`, not while an item is selected.
-
-This mainly reduces garbage collection pressure and main-thread disk work. It
-does not make map packets free: every visible screen must still convert and
-send its own map updates.
-
-## Safe decoder shutdown
-
-Keep the worker stop timeout above the remote I/O timeout:
-
-```yaml
-stream:
-  io-timeout-seconds: 5
-
-performance:
-  worker-stop-timeout-seconds: 8
-```
-
-This gives FFmpeg enough time to leave a blocked network read before reload or
-shutdown continues.
+With `performance.adaptive-fps: true`, FPS is limited so all maps together stay
+under `max-map-updates-per-second` (default 400). A 60-map screen gets at most
+about 400 / 60 ≈ 6.7 FPS. Both settings are in Web Studio → System → Picture quality.
 
 ## Dithering
 
-Leave dithering disabled unless the visual improvement is worth extra conversion cost.
+`screen.dithering` gives smoother gradients but changes more pixels per frame,
+so it costs bandwidth. Leave it off for video, try it for still images.
 
-## Diagnose lag
+## Web Studio
 
-Use:
+Previews are captured only while a browser is open and are downscaled and rate
+limited. On a small host set `web-studio.live-update-millis` and
+`preview-refresh-millis` to `2000` and `preview-max-width` to `480`.
+
+## Debug overlay
 
 ```text
 /screen debug
 ```
 
-Watch:
+Toggles a personal boss bar and a 15-line sidebar. The boss bar cycles through
+stream state and source resolution; screens, viewers and FPS; received,
+rendered and replaced frames; render time; memory; CPU and threads; TPS,
+MSPT and GC; reconnects and errors.
 
-- TPS below `18`
-- MSPT approaching or exceeding `50`
-- Render time exceeding the frame budget
-- Very high replaced-frame rate
-- CPU near saturation
-- Heap continuously approaching its maximum
+Replaced frames are normal: only the newest frame is kept when decoding is
+faster than drawing. Memory values cover Java image buffers, not native FFmpeg
+memory.
 
-Reduce screen size or FPS before increasing server resources.
+Your previous scoreboard is restored afterwards. If the sidebar conflicts with
+another plugin, set `debug.sidebar-enabled: false` and `/screen reload`.
 
-## Web Studio cost
+## Finding lag
 
-Opening Web Studio does not create another decoder for each screen. Screens
-with the same normalized source continue to share one loader.
+Watch for TPS below 18, MSPT near 50, render time above the frame budget, or
+CPU near 100 %. Make screens smaller or lower FPS before adding hardware.
 
-The browser first receives a full state snapshot. The live connection then
-uses a compact SSE update containing changing server and screen fields. Media,
-playlist, event and audit collections are refreshed only when their revision
-changes.
-
-Preview images are captured only while at least one Web Studio event client is
-connected. They are downscaled and rate-limited by:
-
-```yaml
-web-studio:
-  live-update-millis: 1000
-  preview-refresh-millis: 1000
-  preview-max-width: 640
-```
-
-For a small host, try `2000`, `2000` and `480` respectively. This makes the
-panel less immediate but reduces image copying, JPEG encoding and browser
-traffic.
+Keep `performance.worker-stop-timeout-seconds` (8) above
+`stream.io-timeout-seconds` (5) so a stuck network read can end before reload
+or shutdown continues.

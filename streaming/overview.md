@@ -1,18 +1,20 @@
-# Choose an RTMP Network Setup
+# Streaming from OBS
 
-Live video from OBS travels OBS → MediaMTX → LuigiScreen. LuigiScreen
-generates a secure MediaMTX configuration for you; pick the situation that
-matches where the three programs run:
+To show a live desktop, game or camera from OBS, the video travels:
 
-| Situation | Command | Use when |
-| --- | --- | --- |
-| Same computer | `/screen obs same-pc` | Paper, MediaMTX and OBS run on one computer |
-| Local network | `/screen obs lan` | Paper and MediaMTX share a computer; OBS is elsewhere in the same LAN |
-| Public internet | `/screen obs internet` | OBS reaches home MediaMTX through router port forwarding |
-| VPN | `/screen obs vpn` | OBS reaches MediaMTX through Tailscale or ZeroTier |
-| External hosting | `/screen obs hosting` | MediaMTX runs on a public VPS or another hosting machine |
+```text
+OBS  →  MediaMTX  →  LuigiScreen
+```
 
-(`/screen mediamtx` still works as an older name.)
+MediaMTX is a small free RTMP server. LuigiScreen generates a secure
+configuration for it; you only pick the situation:
+
+| Situation | Command |
+| --- | --- |
+| Paper, MediaMTX and OBS on one computer | `/screen obs same-pc` |
+| Other setups (LAN, internet, VPN, VPS) | see [Network setups](network.md) |
+
+Do not need a live desktop? Local videos and YouTube links need no MediaMTX.
 
 ## Same computer, step by step
 
@@ -20,10 +22,10 @@ matches where the three programs run:
 2. Download [MediaMTX](https://mediamtx.org/), put the generated
    `plugins/LuigiScreen/mediamtx/SAME_PC/mediamtx.yml` beside `mediamtx.exe`
    (or `mediamtx` on Linux) and start it. It must report an RTMP listener on
-   TCP `55556`.
+   TCP `55556`. See [MediaMTX](mediamtx.md).
 3. In OBS open **Settings → Stream**: Service *Custom*, Server = the complete
    URL the command printed (also in `setup.txt`), Stream key empty,
-   authentication off. See [OBS Studio](obs.md) for output settings.
+   authentication off. See [OBS Studio](obs.md).
 4. Click **Start Streaming** in OBS.
 5. Show it on a screen:
 
@@ -31,25 +33,10 @@ matches where the three programs run:
    /screen source lobby rtmp://127.0.0.1:55556/screen
    ```
 
-   The wizard already makes this the default source for new screens.
+   The wizard also makes this the default source for new screens and switches
+   screens that still used the previous default.
 
 If the screen stays on *Source unavailable*, see
-[Common errors](../troubleshooting/common-errors.md).
-
-## What the wizard does
-
-1. Asks only for values it cannot detect (your chat answers are not broadcast).
-2. Generates random publisher and reader credentials.
-3. Writes a restricted `mediamtx.yml` and a private `setup.txt` under
-   `plugins/LuigiScreen/mediamtx/<SITUATION>/`, backing up older files.
-4. Makes the new RTMP address the default source and switches screens that
-   still used the previous default.
+[Troubleshooting](../troubleshooting/common-errors.md).
 
 `setup.txt` contains passwords. Never publish it.
-
-## A tunnel is not a server
-
-VPNs and tunnels solve reachability; they do not keep MediaMTX, OBS or your
-PC running. For playback without your home PC, see
-[External hosting and 24/7](../network/external-hosting.md) — or simply use a
-local video or a YouTube link, which need no MediaMTX at all.

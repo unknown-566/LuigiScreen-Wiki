@@ -18,7 +18,7 @@ alone for clickable help. For most work, `/screen web` is easier.
 
 `<file|link>` can be a media library file (`intro.mp4`, or just its name when
 unique), a YouTube/Twitch/video page link, an image or GIF link, or
-`rtmp://…`. See [Media sources](../screen/sources.md).
+`rtmp://…`. See [What you can play](../screen/sources.md).
 
 Without `[time]`, videos play to the end, images and GIFs for
 `playback.default-duration`, live streams until skipped. Times: `30s`, `5m`, `1h`.
@@ -42,7 +42,7 @@ Without `[time]`, videos play to the end, images and GIFs for
 | `/screen event <screen> <name\|stop>` | Start an event takeover, or stop it |
 
 Playlists and events are created in Web Studio → **Program** or in
-`config.yml`. See [Playlists and Events](../screen/playlists-events.md).
+`config.yml`. See [Playlists](../screen/playlists.md) and [Events](../screen/events.md).
 
 ## Screens
 
@@ -72,7 +72,7 @@ Names use `a-z`, `0-9`, `_` and `-`, up to 32 characters.
 | `/screen debug` | Toggle the personal debug boss bar and sidebar |
 | `/screen obs <situation>` | Generate a MediaMTX setup for OBS: `same-pc`, `lan`, `internet`, `vpn`, `hosting` (`mediamtx` also works) |
 
-See [Choose an RTMP network setup](../streaming/overview.md) for `obs`.
+See [Streaming from OBS](../streaming/overview.md) for `obs`.
 
 ## Voting
 

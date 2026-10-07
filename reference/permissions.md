@@ -100,34 +100,12 @@ Allow a group to see every protected screen:
 Do not grant `luigiscreen.mediamtx` to untrusted users because its wizard
 generates private credentials.
 
-## Control Studio roles
+## Web Studio and menu sections
 
-`luigiscreen.menu.*` grants every studio section.
+`luigiscreen.web` lets a player create a Web Studio login link. What the
+browser session may do is limited by the player's `luigiscreen.menu.*` section
+permissions and command permissions, copied when the link was created. After
+changing them, run `/screen web revoke` and open a new link.
 
-| Permission | Section/action |
-| --- | --- |
-| `luigiscreen.menu.dashboard` | Dashboard |
-| `luigiscreen.menu.screens` | Screen list, details and location |
-| `luigiscreen.menu.media` | Media Library |
-| `luigiscreen.menu.playlists` | Playlist inspection and drafts |
-| `luigiscreen.menu.events` | Event timeline inspection and drafts |
-| `luigiscreen.menu.live` | Live Control, queue, event start and vote management |
-| `luigiscreen.menu.groups` | Screen Groups |
-| `luigiscreen.menu.schedules` | Schedule Calendar |
-| `luigiscreen.menu.templates` | Template installation |
-| `luigiscreen.menu.diagnostics` | Diagnostics |
-| `luigiscreen.menu.history` | Audit and Undo |
-| `luigiscreen.menu.emergency` | Emergency confirmation |
-| `luigiscreen.menu.control` | Start/stop/hold/skip/repeat/visibility mutations |
-| `luigiscreen.menu.automations` | Web Studio automation workspace |
-| `luigiscreen.menu.monitoring` | Web Studio monitoring workspace |
-| `luigiscreen.menu.configuration` | Structured drafts and Publish in Web Studio |
-| `luigiscreen.menu.settings` | Web Studio settings and session workspace |
-
-`luigiscreen.web` only permits creating a browser session. Every API action
-still checks the section and command capabilities copied from the player when
-the one-time link was created. Create a new session after changing that
-player's permissions.
-
-See [Drafts, History, Emergency and Roles](../studio/safety-roles.md) for
-recommended staff roles.
+The full list of `luigiscreen.menu.*` sections and example staff roles is in
+[Safety and Roles](../studio/safety-roles.md#roles).

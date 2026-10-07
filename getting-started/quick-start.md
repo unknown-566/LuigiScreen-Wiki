@@ -15,25 +15,22 @@ Each block is one map of 128×128 pixels, so 4×3 gives 512×384.
 
 ## 2. Play a file
 
-Copy a video, image or GIF into:
-
-```text
-plugins/LuigiScreen/media/
-```
-
-Then:
+Copy a video, image or GIF into `plugins/LuigiScreen/media/`, then:
 
 ```text
 /screen play lobby intro.mp4
 ```
 
-Videos play to the end, images for 30 seconds; then the screen goes back to
+Videos play to the end, images for 30 seconds, then the screen goes back to
 what it showed before. Add a time to override it: `/screen play lobby poster.png 2m`.
+
+With only one screen on the server you can leave out its name:
+`/screen play intro.mp4`.
 
 ## 3. Play YouTube or Twitch
 
-Links need yt-dlp once: run `/screen web`, open **System** and press **Install**
-next to *YouTube and video links*. Then:
+Links need yt-dlp once: run `/screen web`, open **System** and press
+**Install** next to *YouTube and video links*. Then:
 
 ```text
 /screen play lobby https://www.youtube.com/watch?v=aqz-KE-bpKQ
@@ -43,13 +40,13 @@ Live Twitch and YouTube streams work the same way.
 
 ## 4. Make it permanent
 
-`play` is temporary. To set what a screen shows normally:
+`play` is temporary. To set what the screen shows normally:
 
 ```text
 /screen source lobby intro.mp4
 ```
 
-or let it rotate a playlist made in Web Studio:
+Or let it rotate a [playlist](../screen/playlists.md) made in Web Studio:
 
 ```text
 /screen playlist lobby spawn_rotation
@@ -61,11 +58,12 @@ or let it rotate a playlist made in Web Studio:
 /screen web
 ```
 
-Click the link. You get every screen with a live preview, a **Play…** button,
-the media library, playlists, events, automations and system settings.
+Click the link in chat. You get every screen with a live preview, a **Play…**
+button, the media library, playlists, events, automations and settings. It
+works on a phone too.
 
 ## Next
 
-- [Media sources](../screen/sources.md) — every kind of source and how it is detected
-- [Commands](../reference/commands.md) — the full command list
-- [Choose an RTMP network setup](../streaming/overview.md) — live video from OBS
+- [What you can play](../screen/sources.md)
+- [Playing and controlling](../screen/playback.md)
+- [Commands](../reference/commands.md)

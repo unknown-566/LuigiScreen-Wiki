@@ -3,3 +3,22 @@ root: ./
 structure:
   readme: README.md
   summary: SUMMARY.md
+
+redirects:
+  getting-started/requirements: getting-started/installation.md
+  reference/platforms: getting-started/installation.md
+  reference/release-status: README.md
+  czech/quick-start: getting-started/quick-start.md
+  screen/multiple-screens: screen/creating-screen.md
+  screen/playlists-events: screen/playlists.md
+  studio/playlists-conditions: screen/playlists.md
+  studio/events-automation: screen/automations.md
+  studio/media-library: screen/sources.md
+  studio/screens-live-control: studio/control-studio.md
+  network/same-pc: streaming/overview.md
+  network/lan: streaming/network.md
+  network/public-ip: streaming/network.md
+  network/vpn-tunnels: streaming/network.md
+  network/external-hosting: streaming/network.md
+  operations/debug: operations/performance.md
+  troubleshooting/log-checklist: troubleshooting/common-errors.md

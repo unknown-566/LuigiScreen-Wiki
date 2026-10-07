@@ -61,15 +61,15 @@ run `yt-dlp.exe` yourself. There is no sound in Minecraft yet.
 
 **Playlists** rotate media by weight. Create one, add items with duration and
 weight, then assign it to a screen. The chance column shows how often each
-item will play.
+item will play. See [Playlists](../screen/playlists.md).
 
 **Events** are temporary takeovers made of steps (media, text, countdown, wait
 for operator). When an event ends, the screen returns to its playlist or
-default source.
+default source. See [Events](../screen/events.md).
 
 **Automations** run an event, playlist, on, off or return at a server time,
 on a screen or a group. **Run now** tests a rule immediately. **Screen
-groups** live on the same tab.
+groups** live on the same tab. See [Automations, groups and voting](../screen/automations.md).
 
 Program changes are saved immediately; there is no separate publish step.
 
@@ -88,7 +88,7 @@ Program changes are saved immediately; there is no separate publish step.
 
 Emergency mode switches every screen to a static `MAINTENANCE` frame and
 blocks playback until it is turned off. A banner shows while it is on. See
-[Drafts, History, Emergency and Roles](safety-roles.md).
+[Safety and Roles](safety-roles.md).
 
 ## Permissions
 
@@ -97,7 +97,7 @@ player's LuigiScreen permissions at the moment the link was created, so after
 changing permissions run `/screen web revoke` and open a new link. Buttons you
 are not allowed to use are hidden.
 
-See [Permissions](../reference/permissions.md) for the section permissions.
+See [Permissions](../reference/permissions.md) and [Safety and Roles](safety-roles.md) for the section permissions.
 
 ## Security
 

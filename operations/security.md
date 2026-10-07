@@ -55,6 +55,18 @@ updates:
   enabled: false
 ```
 
+## yt-dlp
+
+yt-dlp is never downloaded automatically. When an administrator with
+`luigiscreen.menu.configuration` presses **Install** in Web Studio, LuigiScreen
+downloads the official release from `github.com/yt-dlp/yt-dlp`, verifies its
+SHA-256 against the release checksums and stores it in
+`plugins/LuigiScreen/bin/`. It then runs it as a separate process for each
+link and lets it update itself every few days.
+
+Anyone who can play media can make the server fetch links from the internet.
+Grant `luigiscreen.play` and `luigiscreen.source` only to trusted staff.
+
 ## Internet exposure
 
 When exposing MediaMTX:

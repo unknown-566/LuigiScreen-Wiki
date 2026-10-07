@@ -1,100 +1,101 @@
-# Control Studio
-
-Control Studio is LuigiScreen's administration layer. It has two interfaces
-over the same playback engine:
-
-- the in-game inventory interface added in `1.2.0-alpha.1`
-- the browser-based [Web Studio](web-studio.md) added in `1.2.0-alpha.2`
-
-Open the in-game interface with:
+# In-game Control Studio
 
 ```text
 /screen menu
 ```
 
-`/screen studio` is an equivalent alias. Most operators will find
-[Web Studio](web-studio.md) (`/screen web`) easier.
+An inventory menu for operators who prefer to stay in the game. It controls
+the same screens, playlists and events as the commands and
+[Web Studio](web-studio.md); for most work Web Studio is easier.
 
-The studio is not a second playback system. Every button controls the same
-screen registry, shared media loaders, playlists and events used by the
-`/screen` commands.
-
-Open Web Studio with `/screen web`. It adds a larger monitoring workspace,
-Preview/Program live control, structured drafts and clean contextual hover
-help while preserving the same permissions and safety rules.
-
-## Dashboard
-
-The first page shows:
-
-- enabled and total screens
-- screens with a source warning
-- active events
-- nearby viewers
-- indexed local media
-
-The main sections are:
+## Sections
 
 | Section | Purpose |
 | --- | --- |
-| Screens | State, Now Playing, location, health and per-screen controls |
-| Media Library | Watched local media, validation, thumbnails and cueing |
-| Playlists | Weighted rotations, simulation, eligibility and draft editing |
-| Events | Ordered timelines and event playback |
-| Live Control | On-air item, cue, hold, next, return, voting and emergency |
-| Diagnostics | Source, frame, FPS, reconnect and render information |
-| Screen Groups | Start, stop or return several screens together |
-| Schedule Calendar | Recurring actions and conflict warnings |
-| Template Library | Install safe starter playlists and events |
-| Change History | Audit entries and restore the newest config snapshot |
+| Screens | state, current item, location and per-screen controls |
+| Media Library | browse files with map thumbnails; play or queue them |
+| Playlists | chances, eligibility and draft edits |
+| Events | step timelines; start events |
+| Live Control | on-air item, cue next, hold, return, voting, emergency |
+| Screen Groups | start, stop or return several screens |
+| Schedule Calendar | automations and conflict warnings |
+| Template Library | install starter playlists and events |
+| Diagnostics | source, frame, FPS, reconnect and render details |
+| Change History | audit log and undo of the last config change |
 
-Shift-click a dashboard section to pin or unpin it. Pinned sections appear in
-the bottom row and open the same real section.
+**Back** returns to the parent page; long lists have page buttons. Live pages
+refresh every second. Shift-click a dashboard section to pin it to the bottom
+row.
 
-## Selected screen
+## Select a screen first
 
-Actions such as cueing media need a target screen. In **Screens**, shift-left
-click a screen to select it and open Live Control.
+Actions such as playing media need a target. In **Screens**, shift-left-click a
+screen to select it and open Live Control. The selection stays while you move
+between sections.
 
-The selected screen stays selected while you move between Media Library,
-Playlists, Events and Live Control.
+## Screens
 
-## Navigation
+| Click | Action |
+| --- | --- |
+| Left | open screen detail |
+| Right | turn on or off |
+| Shift-left | select it and open Live Control |
 
-- **Back** returns to the parent page.
-- **Dashboard** always returns to the first page.
-- **Previous Page** and **Next Page** appear for long lists.
-- Menus showing live state refresh once per second.
+Screen detail has:
 
-## Files created by Control Studio
+- **Hold/Resume**, **Skip**, **Repeat** (lock the current item), **Return to Automation**
+- **Content Queue**: left-click plays an item now, right-click removes it, shift-left moves it up
+- **Why is this playing?** and the last 20 playback decisions
+- **Teleport**, **Highlight Bounds** (particles at the corners) and
+  **Repair and Resync** (respawn the frames for viewers and resend all maps)
+- visibility toggle (`private`) and health: source state, frame age,
+  reconnects, frame counts, FPS, render time, viewers
+- usage statistics: plays, play time, viewer time, skips, failures (aggregate, no per-player history)
+
+## Media Library
+
+Left-click a file to play it on the selected screen, right-click to queue it.
+**Rescan Media** forces a rescan on file systems that do not report changes.
+The map ID of a thumbnail is allocated only when the file is first shown, and
+then reused.
+
+## Playlists
+
+Left-click a playlist to assign it to the selected screen, right-click to open
+its items. The item page shows each item's chance (1,000 simulated picks),
+cooldown and whether it is eligible right now, for example:
+
+```text
+Cooldown: 1m 20s remaining
+Failed: min-viewers needs 3, currently 1
+```
+
+| Click on item | Action |
+| --- | --- |
+| Left | preview it on the selected screen |
+| Right | stage enabled/disabled |
+| Shift-left | stage weight +1 |
+| Middle | condition builder in chat, e.g. `min-viewers=3,tps-above=18,days=FRIDAY\|SATURDAY` |
+
+Staged changes are a draft: press **Publish Changes** to apply them all, or
+**Discard Draft**. See [Safety and Roles](safety-roles.md).
+
+**Create Playlist** asks for a name in chat (type `cancel` to stop) and creates
+a starter playlist you can edit.
+
+## Live Control
+
+- left-click media to take it live, right-click to cue it as next
+- **Take Live/Next**, **Hold/Resume**, **Events**, **End Event**, **Return**
+- **Audience Vote** starts or ends a vote
+- **Emergency** opens a separate confirmation page
+
+## Files
 
 | Path | Contents |
 | --- | --- |
-| `plugins/LuigiScreen/studio.yml` | groups, schedules, favorites, audit, voting settings, statistics and thumbnail map IDs |
-| `plugins/LuigiScreen/media/.thumbnails/` | generated 128x128 PNG previews |
-| `plugins/LuigiScreen/history/` | config snapshots created before Publish |
+| `plugins/LuigiScreen/studio.yml` | groups, schedules, favorites, audit, voting, statistics, thumbnail map IDs |
+| `plugins/LuigiScreen/media/.thumbnails/` | cached 128×128 previews |
+| `plugins/LuigiScreen/history/` | config snapshots taken before each change |
 
-Do not copy `studio.yml` between servers while either server is running.
-
-## First walkthrough
-
-1. Run `/screen menu`.
-2. Open **Screens**.
-3. Shift-left click `main`.
-4. Open **Media Library**.
-5. Left-click a valid file to play it now, or right-click it to queue it.
-6. Open **Live Control** to inspect On Air and Cued.
-7. Use **Return to Automation** when the manual segment is finished.
-
-## Alpha boundaries
-
-Control Studio deliberately keeps destructive file deletion out of the first
-alpha. Delete local media through the server filesystem only after checking
-the **References** count in Media Library.
-
-The inventory editor covers common live operations and safe draft changes.
-Very large event graphs are still easier to review in `config.yml`; the GUI
-shows their timeline and can run them.
-
-Web Studio offers a wider structured editor, but it also deliberately avoids
-unrestricted remote YAML editing and remote media-file deletion.
+Do not edit `studio.yml` while the server is running.

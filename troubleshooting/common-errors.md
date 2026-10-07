@@ -1,157 +1,77 @@
-# Common Errors
+# Troubleshooting
 
-## Version of org.bytedeco:ffmpeg could not be found
+Start with `/screen info <screen>`: it shows the state and the last problem.
+Web Studio → System → **Problems** lists everything that needs attention.
 
-Affected build: `1.1.0-alpha.14` and `1.1.0-alpha.15`.
+## Screen is invisible
 
-This warning was caused by missing Maven metadata inside the shaded plugin JAR.
-JavaCPP printed the warning to `stderr`, which also caused Paper to display a
-`System.out/err.print` nag for LuigiScreen.
+- Same world and within the viewing distance (`/screen set <screen> distance …`)?
+- Is it on? `/screen info` says *off* → `/screen on <screen>`.
+- Private? `/screen set <screen> private false`, or grant `luigiscreen.see.<screen>`.
+- Does it face you? If it was built the wrong way, recreate it from the other side.
+- Any PacketEvents error in the console at startup?
 
-Install `1.1.0-alpha.16` or newer. No MediaMTX, OBS or server configuration
-change is required.
+Walk away and back, or reconnect. In the in-game Control Studio, **Repair and
+Resync** resends the screen to all viewers.
 
-## `no jniavutil in java.library.path`
+## Startup errors
 
-Example:
+| Error | Fix |
+| --- | --- |
+| `NoClassDefFoundError`, PacketEvents error | Remove older `LuigiScreen*.jar` files and restart. A separate PacketEvents plugin does not conflict. |
+| `no jniavutil in java.library.path` | The OS/CPU is not supported (only Windows/Linux x86_64), or an old JAR is still in `plugins/`. |
+| Web Studio not running | Port `8765` is taken. Change `web-studio.port`. |
 
-```text
-java.lang.UnsatisfiedLinkError: no jniavutil in java.library.path
-```
+## Local files
 
-Cause:
+| Symptom | Fix |
+| --- | --- |
+| "Nothing called … in the media library" | The file must be inside `plugins/LuigiScreen/media/`. Use the path from there (`trailers/intro.mp4`) when the name is not unique. |
+| File marked as a problem in Web Studio → Media | Broken or unsupported file. Re-export video as H.264 MP4. |
 
-The plugin JAR does not include native FFmpeg libraries for the server operating system or CPU architecture.
+## YouTube and other links
 
-Fix:
+| Symptom | Fix |
+| --- | --- |
+| "needs yt-dlp" | Web Studio → System → YouTube and video links → **Install**, or set `online-video.yt-dlp-path`. Do not double-click `yt-dlp.exe`. |
+| Install fails | The server needs outbound HTTPS to GitHub. On some hosts executables in `plugins/` are blocked; set `yt-dlp-path` to an allowed one. |
+| Plays briefly, then *Source unavailable*, or never starts | Private, age-restricted and region-locked videos do not work. Sites change often; yt-dlp updates itself every few days. For a quick fix delete `plugins/LuigiScreen/bin/yt-dlp*` and press **Install** again. The exact error is in Web Studio → System. |
 
-- Use LuigiScreen `1.1.0-alpha.7` or newer on Linux x86_64.
-- Confirm the server reports `Linux ... amd64` or Windows x86_64.
-- ARM and macOS are not currently supported.
-- Remove older LuigiScreen JARs before restarting.
+## OBS / RTMP
 
-## `RTMP connection failed: Could not open input`
+| Symptom | Fix |
+| --- | --- |
+| `Could not open input` | MediaMTX not running, wrong host/port, firewall, router forwarding, or the host blocks outbound TCP. Check that MediaMTX reports its RTMP listener; open the reader URL in VLC. |
+| `authentication failed` | Copy the complete OBS URL again, keep the stream key empty, disable OBS authentication, restart MediaMTX after replacing its config. Regenerating creates new passwords. |
+| `video dimensions are missing`, `Picture size 0x0` | Start MediaMTX, then OBS; use H.264 with a 2-second keyframe interval; restart streaming; `/screen off` and `/screen on`. |
+| Stream live but screen black | Is the OBS preview black? Test the URL in VLC; check source resolution in `/screen debug`. |
+| `/screen obs` fails | Check write permissions for `plugins/LuigiScreen/mediamtx/` and the console. |
 
-Causes:
+## Other
 
-- MediaMTX is not running
-- Wrong host or port
-- Firewall blocks TCP
-- Router forwarding is wrong
-- The hosting provider blocks outbound traffic
+| Symptom | Fix |
+| --- | --- |
+| Decoder stuck in *stopping* | FFmpeg can take a few seconds to leave a blocked network read. Wait instead of reloading repeatedly. |
+| Web Studio link does not open | See [Web Studio](../studio/web-studio.md#troubleshooting). |
+| Debug sidebar fights another plugin | `debug.sidebar-enabled: false`, then `/screen reload`. |
+| Lag | See [Performance and Debug](../operations/performance.md). |
 
-Checks:
+## Reporting a problem
 
-1. Confirm MediaMTX reports the RTMP listener.
-2. Test the reader URL in VLC from the Minecraft server network when possible.
-3. Confirm the correct setup situation was used.
-4. Check `/screen info`.
-
-## `authentication failed`
-
-Causes:
-
-- Old OBS URL after regenerating credentials
-- Wrong `mediamtx.yml`
-- Authentication enabled separately in OBS
-- Password copied incompletely
-
-Fix:
-
-1. Copy the complete generated OBS server URL.
-2. Leave the stream key empty.
-3. Disable OBS authentication.
-4. Restart MediaMTX after replacing its config.
-
-## `video dimensions are missing` or `Picture size 0x0 is invalid`
-
-Cause:
-
-FFmpeg connected before it received enough valid H.264 stream metadata, or OBS published an incomplete stream.
-
-Fix:
-
-- Start MediaMTX first.
-- Start OBS and confirm its preview.
-- Use H.264 with a two-second keyframe interval.
-- Stop and start OBS streaming.
-- Run `/screen off`, wait a few seconds, then `/screen on`.
-
-## Screen is created but invisible
-
-Check:
-
-- You are in the same world
-- You are within `screen.viewer-distance`
-- The screen is on (`/screen info <screen>` does not say *off*)
-- The screen is not private (`/screen set <screen> private false`)
-- The screen faces the player
-- The console shows no PacketEvents error during startup
-
-Try moving away and returning, or reconnecting to the server.
-
-## `NoClassDefFoundError` or PacketEvents error on startup
-
-LuigiScreen bundles its own PacketEvents copy, so a separate PacketEvents
-plugin does not conflict. If the error persists, remove older
-`LuigiScreen*.jar` files from `plugins/` and restart. You may delete
-`MapEngine.jar` if no other plugin needs it.
-
-## YouTube link: "needs yt-dlp"
-
-Install yt-dlp in **Web Studio → System → YouTube and video links**, or set
-`online-video.yt-dlp-path` to an existing yt-dlp executable. Do not start
-`yt-dlp.exe` by double-clicking; LuigiScreen runs it itself.
-
-## YouTube link plays briefly, then *Source unavailable*
-
-YouTube changes often. LuigiScreen updates its own yt-dlp copy every few days;
-restart the server to force an update check. Age-restricted, private and
-region-locked videos cannot be played. The exact reason appears in
-Web Studio → System and in `/screen info <screen>`.
-
-## Stream is live but the Minecraft screen is black
-
-Check the OBS preview first.
-
-If OBS is not black:
-
-- Test the MediaMTX reader URL in VLC
-- Confirm source resolution is reported in `/screen debug`
-- Check render errors
-- Disable unusual H.264 encoder options
-
-## Decoder remains in `stopping`
-
-Native FFmpeg can take several seconds to leave a blocked network read.
-
-Do not repeatedly run reload or create commands. Wait and check `/screen info`.
-
-MediaMTX profile switching in `alpha.6` and newer happens asynchronously and never starts a second decoder before the old one terminates.
-
-## `/screen obs` fails
-
-Check write permissions for:
+Open an [issue](https://github.com/unknown-566/LuigiScreen/issues) with:
 
 ```text
-plugins/LuigiScreen/mediamtx/
+Paper version / Java version:
+OS and CPU (e.g. Windows x86_64):
+LuigiScreen version:
+Source type (file, YouTube, RTMP…):
+Where OBS / MediaMTX / Paper run (if streaming):
+Output of /screen info <screen>:
 ```
 
-Also check the server console for the exact `MediaMTX setup failed` message.
+Add the LuigiScreen part of the startup log and the full Java exception. For
+more FFmpeg detail set `logging.ffmpeg-level: info`, `/screen reload`,
+reproduce once, then set it back to `quiet`.
 
-## Sidebar conflicts with another plugin
-
-Disable it:
-
-```yaml
-debug:
-  sidebar-enabled: false
-```
-
-Then run:
-
-```text
-/screen reload
-```
-
-The rotating boss bar remains available.
+**Remove passwords and stream URLs before posting.** Never share `setup.txt`,
+`mediamtx.yml` or Web Studio login links.

@@ -104,7 +104,7 @@ web-studio:
 ```
 
 The old `screen.configured`, `world`, `corner-a`, `corner-b` and `facing`
-fields may remain after upgrading. Alpha.8 migrates one valid legacy screen to
+fields may remain after upgrading. LuigiScreen migrates one valid legacy screen to
 `screens.main` once and then uses the new section.
 
 ## Update checker
@@ -216,7 +216,7 @@ arbitrary files elsewhere on the server.
 `sources.max-image-pixels` limits the decoded dimensions of local and remote
 images to protect memory from highly compressed oversized files.
 
-See [Media sources](../screen/sources.md) for every type and example.
+See [What you can play](../screen/sources.md) for every type and example.
 
 ## Playback settings
 
@@ -228,11 +228,11 @@ playlist or event should advance.
 
 The Media Library watches local folders automatically. A debounced background
 scan updates files and cached playlist folders after create, modify and delete
-events. Use **Rescan Media** in Control Studio for filesystems that do not emit
+events. Use **Rescan Media** in the in-game Control Studio for filesystems that do not emit
 watch events.
 
 Named `playlists:` and `events:` are configured manually. See
-[Playlists and Events](../screen/playlists-events.md).
+[Playlists](../screen/playlists.md) and [Events](../screen/events.md).
 
 Playlist anti-repeat settings:
 
@@ -278,7 +278,7 @@ schedules:
 `statistics`, `audit`, `favorites` and `thumbnail-map-ids` are managed
 by the plugin. Do not hand-edit those sections while the server is running.
 
-See [Events, Groups and Schedules](../studio/events-automation.md).
+See [Automations, groups and voting](../screen/automations.md).
 
 ## Web Studio settings
 
