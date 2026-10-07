@@ -12,7 +12,7 @@ Java version:
 Operating system:
 CPU architecture:
 LuigiScreen version:
-MapEngine version:
+Minecraft client version:
 MediaMTX version:
 OBS version:
 ```
@@ -22,7 +22,7 @@ OBS version:
 Run:
 
 ```text
-/screen status
+/screen info
 ```
 
 Remove any credential that was not masked before sharing.

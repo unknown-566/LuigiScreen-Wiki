@@ -56,7 +56,7 @@ Playback History stores the latest 20 runtime decisions for the screen.
 
 - **Teleport** moves the admin three blocks in front of the display.
 - **Highlight Bounds** draws temporary particles around both screen corners.
-- **Repair and Resync** respawns the virtual MapEngine frames for viewers and
+- **Repair and Resync** respawns the virtual item frames for viewers and
   forces a full map resend.
 
 Repair does not change the saved location or dimensions.

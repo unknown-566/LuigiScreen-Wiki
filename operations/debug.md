@@ -53,4 +53,4 @@ If another plugin replaces the scoreboard while LuigiScreen debug is active, Lui
 
 The displayed buffer estimate includes LuigiScreen Java image buffers.
 
-It cannot accurately assign all native FFmpeg or MapEngine memory to this plugin. Use operating-system tools or a profiler for complete process memory.
+It cannot accurately assign all native FFmpeg memory to this plugin. Use operating-system tools or a profiler for complete process memory.

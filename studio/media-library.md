@@ -56,14 +56,15 @@ This avoids allocating a map for every file during startup.
 
 ## Cueing
 
-In Web Studio, media cards have two visible production buttons:
+In Web Studio → **Media**, each card has:
 
 | Button | Result |
 | --- | --- |
-| **Add to playlist** | Adds the media to the playlist selected at the top of Media Library |
-| **Play now** | Temporarily plays the media on the selected live target |
+| **Play on…** | Choose a screen, then play now or queue |
+| **Add to playlist** | Choose a playlist to add the file to |
 
-If no playlist exists yet, open **Playlist Editor** and create one first.
+Filter by type or search by name at the top. From a command:
+`/screen play <screen> <file>`.
 
 For in-game Control Studio, first select a screen from the Screens page.
 

@@ -1,188 +1,97 @@
 # Media Sources
 
-Every screen has one typed media source. Change it without recreating the
-screen:
+## Play now or set as default
 
-```text
-/screen source <screen> <type> <value>
-```
+| You want | Command |
+| --- | --- |
+| Show something now, then go back | `/screen play <screen> <file\|link> [time]` |
+| Show it after the current item | `/screen queue <screen> <file\|link> [time]` |
+| Change what the screen shows normally | `/screen source <screen> <file\|link>` |
 
-Show the current source:
+Web Studio does the same with **Play…** on a screen (tabs *Media* and
+*YouTube / link*).
 
-```text
-/screen source main
-```
+## What you can type
 
-List available types:
+LuigiScreen works out the kind of source from what you give it:
 
-```text
-/screen source main types
-```
-
-## Source types
-
-| Type | Value | Behavior |
+| You type | It becomes | Notes |
 | --- | --- | --- |
-| `rtmp` | `rtmp://` or `rtmps://` URL | Live stream with reconnect |
-| `mjpeg` | `http://` or `https://` URL | Live MJPEG camera stream with reconnect |
-| `video` | Local file path | Video loops automatically |
-| `image` | Local file path | Static image loaded once |
-| `url-image` | `http://` or `https://` URL | Remote image with retry after temporary failure |
-| `gif` | Local file path or HTTP(S) URL | Animated GIF loops automatically |
+| `intro.mp4`, `trailers/update.mp4` | local video | from `plugins/LuigiScreen/media/`; just the file name is enough when it is unique |
+| `poster.png`, `logo.jpg`, `logo.webp` | local image | |
+| `loading.gif` | local GIF | |
+| `https://…/image.png` | web image | loaded once |
+| `https://…/animation.gif` | web GIF | |
+| `https://www.youtube.com/watch?v=…`, `https://twitch.tv/…`, any other video page | online video | needs yt-dlp; live streams work too |
+| `rtmp://host:port/path` | RTMP stream | OBS through MediaMTX |
+| `mjpeg http://camera/video` | MJPEG camera | the only kind that needs its type written first |
 
-Playlist and event configuration also supports `folder` and `text` items. They
-are not direct `/screen source` types. See [Playlists and Events](playlists-events.md).
-
-## Local media folder
-
-Relative paths are resolved inside:
+You can always put a type first to be explicit: `video`, `image`, `gif`,
+`url-image`, `youtube`, `rtmp`, `mjpeg`.
 
 ```text
-plugins/LuigiScreen/media/
+/screen play lobby intro.mp4
+/screen play lobby https://www.youtube.com/watch?v=aqz-KE-bpKQ
+/screen queue lobby poster.png 20s
+/screen source cinema rtmp://127.0.0.1:55556/screen
+/screen source gate mjpeg http://192.168.1.50:8080/video
 ```
 
-For example:
+## How long `play` and `queue` last
 
-```text
-plugins/LuigiScreen/media/intro.mp4
-plugins/LuigiScreen/media/posters/server.png
-plugins/LuigiScreen/media/animations/loading.gif
-```
+Without a time, videos and online videos play to their end, images and GIFs
+for `playback.default-duration` (30 s), live streams until you skip them
+(at most 6 hours).
+Times accept `30s`, `5m`, `1h`.
 
-Use them with:
+## Local files
 
-```text
-/screen source main video intro.mp4
-/screen source main image posters/server.png
-/screen source main gif animations/loading.gif
-```
+Put files into `plugins/LuigiScreen/media/` (subfolders are fine). They appear
+in the Media Library and in tab completion on their own; no reload needed.
 
-Paths containing spaces are supported:
+| Kind | Extensions |
+| --- | --- |
+| Video | `mp4`, `mkv`, `webm`, `mov`, `avi` |
+| Image | `png`, `jpg`, `jpeg`, `webp` |
+| Animation | `gif` |
 
-```text
-/screen source main video event trailer.mp4
-```
+H.264 MP4 is the safest video format. Absolute paths outside the media folder
+are blocked unless you set `sources.allow-absolute-paths: true`.
 
-Absolute paths are disabled by default. They can be enabled with
-`sources.allow-absolute-paths`, but keeping media inside the plugin folder is
-safer and easier to move between servers.
+## YouTube, Twitch and other sites
 
-## RTMP stream
+Online videos are opened through [yt-dlp](https://github.com/yt-dlp/yt-dlp).
+Install it once in **Web Studio → System → YouTube and video links**:
+LuigiScreen downloads the official release into `plugins/LuigiScreen/bin/`,
+checks its SHA-256 and keeps it up to date. If yt-dlp is already installed on
+the server, set `online-video.yt-dlp-path` instead.
 
-```text
-/screen source main rtmp rtmp://127.0.0.1:55556/screen
-```
+- Only the picture is downloaded, up to `online-video.max-height` (480p).
+- The stream address is fetched again on every reconnect, so long playback keeps working.
+- Do not run `yt-dlp.exe` yourself; LuigiScreen calls it in the background.
 
-Use RTMP for OBS, MediaMTX or another live publisher. The source disconnects
-when no eligible viewer is near any screen using it, then reconnects when a
-viewer returns.
+## Streams and cameras
 
-The old command remains as a compatibility shortcut:
+RTMP sources reconnect automatically with backoff. For OBS setup see
+[Choose an RTMP network setup](../streaming/overview.md).
 
-```text
-/screen set main url rtmp://127.0.0.1:55556/screen
-```
-
-It always selects the `rtmp` type.
-
-## MJPEG stream
-
-```text
-/screen source camera mjpeg http://192.168.1.50:8080/video
-```
-
-Use the direct HTTP(S) MJPEG endpoint exposed by the camera or camera server.
-A normal web page containing a video player is not an MJPEG endpoint.
-
-## Local video
-
-Put the file in the media folder and run:
-
-```text
-/screen source cinema video movie.mp4
-```
-
-LuigiScreen uses FFmpeg to decode the file and starts it again at the end.
-Common FFmpeg-supported containers can work, but H.264 MP4 is a practical
-starting format.
-
-Minecraft does not receive the video's audio.
-
-## Local image
-
-```text
-/screen source poster image event.png
-```
-
-The image is loaded once and kept as the screen frame. PNG and JPEG are the
-most portable choices.
-
-## URL image
-
-```text
-/screen source news url-image https://example.com/current.png
-```
-
-The URL must return the image itself. HTML pages are not supported. Download
-size, decoded pixel count and HTTP timeout are limited by `config.yml`.
-
-The image is not continuously polled after a successful load. Switch the
-source again or restart it when the remote file changes.
-
-## GIF
-
-Local GIF:
-
-```text
-/screen source animation gif welcome.gif
-```
-
-Remote GIF:
-
-```text
-/screen source animation gif https://example.com/welcome.gif
-```
-
-GIF animation loops automatically and uses FFmpeg for timing and decoding.
+MJPEG needs the camera's direct MJPEG address, not a web page with a player.
 
 ## Switching safely
 
-LuigiScreen validates the new source before replacing the old local source.
-If a local file does not exist, the command fails and the previous source is
-kept.
+A missing local file is rejected and the screen keeps its previous source.
+A remote source that is offline is accepted; the screen shows its status card
+and keeps retrying.
 
-Remote connectivity is checked by the background worker. A valid remote URL
-can therefore be selected while it is offline; the screen shows its offline
-state and reconnects where supported.
-
-## Sharing sources and clones
-
-Screens share one loader when both their normalized source type and value are
-identical:
-
-```text
-main:  video intro.mp4
-lobby: video intro.mp4
-```
-
-These screens decode the video once, then independently render the latest
-frame with their own FPS, distance, size, location and permissions.
-
-Changing one screen to another type or value moves it into another source
-group:
-
-```text
-/screen source lobby image lobby.png
-```
-
-## Configuration form
+## In `config.yml`
 
 ```yaml
 screens:
-  main:
+  lobby:
     source:
-      type: video
-      value: intro.mp4
+      type: youtube
+      value: "https://www.youtube.com/watch?v=aqz-KE-bpKQ"
 ```
 
-Old per-screen `url:` fields are migrated automatically to an RTMP source.
+Playlist and event items use the same `type` / `value` pair. See
+[Playlists and Events](playlists-events.md).

@@ -31,11 +31,14 @@ LuigiScreen puts the generated publisher credentials directly into the RTMP URL.
 
 ## Recommended output
 
-For a 7x4 screen:
+Match the screen's pixel size (128 pixels per block). For a 7×4 screen:
 
 ```text
 896x512
 ```
+
+LuigiScreen scales any other size itself, so a larger OBS canvas only costs
+upload bandwidth.
 
 Recommended starting values:
 

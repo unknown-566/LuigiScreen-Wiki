@@ -12,7 +12,8 @@ Open the in-game interface with:
 /screen menu
 ```
 
-`/screen studio` is an equivalent alias.
+`/screen studio` is an equivalent alias. Most operators will find
+[Web Studio](web-studio.md) (`/screen web`) easier.
 
 The studio is not a second playback system. Every button controls the same
 screen registry, shared media loaders, playlists and events used by the

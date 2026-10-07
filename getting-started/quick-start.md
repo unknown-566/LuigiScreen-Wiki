@@ -1,120 +1,71 @@
-# RTMP Quick Start
+# Quick Start
 
-This guide assumes Paper, OBS and MediaMTX all run on the same computer. For
-local files or images, use the shorter [Media sources](../screen/sources.md)
-guide instead.
+Five minutes from install to a playing screen.
 
-## 1. Generate the MediaMTX setup
+## 1. Build a screen
 
-Join the server as an operator and run:
-
-```text
-/screen mediamtx same-pc
-```
-
-LuigiScreen creates:
+Build a flat wall, for example 4 blocks wide and 3 high. Stand in front of it,
+look at its **top-left** block and run:
 
 ```text
-plugins/LuigiScreen/mediamtx/SAME_PC/mediamtx.yml
-plugins/LuigiScreen/mediamtx/SAME_PC/setup.txt
+/screen create lobby 4 3
 ```
 
-`setup.txt` contains private generated credentials. Do not publish it.
+Each block is one map of 128×128 pixels, so 4×3 gives 512×384.
 
-## 2. Install MediaMTX
+## 2. Play a file
 
-Download the MediaMTX build for your operating system from the official releases.
-
-Place the generated `mediamtx.yml` beside:
+Copy a video, image or GIF into:
 
 ```text
-mediamtx.exe
+plugins/LuigiScreen/media/
 ```
 
-On Linux, place it beside:
+Then:
 
 ```text
-mediamtx
+/screen play lobby intro.mp4
 ```
 
-Start MediaMTX. It should report an RTMP listener on TCP port `55556`.
+Videos play to the end, images for 30 seconds; then the screen goes back to
+what it showed before. Add a time to override it: `/screen play lobby poster.png 2m`.
 
-## 3. Configure OBS
+## 3. Play YouTube or Twitch
 
-Open:
+Links need yt-dlp once: run `/screen web`, open **System** and press **Install**
+next to *YouTube and video links*. Then:
 
 ```text
-Settings -> Stream
+/screen play lobby https://www.youtube.com/watch?v=aqz-KE-bpKQ
 ```
 
-Use:
+Live Twitch and YouTube streams work the same way.
 
-| Setting | Value |
-| --- | --- |
-| Service | Custom |
-| Server | Copy the complete OBS URL shown by LuigiScreen or `setup.txt` |
-| Stream key | Empty |
-| Use authentication | Disabled |
+## 4. Make it permanent
 
-The generated username and password are already inside the server URL query. Do not enter them again into OBS authentication fields.
-
-## 4. Configure OBS output
-
-Recommended starting values:
-
-| Setting | Value |
-| --- | --- |
-| Resolution | `896x512` for a 7x4 screen |
-| FPS | `10` |
-| Video bitrate | `1200-2000 Kbps` |
-| Encoder | Hardware H.264 when available |
-| Keyframe interval | `2 seconds` |
-| B-frames | `0` if configurable |
-
-Add a display or window capture source, then click **Start Streaming**.
-
-## 5. Create the Minecraft screen
-
-Build a flat vertical wall at least 7 blocks wide and 4 blocks high.
-
-Look at the upper-left block of the wall from the front and run:
+`play` is temporary. To set what a screen shows normally:
 
 ```text
-/screen create main 7 4
+/screen source lobby intro.mp4
 ```
 
-LuigiScreen creates the MapEngine display and connects to the RTMP stream.
-
-The MediaMTX wizard sets the default RTMP source. You can also set it
-explicitly:
+or let it rotate a playlist made in Web Studio:
 
 ```text
-/screen source main rtmp rtmp://127.0.0.1:55556/screen
+/screen playlist lobby spawn_rotation
 ```
 
-## 6. Check the status
-
-Run:
-
-```text
-/screen status main
-```
-
-For live statistics:
-
-```text
-/screen debug
-```
-
-If the screen remains offline, use [Common errors](../troubleshooting/common-errors.md).
-
-## 7. Optional: open Web Studio
-
-For a larger browser control room, run:
+## 5. Control it from the browser
 
 ```text
 /screen web
 ```
 
-Use the link labeled **LAN** from another PC on the same network, or the
-**Server PC** link on the server computer. See [Web Studio](../studio/web-studio.md).
+Click the link. You get every screen with a live preview, a **Play…** button,
+the media library, playlists, events, automations and system settings.
+
+## Next
+
+- [Media sources](../screen/sources.md) — every kind of source and how it is detected
+- [Commands](../reference/commands.md) — the full command list
+- [Choose an RTMP network setup](../streaming/overview.md) — live video from OBS

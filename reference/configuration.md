@@ -63,6 +63,8 @@ screen:
   viewer-distance: 64
   glowing-frames: false
   dithering: false
+  dither-strength: 0.8
+  color-stability: 4
   max-width: 10
   max-height: 6
   max-total-maps: 60
@@ -74,8 +76,11 @@ performance:
   max-map-updates-per-second: 400
   minimum-fps: 0.2
   pause-rendering-without-viewers: true
-  delta-updates-max-maps: 256
   worker-stop-timeout-seconds: 8
+
+online-video:
+  yt-dlp-path: ""
+  max-height: 480
 
 logging:
   ffmpeg-level: quiet
@@ -158,7 +163,7 @@ Every screen has its own:
 - `enabled`
 - `permission-required`
 
-`facing` is also stored because MapEngine needs the wall direction.
+`facing` is also stored because the item frames need the wall direction.
 
 `playlist` is optional. If it is absent or empty, the screen plays its
 configured `source`. If it is set, the configured source remains the fallback
@@ -299,6 +304,23 @@ Preview capture stops when no Web Studio event connection is open.
 See [Web Studio](../studio/web-studio.md) for setup, remote access and the
 complete security model.
 
+## Picture quality
+
+| Option | Default | Meaning |
+| --- | --- | --- |
+| `screen.dithering` | `false` | Floyd-Steinberg dithering: smoother gradients, slightly more bandwidth |
+| `screen.dither-strength` | `0.8` | `0.0`–`1.0`, how strongly dithering spreads colour error |
+| `screen.color-stability` | `4` | Keep a pixel's previous map colour while the new one is this close (`0` = off). Higher values send less data on noisy video |
+
+Dithering and colour stability can also be changed in Web Studio → System → Picture quality.
+
+## Online video
+
+| Option | Default | Meaning |
+| --- | --- | --- |
+| `online-video.yt-dlp-path` | `""` | Path to an existing yt-dlp. Empty = the copy installed from Web Studio in `plugins/LuigiScreen/bin/`, then `yt-dlp` on the system PATH |
+| `online-video.max-height` | `480` | Highest video resolution requested from YouTube and similar sites |
+
 ## Safety limits
 
 `screen.max-width`, `screen.max-height` and `screen.max-total-maps` are checked
@@ -337,4 +359,4 @@ debug
 ```
 
 FFmpeg logging is process-wide. Debug buffer values are estimates and do not
-include all native FFmpeg or MapEngine allocations.
+include all native FFmpeg allocations.

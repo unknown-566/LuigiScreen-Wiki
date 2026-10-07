@@ -7,7 +7,7 @@ Use this page when you do not have a public IPv4 address.
 Use:
 
 ```text
-/screen mediamtx vpn
+/screen obs vpn
 ```
 
 The wizard asks for the VPN address or hostname that the OBS computer uses to reach MediaMTX.

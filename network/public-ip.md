@@ -18,7 +18,7 @@ This does not work through carrier-grade NAT unless your ISP provides a public a
 Run:
 
 ```text
-/screen mediamtx internet
+/screen obs internet
 ```
 
 The wizard asks for:

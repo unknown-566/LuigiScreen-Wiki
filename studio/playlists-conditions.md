@@ -2,35 +2,15 @@
 
 ## Web Studio playlist builder
 
-For the browser workflow, open **Web Studio -> Playlist Editor**.
+Open **Web Studio → Program → Playlists**:
 
-The normal path is:
+1. Create a playlist; it starts empty.
+2. Add media items with duration and weight. The table shows each item's chance.
+3. Assign it to a screen (or on the screen: **Play… → Playlist**, or
+   `/screen playlist <screen> <name>`).
 
-1. Press **Create playlist**.
-2. Open the playlist card.
-3. Select a media source in **Add media**.
-4. Choose duration and weight.
-5. Press **Add item**.
-6. Pick a screen in **Play this playlist**.
-7. Press **Assign and play**.
-
-New browser-created playlists start empty. There is no fake starter item to
-delete. **Add item** writes the media item directly into the playlist and
-reloads playback definitions safely.
-
-Visible browser actions:
-
-| Action | What it does |
-| --- | --- |
-| **Add item** | Adds selected media with duration, weight and enabled state |
-| **Delete item** | Removes one playlist item |
-| **Duplicate** | Creates a copy of the playlist under a new ID |
-| **Delete playlist** | Removes the playlist and clears it from assigned screens |
-| **Assign and play** | Saves the playlist on the chosen screen and starts it |
-
-Advanced fields such as cooldown, conditions and enabled state are still edited
-through the inspector/draft system so risky changes can be reviewed before
-publishing.
+Deleting a playlist clears it from screens that used it. Cooldown, category,
+conditions and anti-repeat below are set in `config.yml` or the in-game editor.
 
 ## In-game Control Studio playlist editor
 

@@ -1,112 +1,77 @@
 # Český rychlý start
 
-Tento návod počítá s tím, že Paper server, MediaMTX a OBS běží na stejném počítači.
-
 ## Požadavky
 
 ```text
-Paper 1.21.11
-Java 21
-MapEngine 1.8.12
-LuigiScreen 1.1.0-alpha.12 nebo novější
+Paper 1.21.11 (Java 21) nebo Paper 26.x (Java 25)
+Windows x64 nebo Linux x64
 ```
 
-Podporovaný systém:
+Žádný další plugin není potřeba. MapEngine už LuigiScreen nepotřebuje.
+
+## 1. Instalace
+
+Dej `LuigiScreen.jar` do složky `plugins/` a restartuj server.
+Česky přepneš v `plugins/LuigiScreen/config.yml`:
+
+```yaml
+language: cs
+```
+
+## 2. Vytvoř obrazovku
+
+Dívej se na levý horní blok rovné svislé stěny a napiš:
 
 ```text
-Windows x64
-Linux x64
+/screen create main 4 3
 ```
 
-## 1. Vygeneruj MediaMTX config
+Čísla jsou šířka a výška v blocích. Jeden blok = 128×128 pixelů.
 
-Ve hře jako operátor spusť:
+## 3. Pusť něco
+
+Soubory dej do `plugins/LuigiScreen/media/` (MP4, PNG, JPG, GIF…). Pak:
 
 ```text
-/screen mediamtx same-pc
+/screen play main intro.mp4
+/screen play main https://www.youtube.com/watch?v=aqz-KE-bpKQ
 ```
 
-Vzniknou soubory:
+Když máš jen jednu obrazovku, název můžeš vynechat: `/screen play intro.mp4`.
+
+YouTube potřebuje yt-dlp. Nainstaluješ ho jedním klikem ve Web Studiu →
+**Systém → YouTube a odkazy na videa**. `yt-dlp.exe` sám nespouštěj, plugin ho volá sám.
+
+## 4. Ovládání
 
 ```text
-plugins/LuigiScreen/mediamtx/SAME_PC/mediamtx.yml
-plugins/LuigiScreen/mediamtx/SAME_PC/setup.txt
+/screen queue main plakat.png 20s   – pustit po aktuální položce
+/screen pause main                  – pozastavit / pokračovat
+/screen skip main                   – další položka
+/screen return main                 – zpět na normální program
+/screen source main uvod.mp4        – co obrazovka ukazuje normálně
+/screen info main                   – stav obrazovky
 ```
 
-Soubor `setup.txt` je soukromý, protože obsahuje heslo.
+Všechny příkazy najdeš v [Příkazech](../reference/commands.md) nebo napiš jen `/screen`.
 
-## 2. Nastav MediaMTX
+## 5. Web Studio
 
-Dej vygenerovaný `mediamtx.yml` vedle `mediamtx.exe` a MediaMTX restartuj.
-
-Musí oznámit RTMP listener na portu:
+Nejjednodušší ovládání je v prohlížeči:
 
 ```text
-55556
+/screen web
 ```
 
-## 3. Nastav OBS
+Klikni na odkaz v chatu. Funguje i na mobilu ve stejné síti. Když se odkaz
+z jiného PC neotevře, povol ve firewallu serveru TCP port `8765` pro Javu.
 
-Otevři:
+## Vysílání z OBS
 
-```text
-Nastavení -> Stream
-```
+Pro živý obraz z OBS spusť `/screen obs same-pc` (vše na jednom PC) a postupuj
+podle [Výběru síťového nastavení](../streaming/overview.md). Na hostingu typu
+Minekeep použij `/screen obs hosting` a MediaMTX na externí VPS.
 
-Nastav:
-
-```text
-Služba: Vlastní
-Server: celá URL z příkazu nebo setup.txt
-Klíč streamu: prázdný
-Použít ověření: vypnuto
-```
-
-Heslo už je součástí URL. Nedávej ho znovu do polí pro ověření.
-
-Doporučený výstup pro plátno 7x4:
-
-```text
-Rozlišení: 896x512
-FPS: 10
-Bitrate: 1500 Kbps
-Keyframe interval: 2 sekundy
-B-frames: 0
-```
-
-Přidej v OBS zdroj obrazu a klikni na **Spustit vysílání**.
-
-## 4. Vytvoř plátno
-
-Postav rovnou svislou stěnu širokou 7 bloků a vysokou 4 bloky.
-
-Dívej se na její levý horní blok a spusť:
-
-```text
-/screen create main 7 4
-```
-
-## 5. Kontrola
-
-```text
-/screen status main
-/screen debug
-```
-
-## Server na hostingu
-
-Pokud máš Minecraft server například na Minekeepu, nepoužívej `same-pc`, pokud tam MediaMTX opravdu neběží.
-
-Použij:
-
-```text
-/screen mediamtx hosting
-```
-
-MediaMTX dej na externí VPS s veřejnou IP. Na Minekeep použij LuigiScreen `alpha.7` nebo novější, protože starší JAR neobsahoval Linux FFmpeg knihovny.
-
-## Nemám veřejnou IP
-
-Pro dočasné vysílání z domácího PC můžeš použít Playit, Tailscale nebo ZeroTier. Domácí PC ale musí zůstat zapnutý.
-
-Pro skutečný provoz 24/7 použij VPS s MediaMTX a případně opakované video přes FFmpeg.
+Bez veřejné IP pomůže Playit, Tailscale nebo ZeroTier, ale domácí PC musí
+zůstat zapnuté. Pro 24/7 bez PC je jednodušší pustit lokální video nebo
+YouTube odkaz.

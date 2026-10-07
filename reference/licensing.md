@@ -35,8 +35,9 @@ https://github.com/unknown-566/LuigiScreen/blob/main/TRADEMARKS.md
 
 ## Third-party components
 
-LuigiScreen uses or interoperates with MapEngine, JavaCV, JavaCPP Presets and
-FFmpeg. Their ownership and licenses are documented here:
+LuigiScreen bundles PacketEvents (GPL-3.0), JavaCV, JavaCPP Presets, FFmpeg,
+adventure-nbt and examination (MIT), and can download yt-dlp (Unlicense) on
+request. Their ownership and licenses are documented here:
 
 https://github.com/unknown-566/LuigiScreen/blob/main/THIRD_PARTY_NOTICES.md
 

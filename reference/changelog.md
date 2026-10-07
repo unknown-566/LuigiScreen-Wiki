@@ -1,5 +1,49 @@
 # Changelog
 
+## 1.3.0-alpha.1
+
+**Upgrade note:** LuigiScreen no longer needs MapEngine. Commands were
+simplified; old names keep working (see *Renamed in 1.3.0* in [Commands](commands.md)).
+
+Rendering
+
+- New built-in renderer using virtual item frames and map packets (PacketEvents is bundled)
+- Paper 26.x support in addition to 1.21.11
+- Only changed parts of each map are sent; slow connections skip frames instead of lagging
+- Better colours: palette read from the running server, optional dithering with adjustable strength, colour stability against flicker
+- Video is decoded at the size of the largest screen instead of full resolution
+
+YouTube and online video
+
+- New source type `youtube`: YouTube, Twitch and other sites through yt-dlp, live streams included
+- One-click yt-dlp install in Web Studio with SHA-256 check and automatic updates
+- Video length is detected automatically for `play` and `queue`
+
+Commands
+
+- New `/screen play`, `queue`, `pause`, `skip`, `return`
+- Type is optional: `/screen play lobby intro.mp4` or a link is detected automatically
+- The screen name can be left out when only one screen exists
+- `/screen list` and the help are clickable; `/screen info` replaces `status`
+- `/screen on|off`, `/screen obs`, `/screen set … private`, shorter `playlist`/`event` syntax
+- `/screen remove` asks for confirmation
+- New permission `luigiscreen.play`
+
+Web Studio
+
+- Complete redesign: four sections (Screens, Media, Program, System), one **Play…** dialog for media, links, playlists and events
+- Works on phones and tablets (bottom tab bar, card tables, bottom-sheet dialogs)
+- Light and dark mode
+- Unsaved fields are no longer overwritten by live updates
+- Choices.js removed; native controls only
+
+Fixes
+
+- Maven filtering no longer corrupts Web Studio JavaScript
+- Emergency mode can no longer be bypassed by queued items or events
+- Deleting a playlist clears it from assigned screens
+- Media library changes reload playlists without resetting playback
+
 ## 1.2.0-alpha.5
 
 - Reworked Web Studio playlist editing into a beginner-first builder

@@ -15,7 +15,7 @@ flowchart LR
 On the Minecraft server run:
 
 ```text
-/screen mediamtx hosting
+/screen obs hosting
 ```
 
 Enter:

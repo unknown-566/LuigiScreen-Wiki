@@ -2,48 +2,17 @@
 
 ## Creating an event in Web Studio
 
-Open **Events** in Web Studio.
+Open **Web Studio → Program → Events**, create an event and add steps:
+media, text, countdown or *wait for operator*, each with a duration.
 
-Fast path:
-
-1. Press **Create event**.
-2. Open the event card.
-3. Add steps on the right side of the builder.
-4. Pick a target screen under **Run this event**.
-5. Press **Start event**.
+Start it from the screen (**Play… → Event**), with
+`/screen event <screen> <name>`, or from an automation. `/screen event
+<screen> stop` ends it early.
 
 An event is a temporary takeover. It interrupts the target screen, plays its
-timeline in order, and then returns the screen to its normal playlist or direct
-source.
-
-## Event builder
-
-The Web Studio event builder is intentionally direct:
-
-| Control | What it does |
-| --- | --- |
-| **Add step** | Immediately writes a new step into the event |
-| **Save step** | Updates the selected step type, media value, text, duration and enabled state |
-| **Delete** on a step | Removes that step immediately |
-| **Duplicate** | Copies the whole event before experimenting |
-| **Delete event** | Removes the event from configuration |
-| **Start event** | Plays the event on the selected screen |
-| **Stop event** | Ends the active event on the selected screen |
-
-Adding a step does not use the global draft/publish flow. The builder saves the
-step immediately so new users do not have to understand YAML or staging before
-they can test an event.
-
-Click an existing step to open the inspector. The top **Edit step** block saves
-common changes directly: switch between media, text, countdown and wait/hold,
-change the selected media value, edit the text, change duration or enable and
-disable the step.
-
-Advanced step fields such as conditions are still available lower in the
-inspector through the Stage/Publish flow.
-
-The default starter event still contains a short text announcement and an
-operator wait. Delete those steps if you want to start from a blank timeline.
+steps in order, and then returns the screen to its normal playlist or default
+source. Changes are saved immediately. Control steps such as `command`,
+`branch` or `group` (below) are written in `config.yml`.
 
 ## Event priority
 
@@ -152,17 +121,8 @@ Supported group actions are `start`, `stop`, `return`, `playlist` and
 
 ## Automation builder
 
-Open **Automations** in Web Studio when you want LuigiScreen to do something
-at a server time without typing YAML.
-
-Fast path:
-
-1. Press **Create rule**.
-2. Open the new automation card.
-3. Set **WHEN** to the server time.
-4. Pick a target screen or screen group.
-5. Pick the **THEN** action.
-6. Press **Save rule**.
+Open **Web Studio → Program → Automations**, create a rule, set the server
+time, the target screen or group and the action, then save.
 
 An automation rule is intentionally written like a small sentence:
 
@@ -182,26 +142,8 @@ Supported actions:
 | `stop` | none | stops the target screen |
 | `return` | none | returns the target to normal automation |
 
-The builder has direct controls:
-
-| Control | What it does |
-| --- | --- |
-| **Save rule** | Writes the selected time, target, action and conflict policy |
-| **Run now** | Executes the rule immediately, ignoring the clock |
-| **Duplicate** | Copies the rule before experimenting |
-| **Delete rule** | Removes the rule from configuration |
-
-Creating, saving, duplicating and deleting automations does not use the global
-draft/publish flow. It writes directly so new operators can test a rule without
-learning the raw config first.
-
-While a rule is open, unsaved changes are kept in a local browser draft. Live
-Studio refreshes can still update the rest of the page, but they should not
-reset the time, target, action or value you are editing. The dropdown fields
-use the bundled Choices.js picker, so long screen, group, event or playlist
-lists are searchable.
-When a picker is open, moving the mouse over choices pauses visual rerenders
-briefly so the dropdown does not disappear before you click an option.
+**Run now** executes a rule immediately to test it. Changes are saved
+immediately; live updates never overwrite fields you are still editing.
 
 Rules created in Web Studio run every day by default. Edit `days` in
 `studio.yml` when a narrower recurring calendar is needed.

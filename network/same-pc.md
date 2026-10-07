@@ -7,7 +7,7 @@ Use this setup when Paper, MediaMTX and OBS all run on the same computer.
 Run:
 
 ```text
-/screen mediamtx same-pc
+/screen obs same-pc
 ```
 
 ## Install MediaMTX

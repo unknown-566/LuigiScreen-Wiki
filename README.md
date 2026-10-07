@@ -1,32 +1,25 @@
 # LuigiScreen
 
-LuigiScreen is a server-side Paper/Bukkit plugin that displays streams,
-videos, images and GIFs on walls of Minecraft maps.
+LuigiScreen is a server-side Paper plugin that plays videos, YouTube and Twitch
+links, live streams, images and GIFs on walls of Minecraft maps.
 
-It loads the selected media source, decodes its latest frame and renders it
-through **MapEngine**. Players do not need a client mod.
+Everything is sent as packets, so players need no client mod and nothing is
+written into the world. One JAR is all you install.
 
 Author: **unknown_56**
 
-> LuigiScreen is currently an alpha project. Back up your server before upgrading and test new builds away from production.
+> LuigiScreen is an alpha project. Back up your server before upgrading and test new builds away from production.
 
 ## Current release
 
-Documentation version: `1.2.0-alpha.3`
+Documentation version: `1.3.0-alpha.1`
 
-Supported server platforms:
+| Server | Java |
+| --- | --- |
+| Paper `1.21.11` | 21 |
+| Paper `26.1.1`, `26.1.2`, `26.2`, `26.3` | 25 |
 
-- Paper `1.21.11`
-- Java `21`
-- Windows x86_64
-- Linux x86_64
-
-Required plugin:
-
-- MapEngine `1.8.12`
-
-LuigiScreen belongs to the Bukkit plugin ecosystem but currently targets
-Paper APIs. Install it on Paper, not on a plain Spigot or CraftBukkit server.
+Windows x86_64 and Linux x86_64. No other plugin is required.
 
 Project links:
 
@@ -36,52 +29,23 @@ Project links:
 
 ## Start here
 
-Server administrators should begin with the
-[Control Studio overview](studio/control-studio.md). Open the in-game interface
-with `/screen menu`, or create a secure browser session with `/screen web` and
-follow the [Web Studio guide](studio/web-studio.md).
-
-Start with [Media sources](screen/sources.md) to choose RTMP, MJPEG, a local
-video, a local or remote image, or a GIF.
-
-For live OBS video, follow the [RTMP quick start](getting-started/quick-start.md).
-If the Minecraft server is hosted elsewhere, first read
-[Choose an RTMP network setup](streaming/overview.md).
+1. [Install](getting-started/installation.md) the JAR.
+2. Follow the [Quick Start](getting-started/quick-start.md): build a screen and play a file or a YouTube link in two commands.
+3. Open the browser control panel with `/screen web` — see [Web Studio](studio/web-studio.md).
 
 If you prefer Czech, use the [Český rychlý start](czech/quick-start.md).
 
-## What LuigiScreen provides
+## What LuigiScreen does
 
-- In-game Control Studio and local browser Web Studio with role-based sections
-- One-time Web Studio login links, secure sessions, CSRF protection and revocation
-- Browser Live Studio with Preview/Program control and bounded live thumbnails
-- Live Control, per-screen queues, groups, schedules and audience voting
-- Watched Media Library with validation and generated map thumbnails
-- Draft/Publish editing, config snapshots, audit history and undo
-- Playback explanations, eligibility diagnostics and usage statistics
-- Multiple named map screens up to the safety limits in `config.yml`
-- RTMP and MJPEG live streams
-- Looping local videos and GIFs
-- Local and URL images
-- One shared loader for screens using the same source type and value
-- Independent source, FPS, distance, world, location, width, height and enabled state per screen
-- Granular command permissions and optional per-screen visibility permissions
-- Fully non-destructive configuration reloads; `/screen remove` is required to delete a screen
-- Optional guided MediaMTX setup for RTMP
-- Automatic reconnect with exponential backoff
-- Viewer-distance based pause and resume
-- Adaptive FPS for large screens
-- Localized Czech and English messages
-- Performance boss bar and 15-line debug sidebar
-- Masked remote-source credentials in status output and logs
-- Public AGPL-3.0-only Free source code
+- **Plays almost anything**: local videos, images and GIFs, YouTube/Twitch/other video links (through yt-dlp), RTMP from OBS and MJPEG cameras
+- **Runs on its own**: weighted playlists, events (countdowns, announcements, takeovers), time-based automations and screen groups
+- **Easy to operate**: one browser panel (`/screen web`) and short commands like `/screen play lobby intro.mp4`
+- **Light on the server**: one decoder per source even when many screens show it, decoding pauses when nobody is nearby, frames are scaled inside FFmpeg, and only the changed part of each map is sent
+- **Safe**: one-time web login links, per-role permissions, optional per-screen visibility, emergency mode
+- Czech and English messages
 
-## Live-stream limitation
+## Not yet
 
-LuigiScreen reads a live stream; it does not create one by itself. When using
-RTMP, MediaMTX must be running somewhere and OBS or another publisher must
-send video to it. If the publishing computer is turned off, live desktop
-capture stops.
-
-For simple 24/7 playback, use a local video or GIF directly. For a remotely
-managed RTMP source, see [External hosting and 24/7](network/external-hosting.md).
+- No sound in Minecraft yet.
+- LuigiScreen reads a live stream; it does not create one. For OBS you also
+  need MediaMTX — see [Choose an RTMP network setup](streaming/overview.md).

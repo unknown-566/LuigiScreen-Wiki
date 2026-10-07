@@ -15,21 +15,22 @@ It is granted to operators by default and includes every command permission,
 
 | Permission | Command |
 | --- | --- |
+| `luigiscreen.play` | `/screen play`, `queue`, `pause`, `skip`, `return` |
 | `luigiscreen.create` | `/screen create` |
 | `luigiscreen.clone` | `/screen clone` |
 | `luigiscreen.list` | `/screen list` |
-| `luigiscreen.start` | `/screen start` |
-| `luigiscreen.stop` | `/screen stop` |
+| `luigiscreen.start` | `/screen on` |
+| `luigiscreen.stop` | `/screen off` |
 | `luigiscreen.remove` | `/screen remove` |
-| `luigiscreen.status` | `/screen status` |
+| `luigiscreen.status` | `/screen info` |
 | `luigiscreen.source` | `/screen source` |
 | `luigiscreen.playlist` | `/screen playlist` |
 | `luigiscreen.event` | `/screen event` |
 | `luigiscreen.set` | `/screen set` |
 | `luigiscreen.reload` | `/screen reload` |
 | `luigiscreen.debug` | `/screen debug` |
-| `luigiscreen.mediamtx` | `/screen mediamtx` |
-| `luigiscreen.menu.dashboard` | `/screen menu` or `/screen studio` |
+| `luigiscreen.mediamtx` | `/screen obs` |
+| `luigiscreen.menu.dashboard` | `/screen menu` |
 | `luigiscreen.web` | `/screen web` and Web Studio login links |
 | `luigiscreen.vote` | Cast a vote with `/screen vote` |
 
@@ -54,7 +55,7 @@ permission-required: false
 Protect a screen:
 
 ```text
-/screen set cinema permission true
+/screen set cinema private true
 ```
 
 Players now need:
@@ -69,15 +70,16 @@ Wildcard access:
 luigiscreen.see.*
 ```
 
-Players without access do not receive or see that MapEngine display. Permission
+Players without access are never sent that screen. Permission
 changes are detected by the regular viewer refresh, so a restart is not
 required.
 
 ## LuckPerms examples
 
-Allow a moderator to start, stop and inspect screens:
+Allow a moderator to play media and turn screens on/off:
 
 ```text
+/lp user PLAYER permission set luigiscreen.play true
 /lp user PLAYER permission set luigiscreen.start true
 /lp user PLAYER permission set luigiscreen.stop true
 /lp user PLAYER permission set luigiscreen.status true

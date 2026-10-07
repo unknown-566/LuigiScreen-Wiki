@@ -45,7 +45,7 @@ Checks:
 1. Confirm MediaMTX reports the RTMP listener.
 2. Test the reader URL in VLC from the Minecraft server network when possible.
 3. Confirm the correct setup situation was used.
-4. Check `/screen status`.
+4. Check `/screen info`.
 
 ## `authentication failed`
 
@@ -75,7 +75,7 @@ Fix:
 - Start OBS and confirm its preview.
 - Use H.264 with a two-second keyframe interval.
 - Stop and start OBS streaming.
-- Run `/screen stop`, wait a few seconds, then `/screen start`.
+- Run `/screen off`, wait a few seconds, then `/screen on`.
 
 ## Screen is created but invisible
 
@@ -83,11 +83,32 @@ Check:
 
 - You are in the same world
 - You are within `screen.viewer-distance`
-- MapEngine is enabled
+- The screen is on (`/screen info <screen>` does not say *off*)
+- The screen is not private (`/screen set <screen> private false`)
 - The screen faces the player
-- `/screen status` shows a saved display
+- The console shows no PacketEvents error during startup
 
 Try moving away and returning, or reconnecting to the server.
+
+## `NoClassDefFoundError` or PacketEvents error on startup
+
+LuigiScreen bundles its own PacketEvents copy, so a separate PacketEvents
+plugin does not conflict. If the error persists, remove older
+`LuigiScreen*.jar` files from `plugins/` and restart. You may delete
+`MapEngine.jar` if no other plugin needs it.
+
+## YouTube link: "needs yt-dlp"
+
+Install yt-dlp in **Web Studio → System → YouTube and video links**, or set
+`online-video.yt-dlp-path` to an existing yt-dlp executable. Do not start
+`yt-dlp.exe` by double-clicking; LuigiScreen runs it itself.
+
+## YouTube link plays briefly, then *Source unavailable*
+
+YouTube changes often. LuigiScreen updates its own yt-dlp copy every few days;
+restart the server to force an update check. Age-restricted, private and
+region-locked videos cannot be played. The exact reason appears in
+Web Studio → System and in `/screen info <screen>`.
 
 ## Stream is live but the Minecraft screen is black
 
@@ -104,11 +125,11 @@ If OBS is not black:
 
 Native FFmpeg can take several seconds to leave a blocked network read.
 
-Do not repeatedly run reload or create commands. Wait and check `/screen status`.
+Do not repeatedly run reload or create commands. Wait and check `/screen info`.
 
 MediaMTX profile switching in `alpha.6` and newer happens asynchronously and never starts a second decoder before the old one terminates.
 
-## `/screen mediamtx` fails
+## `/screen obs` fails
 
 Check write permissions for:
 

@@ -60,7 +60,7 @@ A growing delay is not expected. The plugin drops waiting frames instead.
 
 LuigiScreen avoids rebuilding large helper objects for every frame:
 
-- Each screen keeps one reusable image view over its MapEngine pixel buffer.
+- Each screen keeps one reusable canvas and map-color buffer.
 - A delta comparison buffer is allocated once and updated in place.
 - Player positions are captured once per viewer refresh and shared by all screens.
 - Screens using the same source still share one decoder or image loader.

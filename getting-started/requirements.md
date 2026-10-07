@@ -1,57 +1,39 @@
 # Requirements
 
-Check every requirement before installing LuigiScreen.
-
 ## Minecraft server
 
 | Requirement | Supported value |
 | --- | --- |
 | Server software | Paper |
-| Minecraft version | `1.21.11` |
-| Java | `21` |
+| Minecraft version | `1.21.11`, `26.1.1`, `26.1.2`, `26.2`, `26.3` |
+| Java | `21` for 1.21.11, `25` for 26.x |
 | CPU architecture | x86_64 / amd64 |
 | Operating system | Windows or Linux |
 
-LuigiScreen is distributed as a Paper/Bukkit plugin, but its current build
-targets Paper APIs. Plain Spigot and CraftBukkit servers, Folia, macOS, ARM64
-and older Minecraft versions are not currently supported.
+One LuigiScreen JAR works on every version above. Plain Spigot and
+CraftBukkit, Folia, macOS and ARM64 are not supported.
 
-## Required plugin
+No other plugin is required. Older releases needed MapEngine; it is no longer
+used and can be removed.
 
-Install MapEngine `1.8.12` before starting the server.
+## Optional tools
 
-LuigiScreen declares MapEngine as a required dependency. If MapEngine is missing or incompatible, Paper will not enable LuigiScreen correctly.
+| You want to play | You also need |
+| --- | --- |
+| Files, images, GIFs from `plugins/LuigiScreen/media/` | nothing |
+| Image or GIF links | nothing |
+| YouTube, Twitch and other video pages | **yt-dlp** — installed with one click in Web Studio → System |
+| OBS / live desktop | **MediaMTX** and **OBS Studio** — see [Choose an RTMP network setup](../streaming/overview.md) |
+| An IP camera | its direct MJPEG address |
 
-## Optional RTMP software
+## Network
 
-You only need these applications when using an RTMP source:
+- Web Studio listens on TCP `8765` (configurable). Keep it inside your LAN or behind a VPN/HTTPS proxy.
+- MediaMTX uses TCP `55556` by default, only on the machine that runs it.
+- YouTube and other links need outbound HTTPS from the Minecraft server.
 
-- [MediaMTX](https://mediamtx.org/) as the media server
-- [OBS Studio](https://obsproject.com/) or another RTMP publisher
+## Hosting providers
 
-Local videos, images and GIFs do not require OBS or MediaMTX. MJPEG only
-requires a reachable MJPEG endpoint.
-
-MediaMTX can run:
-
-- On the Minecraft server computer
-- On another computer in the same LAN
-- On a computer reachable through a public IP
-- Across a VPN such as Tailscale or ZeroTier
-- On an external VPS
-
-## RTMP network requirements
-
-The default LuigiScreen MediaMTX port is TCP `55556`.
-
-Only the machine that runs MediaMTX listens on this port. Do not open or forward the port on unrelated computers.
-
-## Hosting-provider warning
-
-Minecraft hosting panels usually allow only plugin JAR files and Minecraft ports. They often do not allow running `mediamtx` or Docker beside the server.
-
-In that situation:
-
-1. Run MediaMTX on a VPS or another computer.
-2. Use `/screen mediamtx hosting`.
-3. Configure LuigiScreen to read the remote RTMP stream.
+Managed Minecraft hosts usually only allow plugin JARs. Everything except
+MediaMTX runs inside the plugin, so files, images and YouTube links work there.
+For OBS, run MediaMTX on a VPS and use `/screen obs hosting`.

@@ -81,13 +81,13 @@ Enable it on a screen:
 
 ```text
 /screen reload
-/screen playlist set main spawn_rotation
+/screen playlist main spawn_rotation
 ```
 
 Disable it:
 
 ```text
-/screen playlist clear main
+/screen playlist main off
 ```
 
 ## Step By Step Setup
@@ -95,7 +95,7 @@ Disable it:
 If you prefer the browser UI, open `/screen web` and use:
 
 ```text
-Media Library -> Playlist Editor -> Add item -> Assign and play
+Program -> Playlists -> New -> Add media -> Play on screen
 ```
 
 The browser workflow creates empty playlists, adds media with visible duration
@@ -105,7 +105,7 @@ editing YAML.
 ### 1. Create or choose a screen
 
 ```text
-/screen create main 7 4
+/screen create main 4 3
 ```
 
 ### 2. Put local media into the media folder
@@ -180,7 +180,7 @@ playlists:
 ### 5. Assign the playlist to a screen
 
 ```text
-/screen playlist set main spawn_rotation
+/screen playlist main spawn_rotation
 ```
 
 Now `main` is controlled by the playlist.
@@ -324,15 +324,15 @@ An event is a manual sequence.
 
 It is not random. It plays in order.
 
-In Web Studio, open **Events** and use the event builder:
+In Web Studio, open **Program -> Events**:
 
 1. Create or open an event.
 2. Add steps from the Media Library or use text/countdown/wait steps.
 3. Pick a target screen.
-4. Press **Start event**.
+4. Press **Start**.
 
-The builder saves added and deleted steps immediately. Advanced conditions and
-fine-tuning are available by clicking a step and using the inspector.
+Added and removed steps are saved immediately. Conditions can be added in
+`config.yml`.
 
 Example:
 
@@ -359,7 +359,7 @@ events:
 Play it:
 
 ```text
-/screen event play main update_reveal
+/screen event main update_reveal
 ```
 
 What happens:
@@ -374,7 +374,7 @@ What happens:
 Stop it early:
 
 ```text
-/screen event stop main
+/screen event main stop
 ```
 
 ## Playlist vs Event
@@ -383,7 +383,7 @@ Stop it early:
 | --- | --- | --- |
 | Purpose | Normal rotation | Temporary interruption |
 | Order | Weighted random | Fixed sequence |
-| Command | `/screen playlist set` | `/screen event play` |
+| Command | `/screen playlist <screen> <name>` | `/screen event <screen> <name>` |
 | Ends by itself | Keeps rotating | Yes, after the sequence |
 | Returns to normal playback | Not needed | Yes |
 
@@ -399,6 +399,7 @@ Playlist and event items support:
 | `image` | Local image under `plugins/LuigiScreen/media/` |
 | `url-image` | HTTP(S) image URL |
 | `gif` | Local or HTTP(S) GIF |
+| `youtube` | YouTube, Twitch or another video page (needs yt-dlp) |
 | `folder` | Random file from a local media folder |
 | `text` | Internal LuigiScreen text frame |
 | `countdown` | Internal LuigiScreen text frame for now |
@@ -427,7 +428,7 @@ same active item at the same time, they can share the loader.
 Check:
 
 - Did you run `/screen reload` after editing `config.yml`?
-- Did you assign it with `/screen playlist set <screen> <playlist>`?
+- Did you assign it with `/screen playlist <screen> <playlist>`?
 - Is the playlist name spelled the same in the command and config?
 - Is the screen enabled?
 
@@ -476,6 +477,6 @@ weight: 1
 ## Notes
 
 - Playlist rotation is checked once per `playback.tick-seconds`.
-- Events are manual in this alpha. Automatic triggers can be added later.
+- Events start from a command, Web Studio or an automation rule (Program -> Automations).
 - Text and countdown items do not need a media file.
-- Minecraft clients still do not receive audio.
+- There is no sound in Minecraft yet.

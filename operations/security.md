@@ -70,7 +70,7 @@ When exposing MediaMTX:
 Run the matching wizard again:
 
 ```text
-/screen mediamtx hosting
+/screen obs hosting
 ```
 
 This creates new credentials and timestamped backups. Replace the MediaMTX config and update OBS with the newly generated URL.

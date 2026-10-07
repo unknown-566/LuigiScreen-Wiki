@@ -7,7 +7,7 @@ Use this setup when Paper and MediaMTX run on one computer while OBS runs on ano
 Run:
 
 ```text
-/screen mediamtx lan
+/screen obs lan
 ```
 
 If LuigiScreen detects multiple LAN addresses, enter the address belonging to the network used by the OBS computer.
