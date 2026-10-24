@@ -11,6 +11,8 @@
 * [Creating Screens](screen/creating-screen.md)
 * [What You Can Play](screen/sources.md)
 * [Playing and Controlling](screen/playback.md)
+* [HD Colours](screen/hd-colors.md)
+* [Sound](screen/sound.md)
 * [Playlists](screen/playlists.md)
 * [Events](screen/events.md)
 * [Automations, Groups and Voting](screen/automations.md)

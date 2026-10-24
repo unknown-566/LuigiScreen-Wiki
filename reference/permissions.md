@@ -33,6 +33,7 @@ It is granted to operators by default and includes every command permission,
 | `luigiscreen.menu.dashboard` | `/screen menu` |
 | `luigiscreen.web` | `/screen web` and Web Studio login links |
 | `luigiscreen.vote` | Cast a vote with `/screen vote` |
+| `luigiscreen.rp` | `/screen rp enable\|disable <player>` for other players (everyone can use it for themselves) |
 
 Update notifications use a separate permission:
 

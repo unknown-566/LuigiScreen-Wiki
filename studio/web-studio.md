@@ -48,14 +48,17 @@ program), a live preview, and **Settings** for FPS, viewing distance and
 private visibility.
 
 New screens are placed in Minecraft: look at the top-left block of a wall and
-run `/screen create <name> [width] [height]`.
+run `/screen create <name> [width] [height]`. **New screen** in Web Studio helps
+you pick the size: choose a ratio (16:9, 4:3, 21:9, 1:1, 9:16 or free), set the
+width, and it shows the screen as a block grid together with the command to run.
+Sizes over the server limit are shown in red.
 
 ## YouTube
 
 The first time, open **System → YouTube and video links** and press
 **Install**. LuigiScreen downloads the official yt-dlp release into
 `plugins/LuigiScreen/bin/`, checks its SHA-256 and keeps it updated. Do not
-run `yt-dlp.exe` yourself. There is no sound in Minecraft yet.
+run `yt-dlp.exe` yourself. For sound see [Sound](../screen/sound.md).
 
 ## Program
 
@@ -78,8 +81,8 @@ Program changes are saved immediately; there is no separate publish step.
 - **Problems**: only things that need attention. A screen paused because
   nobody is nearby, or one still connecting, is normal and not listed.
 - **YouTube and video links**: install status and the last yt-dlp error.
-- **Picture quality**: dithering, colour stability, glowing frames, pause
-  without viewers, adaptive FPS and the map-update budget. Saving reloads the
+- **Picture quality**: dithering, colour stability, HD colours, glowing frames,
+  pause without viewers, adaptive FPS and the map-update budget. Saving reloads the
   plugin; screens reconnect within seconds.
 - **This session**: who you are signed in as and when it expires.
 - **Recent changes**: audit log.

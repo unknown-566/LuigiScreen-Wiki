@@ -10,9 +10,12 @@ nearby player. Size and FPS matter far more than anything else.
 | 4×3 | 12 | 512×384 |
 | 7×4 | 28 | 896×512 |
 | 10×6 | 60 | 1280×768 |
+| 16×9 | 144 | 2048×1152 |
+| 32×18 | 576 | 4096×2304 |
 
-Starting point for a public server: 4×3 to 7×4 maps, 8–10 FPS, 64-block
-viewing distance.
+Starting point for a public server: 4×3 to 8×5 maps, 20 FPS, 64-block
+viewing distance. 60 FPS on a big screen looks great but sends a lot of data to
+every viewer, so test it with `/screen debug` first.
 
 ## What LuigiScreen already saves
 
@@ -26,14 +29,28 @@ viewing distance.
 
 ## Adaptive FPS
 
-With `performance.adaptive-fps: true`, FPS is limited so all maps together stay
-under `max-map-updates-per-second` (default 400). A 60-map screen gets at most
-about 400 / 60 ≈ 6.7 FPS. Both settings are in Web Studio → System → Picture quality.
+With `performance.adaptive-fps: true`, a screen lowers its FPS when it would
+send more than `max-map-updates-per-second` (default 600) per viewer. Only
+pixels that actually change are counted, so a quarter-changed map counts as
+0.25. A calm video keeps its full FPS; a 144-map screen where everything
+changes every frame drops to about 600 / 144 ≈ 4 FPS. Both settings are in
+Web Studio → System → Picture quality.
 
 ## Dithering
 
-`screen.dithering` gives smoother gradients but changes more pixels per frame,
-so it costs bandwidth. Leave it off for video, try it for still images.
+`screen.dithering` has three modes:
+
+- `floyd` (default): error diffusion, the most accurate colours. Pixels whose
+  source didn't change keep their colour, so video doesn't shimmer and still
+  areas cost no bandwidth.
+- `ordered`: a fixed grid pattern, a little cheaper on CPU.
+- `off`: nearest colour only, visible colour bands on gradients.
+
+## HD colours
+
+Players with the [HD colours](../screen/hd-colors.md) pack get separately
+encoded map data. A screen watched by players with and without the pack does
+both conversions, a few milliseconds more per frame.
 
 ## Web Studio
 

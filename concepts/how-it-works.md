@@ -33,9 +33,14 @@ in packets: LuigiScreen sends them to players near the screen and removes them
 when players walk away, so nothing is saved in the world or in map storage.
 
 Pixels are converted to the Minecraft map palette of the running server
-version. Optional dithering smooths gradients, and *colour stability* keeps a
-pixel's previous colour while the new one is almost the same, which stops
-video noise from forcing full map updates.
+version. Dithering (Floyd–Steinberg by default) smooths gradients, and
+*colour stability* keeps a pixel's previous colour while the new one is almost
+the same, which stops video noise from forcing full map updates. Players with
+the [HD colours](../screen/hd-colors.md) pack get maps encoded for its shader
+instead.
+
+Converting and sending overlap: while one frame is being sent, the next one is
+already converted. This is what lets a screen reach 60 FPS.
 
 For every frame, only the changed rectangle of each map is sent, and all maps
 of one frame travel in one bundle so the picture never tears. A player whose

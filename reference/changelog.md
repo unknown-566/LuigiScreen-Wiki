@@ -5,12 +5,25 @@
 **Upgrade note:** LuigiScreen no longer needs MapEngine. Commands were
 simplified; old names keep working (see *Renamed in 1.3.0* in [Commands](commands.md)).
 
+Picture and speed
+
+- Up to 60 FPS (was 20); converting the next frame overlaps with sending the current one
+- Changing FPS on an existing screen now works; screens no longer get stuck at 6–7 FPS
+- Adaptive FPS counts only the pixels that really change, so calm video keeps full FPS
+- Floyd–Steinberg dithering is the new default; unchanged pixels keep their colour, so video doesn't shimmer
+- Optional [HD colours](../screen/hd-colors.md): a small resource pack (core shader, no mod) shows far more colours (1.21.11 only)
+- `/screen rp enable|disable [player]` and permission `luigiscreen.rp`
+- Size limit raised to 32×18 blocks / 576 maps; old 10×6 limits are upgraded automatically
+- Web Studio screen builder with ratio presets (16:9, 4:3, 21:9, 1:1, 9:16) and a block-grid preview
+- Fast, flashing videos play more smoothly (far less memory garbage per frame)
+- Screen [sound](../screen/sound.md) through Simple Voice Chat
+
 Rendering
 
 - New built-in renderer using virtual item frames and map packets (PacketEvents is bundled)
 - Paper 26.x support in addition to 1.21.11
 - Only changed parts of each map are sent; slow connections skip frames instead of lagging
-- Better colours: palette read from the running server, optional dithering with adjustable strength, colour stability against flicker
+- Better colours: palette read from the running server, dithering with adjustable strength, colour stability against flicker
 - Video is decoded at the size of the largest screen instead of full resolution
 
 YouTube and online video

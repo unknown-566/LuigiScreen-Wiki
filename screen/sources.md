@@ -28,7 +28,7 @@ You can always write the type first to be explicit: `video`, `image`, `gif`,
 Playlists and events have three extra item types: `folder` (a random file
 from a folder), `text` and `countdown`. See [Playlists](playlists.md).
 
-There is no sound in Minecraft yet.
+Sound needs Simple Voice Chat, see [Sound](sound.md).
 
 ## Local files: the media library
 

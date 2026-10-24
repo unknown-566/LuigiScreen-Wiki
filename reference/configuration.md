@@ -35,7 +35,7 @@ updates:
 stream:
   # Legacy RTMP default and reconnect settings.
   url: "rtmp://127.0.0.1:55556/screen"
-  fps: 8
+  fps: 20
   reconnect-delay-seconds: 3
   reconnect-max-delay-seconds: 30
   io-timeout-seconds: 5
@@ -62,25 +62,32 @@ screen:
   auto-start: true
   viewer-distance: 64
   glowing-frames: false
-  dithering: false
+  dithering: floyd
   dither-strength: 0.8
   color-stability: 4
-  max-width: 10
-  max-height: 6
-  max-total-maps: 60
+  max-width: 32
+  max-height: 18
+  max-total-maps: 576
 
 screens: {}
 
 performance:
   adaptive-fps: true
-  max-map-updates-per-second: 400
+  max-map-updates-per-second: 600
   minimum-fps: 0.2
   pause-rendering-without-viewers: true
   worker-stop-timeout-seconds: 8
 
 online-video:
   yt-dlp-path: ""
-  max-height: 480
+  max-height: 720
+
+hd-colors:
+  enabled: true
+
+audio:
+  enabled: true
+  volume: 1.0
 
 logging:
   ffmpeg-level: quiet
@@ -137,7 +144,7 @@ screens:
     source:
       type: video
       value: intro.mp4
-    fps: 8.0
+    fps: 20.0
     distance: 64.0
     playlist: spawn_rotation
     world: world
@@ -308,27 +315,38 @@ complete security model.
 
 | Option | Default | Meaning |
 | --- | --- | --- |
-| `screen.dithering` | `false` | Floyd-Steinberg dithering: smoother gradients, slightly more bandwidth |
+| `screen.dithering` | `floyd` | `floyd` (error diffusion, most accurate), `ordered` (grid pattern, cheaper) or `off` |
 | `screen.dither-strength` | `0.8` | `0.0`–`1.0`, how strongly dithering spreads colour error |
 | `screen.color-stability` | `4` | Keep a pixel's previous map colour while the new one is this close (`0` = off). Higher values send less data on noisy video |
 
-Dithering and colour stability can also be changed in Web Studio → System → Picture quality.
+| `hd-colors.enabled` | `true` | Offer players the [HD colours](../screen/hd-colors.md) resource pack (1.21.11 only) |
+
+These can also be changed in Web Studio → System → Picture quality.
+
+## Sound
+
+| Option | Default | Meaning |
+| --- | --- | --- |
+| `audio.enabled` | `true` | Play screen sound through Simple Voice Chat when it is installed |
+| `audio.volume` | `1.0` | `0.0`–`2.0`, applied before each player's voice chat volume |
+
+See [Sound](../screen/sound.md).
 
 ## Online video
 
 | Option | Default | Meaning |
 | --- | --- | --- |
 | `online-video.yt-dlp-path` | `""` | Path to an existing yt-dlp. Empty = the copy installed from Web Studio in `plugins/LuigiScreen/bin/`, then `yt-dlp` on the system PATH |
-| `online-video.max-height` | `480` | Highest video resolution requested from YouTube and similar sites |
+| `online-video.max-height` | `720` | Highest video resolution requested from YouTube and similar sites |
 
 ## Safety limits
 
 `screen.max-width`, `screen.max-height` and `screen.max-total-maps` are checked
 for every individual screen.
 
-The hard limits are 50x50 and 2500 maps, but the defaults of 10x6 and 60 maps
-are much safer. Multiple screens add rendering and packet cost even when they
-share decoding.
+The hard limits are 50x50 and 2500 maps. The defaults are 32x18 and 576 maps;
+older configs with the previous 10x6 / 60 defaults are raised automatically.
+Multiple screens add rendering and packet cost even when they share decoding.
 
 ## Performance
 

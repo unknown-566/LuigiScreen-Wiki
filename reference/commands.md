@@ -55,7 +55,7 @@ Playlists and events are created in Web Studio → **Program** or in
 | `/screen create <name> [width] [height]` | Create a screen on the wall you look at (top-left block); default 4×3 |
 | `/screen clone <screen> <new-name>` | Copy a screen to the wall you look at; both share one decoder |
 | `/screen remove <screen>` | Delete a screen; asks you to click **[Delete]** to confirm (`delete` also works) |
-| `/screen set <screen> fps <0.1–20>` | Frame rate |
+| `/screen set <screen> fps <0.1–60>` | Frame rate |
 | `/screen set <screen> distance <8–1024>` | Viewing distance in blocks |
 | `/screen set <screen> private <true\|false>` | Only players with `luigiscreen.see.<screen>` see it |
 
@@ -73,6 +73,16 @@ Names use `a-z`, `0-9`, `_` and `-`, up to 32 characters.
 | `/screen obs <situation>` | Generate a MediaMTX setup for OBS: `same-pc`, `lan`, `internet`, `vpn`, `hosting` (`mediamtx` also works) |
 
 See [Streaming from OBS](../streaming/overview.md) for `obs`.
+
+## HD colours pack
+
+| Command | What it does |
+| --- | --- |
+| `/screen rp disable` | Remove the HD colours pack for yourself; it stays off after rejoining |
+| `/screen rp enable` | Get the pack offered again |
+| `/screen rp enable\|disable <player>` | The same for another online player (needs `luigiscreen.rp`) |
+
+See [HD Colours](../screen/hd-colors.md).
 
 ## Voting
 

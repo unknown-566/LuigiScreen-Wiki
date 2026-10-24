@@ -24,6 +24,8 @@ Author: **unknown_56** · Documentation for `1.3.0-alpha.1`
 | **Play** | Local videos, images and GIFs, image links, YouTube/Twitch/other video sites, RTMP from OBS, MJPEG cameras |
 | **Control** | Play now, queue, pause, skip, return; from commands, the browser or an in-game menu |
 | **Automate** | Weighted playlists with conditions, events (countdowns, announcements, takeovers), timed automations, screen groups, audience voting |
+| **Look good** | Up to 60 FPS, screens up to 32×18 blocks, optional [HD colours](screen/hd-colors.md) through a small resource pack |
+| **Sound** | Through [Simple Voice Chat](screen/sound.md), coming from the screen |
 | **Scale** | Any number of screens; screens with the same source share one decoder; decoding pauses when nobody is near |
 | **Stay safe** | One-time web login, per-role permissions, private screens, emergency mode, config history with undo |
 
@@ -31,7 +33,7 @@ Messages in English and Czech.
 
 ## Not yet
 
-- No sound in Minecraft (planned).
+- HD colours only on Minecraft 1.21.11.
 - No upload of media from the browser; copy files into `plugins/LuigiScreen/media/`.
 - LuigiScreen reads a live stream but does not create one: streaming from OBS
   also needs MediaMTX, see [Streaming from OBS](streaming/overview.md).
